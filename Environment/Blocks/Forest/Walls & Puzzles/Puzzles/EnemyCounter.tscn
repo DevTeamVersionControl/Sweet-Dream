@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=2]
+
+[sub_resource type="GDScript" id=1]
+script/source = "extends Node
+
+signal on
+signal off
+
+@export var enemies # (Array, NodePath)
+var on := false
+var num : int
+
+func _ready():
+	start(enemies)
+
+func start(new_enemies:Array):
+	enemies = new_enemies
+	for enemy in enemies:
+		get_node(enemy).connect(\"died\", Callable(self, \"on_enemy_died\"))
+	num = enemies.size()
+	on = false
+
+func on_enemy_died():
+	num = num-1
+	if num == 0:
+		emit_signal(\"on\")
+		on = true
+"
+
+[node name="EnemyCounter" type="Node2D"]
+script = SubResource( 1 )

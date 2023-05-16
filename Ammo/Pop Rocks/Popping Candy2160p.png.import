@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/Popping Candy2160p.png-a9a01362fc8344d9ea3a5d5a790e2460.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://Ammo/Pop Rocks/Popping Candy2160p.png"
+dest_files=[ "res://.import/Popping Candy2160p.png-a9a01362fc8344d9ea3a5d5a790e2460.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=true
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=true
+svg/scale=1.0

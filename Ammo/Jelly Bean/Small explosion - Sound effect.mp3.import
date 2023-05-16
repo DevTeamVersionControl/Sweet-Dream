@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bs10moj2b7lvf"
+path="res://.godot/imported/Small explosion - Sound effect.mp3-b998c2ba7b3614894a21250a9aabc3aa.mp3str"
+
+[deps]
+
+source_file="res://Ammo/Jelly Bean/Small explosion - Sound effect.mp3"
+dest_files=["res://.godot/imported/Small explosion - Sound effect.mp3-b998c2ba7b3614894a21250a9aabc3aa.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bifbb8886p31k"
+path="res://.godot/imported/Jawbreaker Wind Up.wav-17c7998c7495c870ecec856cbf378adf.sample"
+
+[deps]
+
+source_file="res://Actors/Enemies/Jawbreaker/Jawbreaker Wind Up.wav"
+dest_files=["res://.godot/imported/Jawbreaker Wind Up.wav-17c7998c7495c870ecec856cbf378adf.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

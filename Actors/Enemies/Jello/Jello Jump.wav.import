@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bcub0fkswtinv"
+path="res://.godot/imported/Jello Jump.wav-d5d9150ad720011981a3b6dc56402488.sample"
+
+[deps]
+
+source_file="res://Actors/Enemies/Jello/Jello Jump.wav"
+dest_files=["res://.godot/imported/Jello Jump.wav-d5d9150ad720011981a3b6dc56402488.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

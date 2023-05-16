@@ -1,0 +1,33 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://u6c0vnao8yjv"
+path="res://.godot/imported/XPLOR Bold-Regular.otf-1d72e5d96432c3ea2b8a376ee203133a.fontdata"
+
+[deps]
+
+source_file="res://UserInterface/Fonts/XPLOR Bold-Regular.otf"
+dest_files=["res://.godot/imported/XPLOR Bold-Regular.otf-1d72e5d96432c3ea2b8a376ee203133a.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+hinting=1
+subpixel_positioning=1
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

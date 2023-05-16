@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c05q21baw3l6r"
+path="res://.godot/imported/Jawbreaker Boss Dash.wav-0bc4e7b3a9e3b1764e583ba1fe35d65f.sample"
+
+[deps]
+
+source_file="res://Actors/Enemies/Bosses/Jaw Breaker/Jawbreaker Boss Dash.wav"
+dest_files=["res://.godot/imported/Jawbreaker Boss Dash.wav-0bc4e7b3a9e3b1764e583ba1fe35d65f.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

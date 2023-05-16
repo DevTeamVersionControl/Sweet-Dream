@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dkgaa10rd24mk"
+path="res://.godot/imported/Jawbreaker Boss Wind Up.wav-8afcd2fb2c7a5bac3fb6f6482464c466.sample"
+
+[deps]
+
+source_file="res://Actors/Enemies/Bosses/Jaw Breaker/Jawbreaker Boss Wind Up.wav"
+dest_files=["res://.godot/imported/Jawbreaker Boss Wind Up.wav-8afcd2fb2c7a5bac3fb6f6482464c466.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=0

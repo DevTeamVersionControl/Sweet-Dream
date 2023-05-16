@@ -1,0 +1,34 @@
+@tool
+extends Area2D
+
+signal on
+signal off
+
+@export var colour:int: set = set_colour
+  
+var bodies := 0
+var on := false
+
+func _on_Area2D_body_entered(body):
+	if body.is_in_group("pushbutton") && !on:
+		push()
+
+func set_colour(new_colour):
+	colour = new_colour
+	$Sprite2D.frame = 0 + colour * 2
+	$Sprite2D.position.y = -3
+
+func save(game_data:Dictionary):
+	game_data[get_tree().current_scene.current_level.filename + name] = on
+
+func load(game_data):
+	if game_data.has(get_tree().current_scene.current_level.filename + name):
+		if game_data.get(get_tree().current_scene.current_level.filename + name):
+			push()
+
+func push():
+	emit_signal("on")
+	on = true
+	$Sprite2D.frame = 1 + colour * 2
+	$Sprite2D.position.y = 0
+	GameSaver.save()
