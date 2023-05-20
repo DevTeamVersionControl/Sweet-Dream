@@ -46,4 +46,3 @@ func physics_update(delta: float) -> void:
 				state_machine.transition_to("Aim")
 		elif Input.is_action_pressed("dash"):
 			state_machine.transition_to("Dashing")
-

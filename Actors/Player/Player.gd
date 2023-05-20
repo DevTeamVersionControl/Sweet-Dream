@@ -32,7 +32,7 @@ const HIT = preload("res://Actors/Player/Player Hit.wav")
 const HEALING = preload("res://Actors/Player/Healing.wav")
 const AMMO_SWITCH = preload("res://Actors/Player/Ammo Switch.wav")
 
-var motion = Vector2.ZERO
+var velocity = Vector2.ZERO
 var level_limit_min
 var level_limit_max
 var facing_right := true

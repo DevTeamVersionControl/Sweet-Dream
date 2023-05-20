@@ -30,7 +30,7 @@ extends CharacterBody2D
 @onready var explosion_collision = $ExplosionCollision
 @onready var explosion_timer = $ExplosionTimer
 
-var motion = Vector2.ZERO
+var velocity = Vector2.ZERO
 
 func launch(direction, _strength):
 #	if direction.x == 1:
@@ -41,4 +41,4 @@ func launch(direction, _strength):
 	#get_parent().motion += -velocity.normalized() * player_knockback
 	
 func shake():
-	get_tree().current_scene.shaker.start(Callable(0.2, 20.0).bind(2))
+	get_tree().current_scene.shaker.start(Callable(0.2, 20).bind(2))

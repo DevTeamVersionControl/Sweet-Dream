@@ -20,13 +20,16 @@ const DEFAULT_SAVE_PATH = "user://SaveData.json"
 var save_path := DEFAULT_SAVE_PATH
 
 func save():
-	if not FileAccess.file_exists(save_path):
-		return
+	var file = File.new()
 	var save_data = get_save(save_path)
 	for node in get_tree().get_nodes_in_group("save"):
 		node.save(save_data)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_line(JSON.stringify(save_data))
+	var error = file.open(save_path, File.WRITE)
+	if error != OK:
+		printerr("Could not create save file")
+		return
+	var json_string := JSON.stringify(save_data)
+	file.store_string(json_string)
 	file.close()
 
 func load():
@@ -42,20 +45,30 @@ func partial_load(node:Node):
 		return
 	node.load(save_data)
 	
-func partial_save(node:Node) -> void:
-	if not FileAccess.file_exists(node.save_path):
-		return
-	var save_data = get_save(node.save_path)
+func partial_save(node:Node):
+	var file = File.new()
+	var save_data = {}
+	if file.file_exists(node.save_path):
+		save_data = get_save(node.save_path)
 	node.save(save_data)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_line(JSON.stringify(save_data))
+	var error = file.open(node.save_path, File.WRITE)
+	if error != OK:
+		printerr("Could not create save file")
+		return
+	var json_string := JSON.stringify(save_data)
+	file.store_string(json_string)
 	file.close()
 
 func get_save(specific_save_path)->Dictionary:
-	if not FileAccess.file_exists(specific_save_path):
+	var file = File.new()
+	var error = file.open(specific_save_path, File.READ)
+	if error != OK:
+		printerr("Could not load save")
 		return {}
-	var json_as_text = FileAccess.get_file_as_string(specific_save_path)
-	var json_as_dict = JSON.parse_string(json_as_text)
-	if json_as_text == "":
+	var json_string = file.get_as_text()
+	file.close()
+	if json_string == "":
 		return {}
-	return json_as_dict
+	var test_json_conv = JSON.new()
+	test_json_conv.parse(json_string).result
+	return test_json_conv.get_data()

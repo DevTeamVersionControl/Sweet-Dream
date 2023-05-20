@@ -1,4 +1,4 @@
-[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://1opfjd2fj6l0"]
+[gd_resource type="AudioBusLayout" load_steps=3 format=3 uid="uid://c6g3wj3vm2etq"]
 
 [sub_resource type="AudioEffectPanner" id="2"]
 resource_name = "Panner"

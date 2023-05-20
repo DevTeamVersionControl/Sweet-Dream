@@ -53,12 +53,12 @@ func on_impact(normal):
 	player.velocity = player.velocity.bounce(normal)
 	player.velocity *= 0.4
 
-func _on_dash_reset_timer_timeout():
+func on_can_dash():
 	if player.lifesaver != null:
 		player.lifesaver.get_material().set("shader_param/flashState", 0.0)
 	can_dash = true
 #	dash_audio.stream = COMEBACK
 #	dash_audio.play()
 
-func _on_dash_lenght_timer_timeout():
+func on_dash_end():
 	state_machine.transition_to("Air")

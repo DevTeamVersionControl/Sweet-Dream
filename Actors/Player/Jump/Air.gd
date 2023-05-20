@@ -135,6 +135,9 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_pressed("shoot") && player.can_shoot && GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
 			state_machine.transition_to("Aim")
 
+func _on_JumpBufferTimer_timeout():
+	jump_buffer = false
+
 func _on_CoyoteTimeTimer_timeout():
 	coyote_time = false
 
@@ -143,11 +146,5 @@ func lock_input(direction : bool):
 	player.sprite.flip_h = !player.facing_right
 	player.camera_arm.position.x = 127 if player.facing_right else -127
 
-func _on_jump_cut_off_timer_timeout():
+func _on_JumpCutOffTimer_timeout():
 	jump_cut_off = true
-
-func _on_jump_buffer_timer_timeout():
-	jump_buffer = false
-
-func _on_coyote_time_timer_timeout():
-	coyote_time = false
