@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=2 format=3 uid="uid://cclfp1qblm3mh"]
 
-[ext_resource path="res://Abstract/Globals/GlobalTypes.gd" type="Script" id=1]
+[ext_resource type="Script" path="res://Abstract/Globals/GlobalTypes.gd" id="1"]
 
 [node name="GlobalTypes" type="Node"]
-script = ExtResource( 1 )
+script = ExtResource("1")

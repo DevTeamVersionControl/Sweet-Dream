@@ -38,7 +38,7 @@ func _on_Checkpoint_body_exited(body):
 func _unhandled_key_input(_event):
 	if player_is_in_zone && Input.is_action_just_pressed("interact") && not get_tree().current_scene.gui.pause_menu.visible:
 		if get_tree().current_scene.checkpoint_on(name):
-			GameSaver.save()
+			GameSaver.obj_save()
 			get_tree().current_scene.die()
 			get_tree().current_scene.start_rest_menu()
 			GlobalVars.play_sound(CHECKPOINT)
@@ -47,7 +47,7 @@ func _unhandled_key_input(_event):
 			animation_player.play("Opening")
 			await animation_player.animation_finished
 			animation_player.play("Opened")
-			GameSaver.save()
+			GameSaver.obj_save()
 
 func get_spawn_position() -> Vector2:
 	return global_position

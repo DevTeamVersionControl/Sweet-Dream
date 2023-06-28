@@ -27,7 +27,7 @@ func _ready():
 	item_list.select(index)
 
 func input():
-	if Input.is_action_pressed("show_menu"):
+	if Input.is_action_pressed("ui_cancel"):
 		if visible:
 			resume()
 		else:
@@ -52,12 +52,12 @@ func select_option():
 		"Settings":
 			load_settings()
 		"Main menu":
-			GameSaver.save()
+			GameSaver.obj_save()
 			get_tree().paused = false
 			printerr(get_tree().change_scene_to_file("res://UserInterface/MainMenu/MainMenu.tscn"))
 		"Close game":
-			GameSaver.save()
-			get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+			GameSaver.obj_save()
+			get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 		"Resume":
 			resume()
 		"Sound":

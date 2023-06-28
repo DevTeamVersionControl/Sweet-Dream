@@ -15,7 +15,7 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends Area2D
 
-@export var target_scene # (String, FILE, "*tscn,*scn")
+@export_file("*.tscn") var target_scene : String
 
 @onready var spawn_position = $Position
 

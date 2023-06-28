@@ -21,7 +21,7 @@ func set_colour(new_colour):
 func save(game_data:Dictionary):
 	game_data[get_tree().current_scene.current_level.filename + name] = on
 
-func load(game_data):
+func obj_load(game_data):
 	if game_data.has(get_tree().current_scene.current_level.filename + name):
 		if game_data.get(get_tree().current_scene.current_level.filename + name):
 			push()
@@ -31,4 +31,4 @@ func push():
 	on = true
 	$Sprite2D.frame = 1 + colour * 2
 	$Sprite2D.position.y = 0
-	GameSaver.save()
+	GameSaver.obj_save()

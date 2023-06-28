@@ -6,7 +6,6 @@ const INITIAL_VELOCITY = 200
 
 @onready var animation_player := $AnimationPlayer
 
-var velocity := Vector2.ZERO
 var locked := false
 
 func _ready():

@@ -33,13 +33,13 @@ func _on_Artifact_body_entered(body):
 	if body is Player and not Engine.is_editor_hint():
 		GlobalVars.add_to_inventory(description)
 		disappear()
-		GameSaver.save()
+		GameSaver.obj_save()
 
-func save(game_data):
+func obj_save(game_data):
 	if not Engine.is_editor_hint():
 		game_data[get_tree().current_scene.current_level.filename + name] = delete
 
-func load(game_data):
+func obj_load(game_data):
 	if not Engine.is_editor_hint():
 		if game_data.has(get_tree().current_scene.current_level.filename + name):
 			if game_data.get(get_tree().current_scene.current_level.filename + name):
@@ -47,7 +47,7 @@ func load(game_data):
 
 func disappear():
 	delete = true
-	GameSaver.save()
+	GameSaver.obj_save()
 	GameSaver.partial_save(self)
 	queue_free()
 

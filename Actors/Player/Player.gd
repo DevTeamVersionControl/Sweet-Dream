@@ -20,6 +20,7 @@ signal changed_ammo()
 signal changed_health()
 signal changed_sugar()
 signal changed_health_pack()
+signal debug_update(str)
 
 const SPEED = 120
 const GRAVITY = 1200
@@ -32,7 +33,6 @@ const HIT = preload("res://Actors/Player/Player Hit.wav")
 const HEALING = preload("res://Actors/Player/Healing.wav")
 const AMMO_SWITCH = preload("res://Actors/Player/Ammo Switch.wav")
 
-var velocity = Vector2.ZERO
 var level_limit_min
 var level_limit_max
 var facing_right := true
@@ -43,13 +43,13 @@ var sugar_recovery := true
 
 # References to nodes in case they are changed
 @onready var cooldown_timer := $CooldownTimer
-@onready var sprite = $Sprite2D
+@onready var sprite = $Sprite
 @onready var animation_tree := $AnimationTree
 @onready var animation_mode = animation_tree.get("parameters/playback")
 @onready var bullet_center := $BulletCenter
 @onready var state_machine := $StateMachine
-@onready var camera_arm := $"Camera3D arm"
-@onready var camera := $"Camera3D arm/Camera2D"
+@onready var camera_arm := $CameraArm
+@onready var camera := $CameraArm/Camera2D
 @onready var animation_player := $AnimationPlayer
 @onready var shoot_bar := $ShootBar
 @onready var cooldown_bar := $CooldownBar
@@ -65,9 +65,10 @@ func _ready():
 	camera.limit_top = level_limit_min.y
 	camera.limit_right = level_limit_max.x
 	camera.limit_bottom = level_limit_max.y
-	set_canvas_item_light_mask_value($Sprite2D, 5, true)
+	set_canvas_item_light_mask_value(sprite, 5, true)
 
 func _physics_process(delta):
+	emit_signal("debug_update", state_machine.state.name)
 	if sugar_recovery:
 		if GlobalVars.sugar < GlobalVars.max_sugar:
 			GlobalVars.sugar += delta
@@ -104,11 +105,11 @@ func calculate_bullet_direction() -> Vector2:
 		raw_bullet_direction.x = 1 if facing_right else -1
 	return raw_bullet_direction.normalized()
 
-func take_damage(damage:float, knockback:Vector2) -> void:
+func take_damage(damage:float, knockback_vector:Vector2) -> void:
 	if !invulnerable:
 		invulnerable = true
 		invulnerability_timer.start()
-		knockback(knockback)
+		knockback(knockback_vector)
 		GlobalVars.health -= damage
 		if GlobalVars.health <= 0:
 			GlobalVars.health = 0

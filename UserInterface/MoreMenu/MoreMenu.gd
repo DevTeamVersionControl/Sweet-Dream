@@ -24,7 +24,7 @@ func _ready():
 	GameSaver.partial_save(self)
 	GameSaver.partial_load(self)
 
-func input(event):
+func input(_event):
 	if visible:
 		if Input.is_action_pressed("ui_cancel"):
 			GameSaver.partial_save(self)
@@ -33,11 +33,11 @@ func input(event):
 			GameSaver.partial_save(self)
 			hide()
 
-func save(save_data):
+func obj_save(save_data):
 	if is_instance_valid(timer):
 		save_data["Timer"] = timer.pressed
 
-func load(save_data):
+func obj_load(save_data):
 	if save_data.has("Timer") and is_instance_valid(timer):
 		timer.button_pressed = save_data["Timer"]
 

@@ -26,21 +26,18 @@ func _ready():
 	GameSaver.partial_save(self)
 	GameSaver.partial_load(self)
 
-func input(event):
+func input(_event):
 	if visible:
 		if Input.is_action_pressed("ui_cancel"):
 			GameSaver.partial_save(self)
 			hide()
-		elif Input.is_action_pressed("ui_back"):
-			GameSaver.partial_save(self)
-			hide()
 
-func save(save_data):
+func obj_save(save_data):
 	save_data["Master"] = master_volume.value
 	save_data["Music"] =  music_volume.value
 	save_data["SoundEffects"] =  effects_volume.value
 
-func load(save_data):
+func obj_load(save_data):
 	master_volume.value = save_data["Master"]
 	music_volume.value = save_data["Music"]
 	effects_volume.value = save_data["SoundEffects"] 

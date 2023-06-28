@@ -53,10 +53,10 @@ func initialize():
 	map_lock = true
 	inventory = []
 	artifacts = 0
-	GameSaver.load()
+	GameSaver.obj_load()
 	call_deferred("apply_items")
 
-func save(game_data):
+func obj_save(game_data):
 	var ammo_equipped_names := []
 	for i in ammo_equipped_array.size():
 		if ammo_equipped_array[i] != null:
@@ -72,7 +72,7 @@ func save(game_data):
 	game_data["inventory"] = inventory
 	game_data["artifacts"] = artifacts
 	
-func load(game_data):
+func obj_load(game_data):
 	ammo_equipped_array = []
 	for i in game_data["ammo_equipped_names"].size():
 		if game_data["ammo_equipped_names"][i] != null:
@@ -97,16 +97,16 @@ func add_to_inventory(item:Dictionary):
 	inventory.append(item)
 	apply_items()
 
-func get_from_inventory(name:String):
+func get_from_inventory(item_name:String):
 	for item in inventory:
-		if item.get("Name") and item["Name"] == name:
+		if item.get("Name") and item["Name"] == item_name:
 			return item
 	return null
 	
 func remove_from_inventory(item_name:String):
 	for i in inventory.size():
 		if inventory[i].get("Name") == item_name:
-			inventory.remove(i)
+			inventory.remove_at(i)
 
 func add_max_health(num:int)->void:
 	max_health += num
@@ -135,10 +135,10 @@ func apply_drop(item:Dictionary):
 
 func lifesaver(_placeholder)->void:
 	if !is_instance_valid(get_tree().current_scene.player.lifesaver):
-		var lifesaver = LIFESAVER.instantiate()
-		get_tree().current_scene.current_level.add_child(lifesaver)
-		lifesaver.player = get_tree().current_scene.player
-		get_tree().current_scene.player.lifesaver = lifesaver
+		var lifesaver_instance = LIFESAVER.instantiate()
+		get_tree().current_scene.current_level.add_child(lifesaver_instance)
+		lifesaver_instance.player = get_tree().current_scene.player
+		get_tree().current_scene.player.lifesaver = lifesaver_instance
 
 func unlock_map(_placeholder)->void:
 	map_lock = false

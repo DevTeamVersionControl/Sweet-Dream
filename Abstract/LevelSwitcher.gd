@@ -13,7 +13,7 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-extends Node2D
+extends Node
 
 signal level_loaded
 
@@ -24,7 +24,7 @@ const PLAYER = preload("res://Actors/Player/Player.tscn")
 @onready var hud = $HUD
 @onready var shaker = $Shaker
 
-@export var first_level = preload("res://Levels/FirstLevel/FirstLevel.tscn")
+@export var first_level : PackedScene 
 
 var current_level : Node2D
 var next_level : PackedScene
@@ -33,6 +33,7 @@ var player : Player
 var checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
 
 func _ready():
+	checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
 	GlobalVars.initialize()
 	var save_data = GameSaver.get_save("user://MoreSettings.json")
 	hud.set_physics_process_internal(false)
@@ -41,16 +42,16 @@ func _ready():
 			hud.activate_timer()
 	load_level(checkpoint.level, checkpoint.name)
 
-func save(game_data):
+func obj_save(game_data):
 	game_data["checkpoint_level"] = checkpoint.level.resource_path
 	game_data["checkpoint_name"] = checkpoint.name
 
-func load(game_data):
+func obj_load(game_data):
 	checkpoint = GlobalTypes.Checkpoint.new(game_data["checkpoint_name"], load(game_data["checkpoint_level"]))
 
 func change_level(new_level:String, portal_name:String):
 	var tween = get_tree().create_tween()
-	tween.set_process_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
 	tween.tween_property(level_transition, "self_modulate", Color(0, 0, 0, 1), 1)
 	tween.tween_callback(Callable(self, "_on_animation_finished").bind(new_level))
 	gui.request_pause()
@@ -63,7 +64,7 @@ func _on_animation_finished(new_level:String):
 		gui.request_unpause()
 
 func load_level(level:PackedScene, location:String):
-	GameSaver.save()
+	GameSaver.obj_save()
 	if current_level != null:
 		current_level.queue_free()
 		remove_child(current_level)
@@ -79,17 +80,15 @@ func load_level(level:PackedScene, location:String):
 		if door_node:
 			player.camera.position_smoothing_enabled = false
 			player.global_position = door_node.get_spawn_position()
-			player.update()
 	player.level_limit_min = Vector2(current_level.level_range_x.x, current_level.level_range_y.x)
 	player.level_limit_max = Vector2(current_level.level_range_x.y, current_level.level_range_y.y)
 	shaker.camera = player.camera
 	var tween = get_tree().create_tween()
 	tween.tween_property(level_transition, "self_modulate", Color(0, 0, 0, 0), 1)
 	next_level = null
-	gui.map.set_level(current_level.filename)
-	print(filename)
+	gui.map.set_level(current_level.name)
 	GlobalVars.apply_items()
-	GameSaver.load()
+	GameSaver.obj_load()
 	emit_signal("level_loaded")
 
 func die():
@@ -106,11 +105,11 @@ func checkpoint_on(checkpoint_name) -> bool:
 	return (checkpoint.name == checkpoint_name) && (load(current_level.filename) == checkpoint.level)
 
 func start_dialog(dialog_file:String, story_point:int):
-	gui.dialog.start(Callable(dialog_file, story_point))
+	gui.dialog.start(dialog_file, story_point)
 	gui.request_pause()
 
 func start_shop(shop_file:String, multiplier = 1.0):
-	gui.shop.start(Callable(shop_file, multiplier))
+	gui.shop.start(shop_file, multiplier)
 	gui.request_pause()
 
 func start_rest_menu():

@@ -1,7 +1,7 @@
 extends Control
 
 @onready var item_list = $ItemList
-@onready var input_menu = $InputMenu
+#@onready var input_menu = $InputMenu
 @onready var level_transition = $LevelTransition
 @onready var sound_menu := $SoundMenu
 @onready var more_menu := $MoreMenu
@@ -15,15 +15,15 @@ func _ready():
 	item_list.set_focus_mode(Control.FOCUS_NONE)
 	item_list.select(index)
 
-func _unhandled_input(event):
-	if input_menu.visible:
-		input_menu.input(event)
-	elif sound_menu.visible:
+func _input(event):
+#	if input_menu.visible:
+#		input_menu.input(event)
+	if sound_menu.visible:
 		sound_menu.input(event)
 	else:
 		if Input.is_action_pressed("ui_accept"):
 			select_option()
-		elif Input.is_action_pressed("ui_back"):
+		elif Input.is_action_pressed("ui_cancel"):
 			load_menu()
 		elif Input.is_action_pressed("ui_up"):
 			index = int(clamp(index - 1, 0, item_list.get_item_count()-1))
@@ -43,13 +43,14 @@ func select_option():
 				index = 0
 				load_saves()
 			"Exit":
-				get_tree().notification(MainLoop.NOTIFICATION_WM_QUIT_REQUEST)
+				get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
 	elif item_list.get_item_text(0) == "Sound":
 		match item_list.get_item_text(item_list.get_selected_items()[0]):
 			"Sound":
 				sound_menu.show()
 			"Controls":
-				input_menu.show()
+				pass
+#				input_menu.show()
 			"More":
 				more_menu.show()
 			"Back":
@@ -62,10 +63,9 @@ func select_option():
 
 func load_saves():
 	item_list.clear()
-	var file = File.new()
 	for i in 3:
-		if file.file_exists("user://Save%s.json"%(i+1)):
-			item_list.add_item("Save" + String(i+1))
+		if FileAccess.file_exists("user://Save%s.json"%(i+1)):
+			item_list.add_item("Save" + str(i+1))
 		else:
 			item_list.add_item("New Game")
 	item_list.select(index)
@@ -88,7 +88,6 @@ func load_menu():
 	item_list.select(index)
 
 func delete_save():
-	var file = File.new()
-	if file.file_exists("user://Save%s.json"%(item_list.get_selected_items()[0]+1)):
-		DirAccess.new().remove("user://Save%s.json"%(item_list.get_selected_items()[0]+1))
+	if FileAccess.file_exists("user://Save%s.json"%(item_list.get_selected_items()[0]+1)):
+		DirAccess.remove_absolute("user://Save%s.json"%(item_list.get_selected_items()[0]+1))
 		load_saves()

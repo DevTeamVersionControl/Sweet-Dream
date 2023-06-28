@@ -39,7 +39,7 @@ func on_shop():
 
 func first_interaction():
 	GlobalVars.add_to_inventory({"Name":"Birb shop","StoryPoint":["Birb", 1]})
-	GameSaver.save()
+	GameSaver.obj_save()
 
 # Returns the point at the conversation the dialog should be
 func get_dialog_num() -> int:

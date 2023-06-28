@@ -25,7 +25,7 @@ extends CanvasLayer
 
 var pause_requests := 0
 
-func _unhandled_input(event):
+func _input(event):
 	if shop.visible:
 		shop.input()
 	elif rest_menu.visible:
@@ -43,5 +43,6 @@ func request_pause():
 
 func request_unpause():
 	pause_requests -= 1
-	if pause_requests == 0:
+	if pause_requests <= 0:
 		get_tree().paused = false
+		pause_requests = 0

@@ -39,8 +39,9 @@ var normal = {
 	'ammo_next' : KEY_C,
 	'dash' : KEY_V,
 	'ui_accept' : KEY_ENTER,
+	'ui_up' : KEY_UP,
+	'ui_down' : KEY_DOWN,
 	'ui_cancel' : KEY_ESCAPE,
-	'ui_back' : KEY_X,
 	'delete' : KEY_DELETE,
 	'show_map' : KEY_TAB
 }
@@ -75,11 +76,11 @@ func get_selected_profile():
 func _on_ProfilesMenu_item_selected(ID):
 	change_profile(ID)
 
-func save(save_data):
+func obj_save(save_data):
 	save_data["current_profile"] = current_profile_id
 	save_data["custom"] = custom
 
-func load(save_data):
+func obj_load(save_data):
 	if save_data.has("custom"):
 		custom = save_data["custom"]
 	change_profile(int(save_data["current_profile"]))

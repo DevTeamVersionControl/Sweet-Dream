@@ -38,29 +38,15 @@ func input(event):
 		if text.visible_characters > 2:
 			text.visible_characters = len(text.text)
 
-func show():
-	visible = true
-
 func start(path_to_dialog:String, m_story_point:int):
 	get_tree().current_scene.player.state_machine.transition_to("Idle")
 	show()
 	phrase_num = 0
 	story_point = m_story_point
 	finished = false
-	dialog = get_dialog(path_to_dialog)
+	dialog = GameSaver.get_save(path_to_dialog)
 	next_phrase()
 	set_process_internal(true)
-	
-
-func get_dialog(path_to_dialog:String) -> Array:
-	var file = File.new()
-	assert(file.file_exists(path_to_dialog)) #,"Dialog file does not exist")
-	file.open(path_to_dialog, File.READ)
-	var json = file.get_as_text()
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json)
-	var output = test_json_conv.get_data()
-	return output if typeof(output) == TYPE_ARRAY else []
 
 func next_phrase() -> void:
 	if phrase_num >= len(dialog[story_point]):
@@ -93,6 +79,6 @@ func close_dialog()->void:
 		emit_signal("dialog_end")
 
 # Used once to equip candy corn ammo to player at the beginning of the game
-func equip_candy_corn():
+func f_equip_candy_corn():
 	GlobalVars.ammo_equipped_array.append(GlobalVars.get_ammo("Candy Corn"))
 	GlobalVars.remove_from_inventory("Candy Corn")

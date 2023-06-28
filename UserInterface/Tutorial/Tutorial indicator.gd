@@ -40,14 +40,14 @@ func _on_Tutorial_indicator_body_exited(body):
 		sprite.visible = false
 		tween.stop()
 
-func save(game_data):
+func obj_save(game_data):
 	game_data[get_tree().current_scene.current_level.filename + name] = seen if temporary else false
 
-func load(game_data):
+func obj_load(game_data):
 	if game_data.has(get_tree().current_scene.current_level.filename + name):
 		if game_data.get(get_tree().current_scene.current_level.filename + name):
 			queue_free()
 
 func _exit_tree():
-	GameSaver.save()
+	GameSaver.obj_save()
 	GameSaver.partial_save(self)

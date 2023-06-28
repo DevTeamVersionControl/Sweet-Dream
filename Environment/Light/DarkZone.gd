@@ -13,10 +13,10 @@ func _on_DarkZone_body_exited(body):
 	if body is Player:
 		animation_player.play("FadeIn")
 
-func save(game_data):
+func obj_save(game_data):
 	game_data[get_tree().current_scene.current_level.filename + name] = delete
 
-func load(game_data):
+func obj_load(game_data):
 	if game_data.has(get_tree().current_scene.current_level.filename + name):
 		if game_data.get(get_tree().current_scene.current_level.filename + name):
 			queue_free()

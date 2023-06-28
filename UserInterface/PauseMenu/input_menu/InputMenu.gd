@@ -24,7 +24,7 @@ extends Control
 @onready var _action_list = get_node("Column/ScrollContainer/ActionList")
 
 func _ready():
-	$InputMapper.connect('profile_changed', Callable(self, 'rebuild'))
+	$InputMapper.connect('profile_changed', rebuild)
 	$Column/ProfilesMenu.initialize($InputMapper)
 	$InputMapper.change_profile($Column/ProfilesMenu.selected)
 	GameSaver.partial_load($InputMapper)
@@ -44,8 +44,7 @@ func rebuild(input_profile, is_customizable=false):
 	for input_action in input_profile.keys():
 		var line = _action_list.add_input_line(input_action, input_profile[input_action], is_customizable)
 		if is_customizable:
-			line.connect('change_button_pressed', self, \
-				'_on_InputLine_change_button_pressed', [input_action, line])
+			line.connect('change_button_pressed', _on_InputLine_change_button_pressed.bind(input_action, line))
 
 func _on_InputLine_change_button_pressed(action_name, line):
 	$KeySelectMenu.open()

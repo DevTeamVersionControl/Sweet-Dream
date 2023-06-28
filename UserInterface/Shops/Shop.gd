@@ -29,9 +29,6 @@ var items
 var path : String
 var multiplier := 1.0
 
-func show():
-	visible = true
-
 func start(path_to_shop:String, m_multiplier = 1.0):
 	multiplier = m_multiplier
 	save_path = GameSaver.save_path
@@ -40,7 +37,7 @@ func start(path_to_shop:String, m_multiplier = 1.0):
 	show()
 	GameSaver.partial_load(self)
 	load_items()
-	money.text = "Current:" + String(GlobalVars.artifacts)
+	money.text = "Current:" + str(GlobalVars.artifacts)
 
 func load_items() -> void:
 	if items == null:
@@ -61,7 +58,7 @@ func close_dialog()->void:
 		emit_signal("dialog_end")
 
 func _on_ItemList_item_selected(index):
-	price.text = String(int(int(items[index]["Price"]) * multiplier))
+	price.text = str(int(int(items[index]["Price"]) * multiplier))
 	unit.text = items[index]["Unit"]
 	description.text = items[index]["Description"]
 
@@ -81,23 +78,18 @@ func buy():
 		item_list.grab_focus()
 		item_list.select(0)
 		_on_ItemList_item_selected(0)
-	money.text = "Current:" + String(GlobalVars.artifacts)
+	money.text = "Current:" + str(GlobalVars.artifacts)
 	GameSaver.partial_save(self)
 	
-func save(save_data):
+func obj_save(save_data):
 	if path:
 		save_data[path] = items
 
-func load(save_data):
+func obj_load(save_data):
 	if save_data.has(path):
 		items = save_data[path]
 	else:
 		default_load()
 
 func default_load():
-	var file = File.new()
-	file.open(path, File.READ)
-	var json_string = file.get_as_text()
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_string)
-	items = test_json_conv.get_data()
+	items = GameSaver.get_save(path)

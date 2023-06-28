@@ -19,56 +19,43 @@ const DEFAULT_SAVE_PATH = "user://SaveData.json"
 
 var save_path := DEFAULT_SAVE_PATH
 
-func save():
-	var file = File.new()
+func obj_save():
+	if not FileAccess.file_exists(save_path):
+		return
 	var save_data = get_save(save_path)
 	for node in get_tree().get_nodes_in_group("save"):
-		node.save(save_data)
-	var error = file.open(save_path, File.WRITE)
-	if error != OK:
-		printerr("Could not create save file")
-		return
-	var json_string := JSON.stringify(save_data)
-	file.store_string(json_string)
+		node.obj_save(save_data)
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_line(JSON.stringify(save_data))
 	file.close()
 
-func load():
+func obj_load():
 	var save_data : Dictionary = get_save(save_path)
 	if save_data.size() == 0:
 		return
 	for node in get_tree().get_nodes_in_group("save"):
-		node.load(save_data)
+		node.obj_load(save_data)
 
 func partial_load(node:Node):
 	var save_data : Dictionary = get_save(node.save_path)
 	if save_data.size() == 0:
 		return
-	node.load(save_data)
+	node.obj_load(save_data)
 	
-func partial_save(node:Node):
-	var file = File.new()
-	var save_data = {}
-	if file.file_exists(node.save_path):
-		save_data = get_save(node.save_path)
-	node.save(save_data)
-	var error = file.open(node.save_path, File.WRITE)
-	if error != OK:
-		printerr("Could not create save file")
+func partial_save(node:Node) -> void:
+	if not FileAccess.file_exists(node.save_path):
 		return
-	var json_string := JSON.stringify(save_data)
-	file.store_string(json_string)
+	var save_data = get_save(node.save_path)
+	node.obj_save(save_data)
+	var file = FileAccess.open(save_path, FileAccess.WRITE)
+	file.store_line(JSON.stringify(save_data))
 	file.close()
 
 func get_save(specific_save_path)->Dictionary:
-	var file = File.new()
-	var error = file.open(specific_save_path, File.READ)
-	if error != OK:
-		printerr("Could not load save")
+	if not FileAccess.file_exists(specific_save_path):
 		return {}
-	var json_string = file.get_as_text()
-	file.close()
-	if json_string == "":
+	var json_as_text = FileAccess.get_file_as_string(specific_save_path)
+	var json_as_dict = JSON.parse_string(json_as_text)
+	if json_as_text == "":
 		return {}
-	var test_json_conv = JSON.new()
-	test_json_conv.parse(json_string).result
-	return test_json_conv.get_data()
+	return json_as_dict

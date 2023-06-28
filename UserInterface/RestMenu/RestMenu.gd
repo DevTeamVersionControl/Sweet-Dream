@@ -24,9 +24,6 @@ signal dialog_end
 var selected_slot := 0
 var items : Array
 
-func show():
-	visible = true
-
 func start():
 	items = GlobalVars.inventory.duplicate()
 	item_list.clear()

@@ -25,8 +25,6 @@ var touched_something:= false
 @export var enemy_knockback = 100
 @export var player_knockback = 300
 
-var velocity = Vector2.ZERO
-
 func _physics_process(delta):
 	velocity.y += gravity/2 * pow(delta * 20, 2)
 	var collision = move_and_collide(velocity*delta*PIXELS_PER_METER)

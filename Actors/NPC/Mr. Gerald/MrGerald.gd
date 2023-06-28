@@ -44,7 +44,7 @@ func equip_candy_corn():
 	GlobalVars.max_health_packs = 3
 	GlobalVars.health_packs = 3
 	get_tree().current_scene.player.update_display()
-	GameSaver.save()
+	GameSaver.obj_save()
 
 # Returns the point at the conversation the dialog should be
 func get_dialog_num() -> int:

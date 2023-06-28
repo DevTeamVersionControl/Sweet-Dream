@@ -17,9 +17,10 @@ extends Node2D
 
 @export var level_range_x : Vector2
 @export var level_range_y : Vector2
+@export var force_new_camera := false
 
 func _ready():
-	GameSaver.load()
+	GameSaver.obj_load()
 #	if get_node_or_null("AudioStreamPlayer") != null:
 #		var tween = get_tree().create_tween().tween_property($AudioStreamPlayer, "volume_db", 0.0, 20.0)
 
@@ -31,6 +32,8 @@ func _on_Button_on():
 	$TileMap.update_bitmask_area(Vector2(6,9))
 	$TileMap.update_bitmask_area(Vector2(5,8))
 	$TileMap.update_bitmask_area(Vector2(5,9))
+	if force_new_camera:
+		get_node("Camera2D").current = true
 	if get_node_or_null("DarkZone2"):
 		$DarkZone2.disappear()
 

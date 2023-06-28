@@ -22,7 +22,7 @@ func enter(_msg := {}) -> void:
 	player.animation_tree.set('parameters/Run/blend_position', 1 if player.facing_right else -1)
 	player.animation_mode.travel("Run")
 
-func physics_update(delta: float) -> void:
+func physics_update(_delta: float) -> void:
 	# Notice how we have some code duplication between states. That's inherent to the pattern,
 	# although in production, your states will tend to be more complex and duplicate code
 	# much more rare.
@@ -62,7 +62,7 @@ func physics_update(delta: float) -> void:
 	
 	# Move
 	if is_equal_approx(input_direction_x, 0.0):
-		player.velocity.x = lerp(player.velocity.x, 0, player.DECELERATION)
+		player.velocity.x = lerp(player.velocity.x, 0.0, player.DECELERATION)
 	else:
 		player.velocity.x += player.ACCELERATION * input_direction_x
 	player.velocity.x = clamp(player.velocity.x, -player.SPEED, player.SPEED)

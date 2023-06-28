@@ -1,11 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://70rfm7bfy2cc"]
+[gd_scene load_steps=19 format=3 uid="uid://70rfm7bfy2cc"]
 
 [ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://UserInterface/MainMenu/MainMenu.gd" id="2"]
-[ext_resource type="PackedScene" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="3"]
-[ext_resource type="Texture2D" uid="uid://dte0wfqgb2tvr" path="res://Levels/Funicular lift/Funicular Backgrond/Funicular Background.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dte0wfqgb2tvr" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="5"]
-[ext_resource type="AudioStream" uid="uid://chqaxg6iy1pvy" path="res://Levels/FirstLevel/Dream Culture.mp3" id="6"]
+[ext_resource type="AudioStream" uid="uid://chqaxg6iy1pvy" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
 [ext_resource type="PackedScene" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
 [ext_resource type="Script" path="res://UserInterface/MoreMenu/MoreMenu.gd" id="8"]
 
@@ -19654,7 +19653,8 @@ bg_color = Color(0.980392, 0.631373, 0.968627, 0.509804)
 
 [sub_resource type="Theme" id="5"]
 ItemList/colors/font_color = Color(0.937255, 0.890196, 0.929412, 1)
-ItemList/colors/font_color_selected = Color(1, 1, 1, 1)
+ItemList/colors/font_color_selected = Color(1, 1, 1, 0)
+ItemList/colors/guide_color = Color(0.701961, 0.701961, 0.701961, 0)
 ItemList/fonts/font = SubResource("6")
 ItemList/styles/bg = SubResource("StyleBoxFlat_ucnra")
 ItemList/styles/cursor = SubResource("14")
@@ -19665,7 +19665,7 @@ ItemList/styles/selected = SubResource("15")
 ItemList/styles/selected_focus = SubResource("12")
 
 [node name="MainMenu" type="Control"]
-process_mode = 2
+process_mode = 3
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19714,16 +19714,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color(0, 0, 0, 0)
 
-[node name="InputMenu" parent="." instance=ExtResource("3")]
-visible = false
-anchors_preset = 0
-
 [node name="SoundMenu" parent="." instance=ExtResource("1")]
 visible = false
 anchors_preset = 0
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("6")
+stream = ExtResource("6_v1qwx")
 autoplay = true
 bus = &"Music"
 

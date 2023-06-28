@@ -73,7 +73,7 @@ func physics_update(delta: float) -> void:
 		#Horizontal movement
 		if !player.is_on_wall():
 			if is_equal_approx(input_direction_x, 0.0):
-				player.velocity.x = lerp(player.velocity.x, 0, player.DECELERATION)
+				player.velocity.x = lerp(player.velocity.x, 0.0, player.DECELERATION)
 			else:
 				player.velocity.x += player.ACCELERATION * input_direction_x
 		player.velocity.x = clamp(player.velocity.x, -player.SPEED, player.SPEED)
@@ -135,16 +135,16 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_pressed("shoot") && player.can_shoot && GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
 			state_machine.transition_to("Aim")
 
-func _on_JumpBufferTimer_timeout():
-	jump_buffer = false
-
-func _on_CoyoteTimeTimer_timeout():
-	coyote_time = false
-
 func lock_input(direction : bool):
 	player.facing_right = direction
 	player.sprite.flip_h = !player.facing_right
 	player.camera_arm.position.x = 127 if player.facing_right else -127
 
-func _on_JumpCutOffTimer_timeout():
+func _on_jump_cut_off_timer_timeout():
 	jump_cut_off = true
+
+func _on_coyote_time_timer_timeout():
+	coyote_time = false
+
+func _on_jump_buffer_timer_timeout():
+	jump_buffer = false
