@@ -35,7 +35,7 @@ func _on_Checkpoint_body_exited(body):
 	if body is Player:
 		player_is_in_zone = false
 
-func _unhandled_key_input(_event):
+func _input(_event):
 	if player_is_in_zone && Input.is_action_just_pressed("interact") && not get_tree().current_scene.gui.pause_menu.visible:
 		if get_tree().current_scene.checkpoint_on(name):
 			GameSaver.obj_save()
@@ -43,7 +43,7 @@ func _unhandled_key_input(_event):
 			get_tree().current_scene.start_rest_menu()
 			GlobalVars.play_sound(CHECKPOINT)
 		else:
-			get_tree().current_scene.set_checkpoint(GlobalTypes.Checkpoint.new(name, load(get_tree().current_scene.current_level.filename)))
+			get_tree().current_scene.set_checkpoint(GlobalTypes.Checkpoint.new(name, load(get_tree().current_scene.current_level.scene_file_path)))
 			animation_player.play("Opening")
 			await animation_player.animation_finished
 			animation_player.play("Opened")

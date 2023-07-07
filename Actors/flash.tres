@@ -32,9 +32,6 @@ uniform float second_shrink_speed : hint_range(0.0, 120.0) = 0.0;
 //---------------Color Override
 uniform vec4 before_light_modulate : source_color = vec4(1.0,1.0,1.0,1.0);
 
-uniform vec4 line_color : source_color = vec4(1);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-
 void fragment() {
 	vec4 texture_color = texture(TEXTURE, UV);
 	if (AT_LIGHT_PASS) {
@@ -44,7 +41,6 @@ void fragment() {
 	}
 	COLOR = mix(COLOR, flashColor, flashState);
 	COLOR.a *= texture_color.a;
-	
 }
 float light_calc(float light_strength, float would_be_strength) {
 	float target_strength = light_strength + would_be_strength * obj_light_add;
@@ -60,20 +56,21 @@ void light() {
 	float level_2_smooth = second_smooth;
 	//---- Light height calc start ------------------------------------
 	//-----------------------------------------------------------------
+	vec3 new_light_height;
+	vec4 new_light_color;
 	if (fake_light_depth) {
-		float base_height = LIGHT_HEIGHT;
-		float new_height = base_height - obj_height;
-		LIGHT_HEIGHT = new_height;
-		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_height ){
+		float base_height = LIGHT_VERTEX.z;
+		new_light_height = vec3(LIGHT_VERTEX.x, LIGHT_VERTEX.y, base_height - obj_height);
+		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_light_height.z ){
 			if (level_1 != 1.0) {
-				level_1 -= (light_change_thresh - new_height) * (first_shrink_speed * .0001);
+				level_1 -= (light_change_thresh - new_light_height.z) * (first_shrink_speed * .0001);
 				if (level_2 != 0.0 && level_2 != 1.0) {
-					level_2 -= (light_change_thresh - new_height) * (second_shrink_speed * .0001);
+					level_2 -= (light_change_thresh - new_light_height.z) * (second_shrink_speed * .0001);
 				}
 			}
 		}
-		if (light_fade && new_height > light_change_thresh) {
-			float n_height_safety = new_height;
+		if (light_fade && new_light_height.z > light_change_thresh) {
+			float n_height_safety = new_light_height.z;
 			if (n_height_safety == 0.0) { n_height_safety += 0.01; }
 			float light_dist_safety = light_change_thresh;
 			if (light_dist_safety == 0.0) { light_dist_safety += 0.001; }
@@ -82,15 +79,15 @@ void light() {
 			if (dark_distance == 0.0) {dark_distance = 1.0;}
 			new_intens = 1.0 - abs(abs(light_dist_safety) - abs(n_height_safety)) / dark_distance;
 			float light_drop_a = clamp(LIGHT_COLOR.a * new_intens, 0.0, 1.0);
-			LIGHT_COLOR *= light_drop_a;
+			LIGHT = LIGHT_COLOR * light_drop_a;
 		}
 	}
 	//---- Light height calc end --------------------------------------
-	
+
 	float mid_range_light = mid_light;
 	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
-	vec3 light_normal = normalize(vec3(LIGHT_VEC, -LIGHT_HEIGHT));
-	float would_be_strength = max(dot(-light_normal, NORMAL), 0.0);
+//	vec3 light_normal = normalize(vec3(LIGHT, -LIGHT_HEIGHT));
+	float would_be_strength = max(dot(new_light_height, NORMAL), 0.0);
 //-----Light Rim start------------------------------------------------------
 	if (rim_light) {
 		vec2 size = TEXTURE_PIXEL_SIZE * rim_thickness;
@@ -125,9 +122,9 @@ void light() {
 		if (diff >= max_light) {diff = max_light;}
 		LIGHT *= light_calc(diff, would_be_strength);
 	} else { 
-		if (min_light != 0.0) { 
-			LIGHT_VEC = -NORMAL.xy*length(LIGHT_VEC); 
-		}
+//		if (min_light != 0.0) { 
+//			LIGHT_VERTEX = -NORMAL.xy*length(LIGHT_VERTEX); 
+//		}
 		LIGHT *= min_light;                                                                                                                                  
 	}
 }"
@@ -135,3 +132,28 @@ void light() {
 [resource]
 resource_local_to_scene = true
 shader = SubResource("1")
+shader_parameter/flashColor = Color(1, 1, 1, 1)
+shader_parameter/flashState = null
+shader_parameter/first_stage = 0.5
+shader_parameter/first_smooth = 0.0
+shader_parameter/second_stage = 0.0
+shader_parameter/second_smooth = 0.0
+shader_parameter/rim_light = false
+shader_parameter/rim_thickness = 5.0
+shader_parameter/rim_intense = 1.0
+shader_parameter/rim_extra_thick = false
+shader_parameter/min_light = 0.0
+shader_parameter/mid_light = 0.0
+shader_parameter/max_light = 1.0
+shader_parameter/obj_light_add = 0.0
+shader_parameter/fake_light_depth = false
+shader_parameter/obj_height = 0.0
+shader_parameter/min_scale = 0.2
+shader_parameter/max_scale = 2.0
+shader_parameter/light_change_thresh = 0.0
+shader_parameter/light_fade = false
+shader_parameter/light_fade_end = 0.0
+shader_parameter/fake_spot_light = false
+shader_parameter/first_shrink_speed = 0.0
+shader_parameter/second_shrink_speed = 0.0
+shader_parameter/before_light_modulate = Color(1, 1, 1, 1)

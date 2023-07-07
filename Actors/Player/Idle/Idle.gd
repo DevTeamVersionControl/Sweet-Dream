@@ -16,7 +16,7 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
-	player.velocity.x = 0
+	player.velocity = Vector2.ZERO
 	player.animation_tree.set('parameters/Idle/blend_position', 1 if player.facing_right else -1)
 	player.animation_mode.travel("Idle")
 	player.camera_arm.position.x = 127 if player.facing_right else -127
@@ -28,10 +28,7 @@ func physics_update(delta: float) -> void:
 
 	player.velocity.y += player.GRAVITY * delta
 	player.velocity.x = 0
-	player.set_velocity(player.velocity)
-	player.set_up_direction(Vector2.UP)
 	player.move_and_slide()
-	player.velocity = player.velocity
 	
 	if !get_tree().paused:
 		if Input.is_action_pressed("crouch"):

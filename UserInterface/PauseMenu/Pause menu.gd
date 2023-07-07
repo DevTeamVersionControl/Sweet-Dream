@@ -54,10 +54,11 @@ func select_option():
 		"Main menu":
 			GameSaver.obj_save()
 			get_tree().paused = false
-			printerr(get_tree().change_scene_to_file("res://UserInterface/MainMenu/MainMenu.tscn"))
+			get_tree().change_scene_to_file("res://UserInterface/MainMenu/MainMenu.tscn")
 		"Close game":
 			GameSaver.obj_save()
 			get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+			get_tree().quit()
 		"Resume":
 			resume()
 		"Sound":

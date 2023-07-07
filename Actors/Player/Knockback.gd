@@ -26,7 +26,7 @@ func enter(msg := {}) -> void:
 		get_tree().current_scene.shaker.start(0.2, 5, msg.get(0).length()/100)
 
 func physics_update(delta: float) -> void:
-	player.velocity.x = lerp(player.velocity.x, 0, knockback_recovery)
+	player.velocity.x = lerp(player.velocity.x, 0.0, knockback_recovery)
 	player.velocity.y += player.GRAVITY * delta * gravity_scale
 	player.set_velocity(player.velocity)
 	player.move_and_slide()

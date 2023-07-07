@@ -1,0 +1,41 @@
+[gd_scene load_steps=5 format=3 uid="uid://yh61bqudxtql"]
+
+[ext_resource type="Texture2D" uid="uid://bowcbf4k15i8k" path="res://Environment/Light/light.png" id="1_3gpyd"]
+[ext_resource type="Script" path="res://Actors/Enemies/EnemyHealthBar.gd" id="2_72nlu"]
+[ext_resource type="Texture2D" uid="uid://w7853orurkne" path="res://Actors/Enemies/healthbar_back.png" id="2_bm63w"]
+[ext_resource type="Texture2D" uid="uid://c7d6det0innbs" path="res://Actors/Enemies/healthbar.png" id="3_lnug5"]
+
+[node name="EnemyHealthBar" type="VBoxContainer"]
+offset_left = -164.0
+offset_top = -89.0
+offset_right = 1590.0
+offset_bottom = 393.0
+scale = Vector2(0.185501, 0.193193)
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("2_72nlu")
+
+[node name="StatusEffects" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Status" type="HBoxContainer" parent="StatusEffects"]
+visible = false
+layout_mode = 2
+
+[node name="Label" type="Label" parent="StatusEffects/Status"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 130
+text = "1"
+
+[node name="TextureRect" type="TextureRect" parent="StatusEffects/Status"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("1_3gpyd")
+stretch_mode = 5
+
+[node name="HealthBar" type="TextureProgressBar" parent="."]
+layout_mode = 2
+size_flags_horizontal = 2
+value = 80.0
+texture_under = ExtResource("2_bm63w")
+texture_progress = ExtResource("3_lnug5")

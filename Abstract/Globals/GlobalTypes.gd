@@ -15,8 +15,9 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends Node
 
-#Defines enums visible for all objects
+#Defines enums and classes visible for all objects
 enum AMMO_TYPE{once, charge, constant}
+enum STATUS{slow}
 
 class Ammo:
 	var name : String

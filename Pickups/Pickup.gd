@@ -7,10 +7,10 @@ const BIG = preload("res://Pickups/Pickup Big.wav")
 @export var description = {"Name":"Quest Item", "Icon":"Item 3.png", "Price":"30","Unit":"artifacts", "Description":"It's that quest item another npc asked for to progress the main story"} 
 @export var sprite_num = 0: set = change_animation
 
-var delete := false 
+var should_delete := false 
 var save_path
 var rads := 0.0
-var disappear := false
+var should_disappear := false
 
 @onready var sprite := $Sprite2D
 @onready var timer := $Timer
@@ -25,10 +25,10 @@ func _ready():
 		sprite.vframes = 1
 		sprite.frame = 0
 		sprite.texture = load(description.get("Icon"))
-		sprite.update()
+#		sprite.update()
 	if not Engine.is_editor_hint():
 		save_path = GameSaver.save_path
-		if disappear:
+		if should_disappear:
 			timer.start()
 
 func _on_Artifact_body_entered(body):
@@ -39,17 +39,17 @@ func _on_Artifact_body_entered(body):
 
 func obj_save(game_data):
 	if not Engine.is_editor_hint():
-		game_data[get_tree().current_scene.current_level.filename + name] = delete
+		game_data[get_tree().current_scene.current_level.scene_file_path + name] = should_delete
 
 func obj_load(game_data):
 	if not Engine.is_editor_hint():
-		if game_data.has(get_tree().current_scene.current_level.filename + name):
-			if game_data.get(get_tree().current_scene.current_level.filename + name):
+		if game_data.has(get_tree().current_scene.current_level.scene_file_path + name):
+			if game_data.get(get_tree().current_scene.current_level.scene_file_path + name):
 				queue_free()
 
 func disappear():
 	GlobalVars.play_sound(BIG if description.has("BigSound") else SMALL)
-	delete = true
+	should_delete = true
 	GameSaver.obj_save()
 	GameSaver.partial_save(self)
 	queue_free()

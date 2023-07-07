@@ -1,0 +1,13 @@
+HBoxContainer
+HScrollBar
+VBoxContainer
+Label
+TextureRect
+Control
+TextureProgressBar
+Area2D
+PointLight2D
+TileMap
+Sprite2D
+Camera2D
+Player

@@ -19721,7 +19721,6 @@ anchors_preset = 0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_v1qwx")
 autoplay = true
-bus = &"Music"
 
 [node name="MoreMenu" parent="." instance=ExtResource("7")]
 visible = false

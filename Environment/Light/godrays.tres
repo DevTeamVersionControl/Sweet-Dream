@@ -1,6 +1,6 @@
-[gd_resource type="ShaderMaterial" load_steps=2 format=2]
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://bjhbqu1odg50w"]
 
-[sub_resource type="Shader" id=201]
+[sub_resource type="Shader" id="201"]
 code = "/*
 Shader from Godot Shaders - the free shader library.
 godotshaders.com/shader/god-rays
@@ -27,6 +27,8 @@ uniform vec4 color : source_color = vec4(1.0, 0.9, 0.65, 0.8);
 
 uniform bool hdr = false;
 uniform float seed = 5.0;
+
+uniform sampler2D sampler : hint_screen_texture;
 
 // Random and noise functions from Book of Shader's chapter on Noise.
 float random(vec2 _uv) {
@@ -104,23 +106,23 @@ void fragment()
 	// Try different blending modes for a nicer effect. \"Screen\" is included in the code,
 	// but take a look at https://godotshaders.com/snippet/blending-modes/ for more.
 	// With \"Screen\" blend mode:
-	shine = screen(texture(SCREEN_TEXTURE, SCREEN_UV), vec4(color)).rgb;
+	shine = screen(texture(sampler, SCREEN_UV), vec4(color)).rgb;
 	
 	COLOR = vec4(shine, rays * color.a);
 }"
 
 [resource]
-shader = SubResource( 201 )
-shader_param/angle = 0.2
-shader_param/position = 0.2
-shader_param/spread = 0.5
-shader_param/cutoff = 0.1
-shader_param/falloff = 0.2
-shader_param/edge_fade = 0.15
-shader_param/speed = 1.0
-shader_param/ray1_density = 8.0
-shader_param/ray2_density = 30.0
-shader_param/ray2_intensity = 0.1
-shader_param/color = Color( 0.65098, 0.858824, 1, 0.8 )
-shader_param/hdr = true
-shader_param/seed = 5.0
+shader = SubResource("201")
+shader_parameter/angle = 0.2
+shader_parameter/position = 0.2
+shader_parameter/spread = 0.5
+shader_parameter/cutoff = 0.1
+shader_parameter/falloff = 0.2
+shader_parameter/edge_fade = 0.15
+shader_parameter/speed = 1.0
+shader_parameter/ray1_density = 8.0
+shader_parameter/ray2_density = 30.0
+shader_parameter/ray2_intensity = 0.1
+shader_parameter/color = Color(0.65098, 0.858824, 1, 0.8)
+shader_parameter/hdr = true
+shader_parameter/seed = 5.0

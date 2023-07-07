@@ -30,7 +30,8 @@ var is_on_floor:bool
 var volume := 0.5
 #var stuck := false
 
-@export var health = 3
+const MAX_HEALTH = 3
+@export var health = MAX_HEALTH
 @export var initial_volume = 2.1 # (float, 0.5, 2.5)
 @export var inverse_drop_chance = 1
 
@@ -46,10 +47,14 @@ const JELLO_JUMP = preload("res://Actors/Enemies/Jello/Jello Jump.wav")
 
 func _ready():
 	grow(initial_volume)
-	health *= volume
+	health = MAX_HEALTH * volume
+	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
+		
 
 func take_damage(damage, knockback):
 	health -= damage
+	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
+	$EnemyHealthBar.add_status_effect()
 	motion += knockback
 	if state_machine.state.name == "Idle":
 		$StateMachine/Idle.on_something_detected(get_tree().current_scene.player)

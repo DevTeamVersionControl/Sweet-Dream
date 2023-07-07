@@ -35,20 +35,15 @@ func enter(msg := {}) -> void:
 	player.shoot_bar.scale.x = 0
 	bullet_strength = 0
 	player.velocity.x = 0
-	bullet_direction = player.calculate_bullet_direction()
+	bullet_direction = Vector2.RIGHT if player.facing_right else Vector2.LEFT
+	player.bullet_forward.position.x = 13 if player.facing_right else -13
 	
 	if msg.has("crouched"):
-		player.animation_tree.set('parameters/AimCrouched/blend_position', 1 if player.facing_right else -1)
-		player.animation_tree.set('parameters/ShootCrouched/blend_position', 1 if player.facing_right else -1)
 		player.animation_mode.travel("Crouched")
-		#player.animation_mode.travel("AimCrouched")
 		crouched = true
 	else:
 		player.animation_mode.travel("Idle")
-		#player.animation_mode.travel("Aim")
-		player.animation_tree.set('parameters/Aim/blend_position', bullet_direction + Vector2(0.1 if player.facing_right else -0.1, 0))
 		crouched = false
-	player.animation_tree.set('parameters/Shoot/blend_position', bullet_direction + Vector2(0.1 if player.facing_right else -0.1, 0))
 	
 	match(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].type):
 		GlobalTypes.AMMO_TYPE.once:
@@ -129,6 +124,6 @@ func shoot(position:NodePath) -> void:
 		audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
 		audio_stream_player.play()
 
-func _on_CooldownTimer_timeout() -> void:
+func _on_cooldown_timer_timeout() -> void:
 	player.can_shoot = true
 	player.cooldown_bar.visible = false

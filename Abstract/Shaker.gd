@@ -42,6 +42,6 @@ func getCurrentCamera2D():
 	var camerasGroupName = "__cameras_%d" % viewport.get_viewport_rid().get_id()
 	var cameras = get_tree().get_nodes_in_group(camerasGroupName)
 	for s_camera in cameras:
-		if s_camera is Camera2D and s_camera.current:
+		if s_camera is Camera2D and s_camera.is_current():
 			return s_camera
 	return null

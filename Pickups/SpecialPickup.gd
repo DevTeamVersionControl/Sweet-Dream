@@ -37,12 +37,12 @@ func _on_Artifact_body_entered(body):
 
 func obj_save(game_data):
 	if not Engine.is_editor_hint():
-		game_data[get_tree().current_scene.current_level.filename + name] = delete
+		game_data[get_tree().current_scene.current_level.scene_file_path + name] = delete
 
 func obj_load(game_data):
 	if not Engine.is_editor_hint():
-		if game_data.has(get_tree().current_scene.current_level.filename + name):
-			if game_data.get(get_tree().current_scene.current_level.filename + name):
+		if game_data.has(get_tree().current_scene.current_level.scene_file_path + name):
+			if game_data.get(get_tree().current_scene.current_level.scene_file_path + name):
 				queue_free()
 
 func disappear():

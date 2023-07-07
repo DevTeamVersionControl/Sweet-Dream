@@ -437,10 +437,11 @@ radius = 210.059
 
 [sub_resource type="Shader" id="9"]
 code = "shader_type canvas_item;
+uniform sampler2D sampler : hint_screen_texture;
 
 void fragment() {
 	vec2 distortedUV = SCREEN_UV + texture(TEXTURE, UV).a * 0.1;
-	vec4 screenColor = texture(SCREEN_TEXTURE, distortedUV + vec2(-0.1,-0.1));
+	vec4 screenColor = texture(sampler, distortedUV + vec2(-0.1,-0.1));
 	COLOR = screenColor;
 	COLOR.a *= texture(TEXTURE, UV).a;
 }"
@@ -485,7 +486,6 @@ scale = Vector2(10, 10)
 stream = ExtResource("8")
 volume_db = 4.0
 max_distance = 400.0
-bus = &"Sound Effects"
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource("2")

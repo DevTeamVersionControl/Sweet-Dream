@@ -40,11 +40,11 @@ func _on_Tutorial_indicator_body_exited(body):
 		tween.stop()
 
 func obj_save(game_data):
-	game_data[get_tree().current_scene.current_level.filename + name] = temporary
+	game_data[get_tree().current_scene.current_level.scene_file_path + name] = temporary
 
 func obj_load(game_data):
-	if game_data.has(get_tree().current_scene.current_level.filename + name):
-		if game_data.get(get_tree().current_scene.current_level.filename + name):
+	if game_data.has(get_tree().current_scene.current_level.scene_file_path + name):
+		if game_data.get(get_tree().current_scene.current_level.scene_file_path + name):
 			queue_free()
 
 func _exit_tree():

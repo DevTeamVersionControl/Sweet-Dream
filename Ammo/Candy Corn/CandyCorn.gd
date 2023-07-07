@@ -26,11 +26,9 @@ func _physics_process(delta):
 	position += delta * SPEED * direction
 
 func _on_Hit(body):
-	if body.get_collision_layer_value(0):
-		queue_free()
-	elif body.get_collision_layer_value(1):
+	if body.is_in_group("enemy"):
 		body.take_damage(GlobalVars.get_ammo("Candy Corn").damage, direction.normalized() * enemy_knockback)
-		queue_free()
+	queue_free()
 
 func launch(bullet_direction : Vector2, _strength) -> void:
 	direction = bullet_direction

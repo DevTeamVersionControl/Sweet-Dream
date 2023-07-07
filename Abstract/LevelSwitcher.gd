@@ -102,7 +102,7 @@ func set_checkpoint(new_checkpoint):
 	checkpoint = new_checkpoint
 
 func checkpoint_on(checkpoint_name) -> bool:
-	return (checkpoint.name == checkpoint_name) && (load(current_level.filename) == checkpoint.level)
+	return (checkpoint.name == checkpoint_name) && (load(current_level.scene_file_path) == checkpoint.level)
 
 func start_dialog(dialog_file:String, story_point:int):
 	gui.dialog.start(dialog_file, story_point)

@@ -22,9 +22,10 @@ var save_path = "user://SoundSettings.json"
 @onready var effects_volume := $HBoxContainer/VBoxContainer3/HBoxContainer/VBoxContainer2/HBoxContainer4/HSlider
 
 func _ready():
-	GameSaver.partial_load(self)
-	GameSaver.partial_save(self)
-	GameSaver.partial_load(self)
+	if FileAccess.file_exists("user://SoundSettings.json"):
+		GameSaver.partial_load(self)
+	else:
+		set_volume(null)
 
 func input(_event):
 	if visible:

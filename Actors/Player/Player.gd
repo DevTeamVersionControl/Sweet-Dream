@@ -47,6 +47,7 @@ var sugar_recovery := true
 @onready var animation_tree := $AnimationTree
 @onready var animation_mode = animation_tree.get("parameters/playback")
 @onready var bullet_center := $BulletCenter
+@onready var bullet_forward := $BulletForward
 @onready var state_machine := $StateMachine
 @onready var camera_arm := $CameraArm
 @onready var camera := $CameraArm/Camera2D
@@ -66,6 +67,11 @@ func _ready():
 	camera.limit_right = level_limit_max.x
 	camera.limit_bottom = level_limit_max.y
 	set_canvas_item_light_mask_value(sprite, 5, true)
+	set_up_direction(Vector2.UP)
+	set_floor_stop_on_slope_enabled(false)
+	set_max_slides(4)
+	set_floor_max_angle(PI/4)
+	$AnimationTree.active = true
 
 func _physics_process(delta):
 	emit_signal("debug_update", state_machine.state.name)
@@ -97,14 +103,6 @@ func knockback(knockback_vector: Vector2):
 	#Adjust the explosion vector to account for the player global position being at the bottom
 	state_machine.transition_to("Knockback", {0:Vector2(knockback_vector.x, -0.2 * knockback_vector.y)})
 
-func calculate_bullet_direction() -> Vector2:
-	var raw_bullet_direction = Vector2(1 if facing_right else -1, Input.get_action_strength("aim_down") - Input.get_action_strength("aim_up"))
-	if raw_bullet_direction.y > 0 && raw_bullet_direction.x != 0:
-		raw_bullet_direction.x = 0
-	if raw_bullet_direction.length() == 0:
-		raw_bullet_direction.x = 1 if facing_right else -1
-	return raw_bullet_direction.normalized()
-
 func take_damage(damage:float, knockback_vector:Vector2) -> void:
 	if !invulnerable:
 		invulnerable = true
@@ -119,9 +117,9 @@ func take_damage(damage:float, knockback_vector:Vector2) -> void:
 			else:
 				state_machine.transition_to("Death")
 		else:
-			$Sprite2D.get_material().set("shader_param/flashState", 1.0)
+			sprite.get_material().set("shader_param/flashState", 1.0)
 			await get_tree().create_timer(0.25).timeout
-			$Sprite2D.get_material().set("shader_param/flashState", 0.0)
+			sprite.get_material().set("shader_param/flashState", 0.0)
 			audio_stream_player.stream = HIT
 			audio_stream_player.play()
 		update_display()

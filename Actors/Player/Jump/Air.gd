@@ -33,19 +33,17 @@ func enter(msg := {}) -> void:
 	coyote_time = false
 	if msg.has("do_jump"):
 		player.velocity.y = -player.JUMP_IMPULSE
-		player.animation_mode.travel("Air")
+		player.animation_mode.travel("Jump")
 		jump_audio.play()
 	elif msg.has("coyote_time"):
-		await get_tree().create_timer(0.1).timeout
 		if not player.is_on_floor():
-			player.animation_mode.travel("Air")
+			player.animation_mode.travel("Fall")
 		coyote_time = true
 		coyote_time_timer.start()
 	player.animation_tree.set('parameters/Air/blend_position', 1 if player.velocity.normalized().y > 0 else -1)
 	cache = player.velocity
 	jump_cut_off = false
 	jump_cut_off_timer.start()
-	
 
 func physics_update(delta: float) -> void:
 	# Horizontal movement.
@@ -105,7 +103,6 @@ func physics_update(delta: float) -> void:
 			if !double_jump:
 				double_jump = true
 				state_machine.transition_to("Air", {do_jump = true})
-
 		
 		# Dash
 		if Input.is_action_pressed("dash"):
@@ -127,10 +124,6 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_just_pressed("move_up") && !jump_buffer:
 			jump_buffer = true
 			jump_buffer_timer.start()
-		
-		# Player dies if out of bounds
-	#	if player.global_position.y > player.level_limit_max.y:
-	#		get_tree().current_scene.die()
 		
 		if Input.is_action_pressed("shoot") && player.can_shoot && GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
 			state_machine.transition_to("Aim")

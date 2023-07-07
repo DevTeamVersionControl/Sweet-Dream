@@ -44,6 +44,7 @@ func select_option():
 				load_saves()
 			"Exit":
 				get_tree().get_root().propagate_notification(NOTIFICATION_WM_CLOSE_REQUEST)
+				get_tree().quit()
 	elif item_list.get_item_text(0) == "Sound":
 		match item_list.get_item_text(item_list.get_selected_items()[0]):
 			"Sound":

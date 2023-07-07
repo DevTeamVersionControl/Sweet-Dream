@@ -23,7 +23,7 @@ func enter(_msg := {}) -> void:
 	await jello.animation_player.animation_finished
 	if jello.volume > jello.BREAK_VOLUME:
 		for n in jello.NUM_OF_BABIES:
-			var new_baby = load(jello.filename).instantiate()
+			var new_baby = load(jello.scene_file_path).instantiate()
 			new_baby.initial_volume = jello.volume/jello.NUM_OF_BABIES
 			get_tree().current_scene.current_level.call_deferred("add_child", new_baby)
 			new_baby.global_position = jello.global_position + Vector2(-5 + n*5,0)
@@ -33,7 +33,7 @@ func enter(_msg := {}) -> void:
 	# Keeping this just in case I want to make it random again
 	if randi()%jello.inverse_drop_chance == 0:
 		var pickup := PICKUP.instantiate()
-		pickup.disappear = true
+		pickup.should_disappear = true
 		get_tree().current_scene.add_child(pickup)
 		pickup.global_position = jello.global_position
 		pickup.scale = Vector2(0.6,0.6)

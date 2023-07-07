@@ -19,11 +19,11 @@ func set_colour(new_colour):
 	$Sprite2D.position.y = -3
 
 func save(game_data:Dictionary):
-	game_data[get_tree().current_scene.current_level.filename + name] = on
+	game_data[get_tree().current_scene.current_level.scene_file_path + name] = on
 
 func obj_load(game_data):
-	if game_data.has(get_tree().current_scene.current_level.filename + name):
-		if game_data.get(get_tree().current_scene.current_level.filename + name):
+	if game_data.has(get_tree().current_scene.current_level.scene_file_path + name):
+		if game_data.get(get_tree().current_scene.current_level.scene_file_path + name):
 			push()
 
 func push():

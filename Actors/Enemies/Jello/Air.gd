@@ -26,7 +26,7 @@ func physics_update(delta):
 	if collision && jello.health > 0:
 		# Keeps it from being stuck on a ceiling
 		if jello.motion.y < 0:
-			jello.motion = jello.motion.bounce(collision.normal)
+			jello.motion = jello.motion.bounce(collision.get_normal())
 			collision = null
 		else:
 			state_machine.transition_to("Land")

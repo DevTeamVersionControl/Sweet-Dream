@@ -1,11 +1,202 @@
-[gd_scene load_steps=8 format=3 uid="uid://bryj5g80qn33v"]
+[gd_scene load_steps=12 format=3 uid="uid://bryj5g80qn33v"]
 
 [ext_resource type="PackedScene" uid="uid://bhndq77jvbr4h" path="res://Environment/Blocks/Forest/TileSets/ForestTileMap.tscn" id="1"]
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_t6e4b"]
+[ext_resource type="PackedScene" uid="uid://csa6jyefk44op" path="res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/Trees.tscn" id="3_oaukm"]
 [ext_resource type="Texture2D" uid="uid://ds7qkm5hr4h8w" path="res://Environment/Backgrounds/Forest Backgrounds/Environment Extra/Apple/Apple720p.png" id="4_15vah"]
 [ext_resource type="Texture2D" uid="uid://bdm25ajcftu0l" path="res://Levels/Funicular lift/Funicular Background/Funicular Background 1080p.png" id="5"]
 [ext_resource type="Texture2D" uid="uid://dfri1xyfyrlnx" path="res://Environment/Backgrounds/Forest Backgrounds/Environment Extra/Apple/Apple720p_n.png" id="5_4tiur"]
 [ext_resource type="PackedScene" uid="uid://crxqow6k53hol" path="res://Abstract/Portal/Portal.tscn" id="6_ompfl"]
+[ext_resource type="Texture2D" uid="uid://bowcbf4k15i8k" path="res://Environment/Light/light.png" id="8_s5i6a"]
+
+[sub_resource type="Shader" id="Shader_ii224"]
+code = "shader_type canvas_item;
+render_mode blend_mix;
+
+// Wind settings.
+uniform float speed = 1.0;
+uniform float minStrength : hint_range(0.0, 1.0) = 0.05;
+uniform float maxStrength : hint_range(0.0, 1.0) = 0.01;
+uniform float strengthScale = 100.0;
+uniform float interval = 3.5;
+uniform float detail = 1.0;
+uniform float distortion : hint_range(0.0, 1.0);
+uniform float heightOffset : hint_range(0.0, 1.0);
+
+// With the offset value, you can if you want different moves for each asset. Just put a random value (1, 2, 3) in the editor. Don't forget to mark the material as unique if you use this
+uniform float offset = 0; 
+
+
+float getWind(vec2 vertex, vec2 uv, float time){
+    float diff = pow(maxStrength - minStrength, 2.0);
+    float strength = clamp(minStrength + diff + sin(time / interval) * diff, minStrength, maxStrength) * strengthScale;
+    float wind = (sin(time) + cos(time * detail)) * strength * max(0.0, (1.0-uv.y) - heightOffset);
+
+    return wind; 
+}
+
+void vertex() {
+    vec4 pos = MODEL_MATRIX * vec4(0.0, 0.0, 0.0, 1.0);
+    float time = TIME * speed + offset;
+    //float time = TIME * speed + pos.x * pos.y  ; not working when moving...
+    VERTEX.x += getWind(VERTEX.xy, UV, time);
+}
+
+uniform float first_stage : hint_range(0.0, 1.0) = 0.5; 
+uniform float first_smooth : hint_range(0.0, 1.0) = 0.0; // Lengthens the color transition
+uniform float second_stage : hint_range(0.0, 1.0) = 0.0;   // If left at 0, only level 1 is used.
+uniform float second_smooth : hint_range(0.0, 1.0) = 0.0;
+uniform bool rim_light = false;
+uniform float rim_thickness : hint_range(0, 40) = 5.0;
+uniform float rim_intense : hint_range(0, 1) = 1.0;
+uniform bool rim_extra_thick = false;
+uniform float min_light : hint_range(0.0, 1.0) = 0.0;
+uniform float mid_light : hint_range(0.0, 1.0) = 0.0;
+uniform float max_light : hint_range(0.0, 1.0) = 1.0;
+uniform float obj_light_add : hint_range(0.0, 1.0) = 0.0;
+// Light height variables
+uniform bool fake_light_depth = false;
+uniform float obj_height : hint_range(-2048.0, 2048.0) = 0.0; 
+uniform float min_scale : hint_range(0.0, 10.0) = 0.2;
+uniform float max_scale : hint_range(0.0, 10.0) = 2.0; 
+uniform float light_change_thresh : hint_range(0.0, 4080.0) = 0.0;
+uniform bool light_fade = false;
+uniform float light_fade_end : hint_range(0.0, 4080.0) = 0.0;
+uniform bool fake_spot_light = false;
+uniform float first_shrink_speed : hint_range(0.0, 120.0) = 0.0; 
+uniform float second_shrink_speed : hint_range(0.0, 120.0) = 0.0; 
+//---------------Color Override
+uniform vec4 before_light_modulate : source_color = vec4(1.0,1.0,1.0,1.0);
+
+void fragment() {
+	vec4 texture_color = texture(TEXTURE, UV);
+	if (AT_LIGHT_PASS) {
+		COLOR = texture_color;
+	} else {
+		COLOR = texture_color * before_light_modulate;
+	}
+}
+float light_calc(float light_strength, float would_be_strength) {
+	float target_strength = light_strength + would_be_strength * obj_light_add;
+	if (target_strength == 0.0) {target_strength = 0.000001;}
+	if (would_be_strength == 0.0) {would_be_strength = 1.0;}
+	return(target_strength / would_be_strength);
+}
+
+void light() {
+	float level_1 = first_stage;
+	float level_1_smooth = first_smooth;
+	float level_2 = second_stage;
+	float level_2_smooth = second_smooth;
+	//---- Light height calc start ------------------------------------
+	//-----------------------------------------------------------------
+	vec3 new_light_height;
+	vec4 new_light_color;
+	if (fake_light_depth) {
+		float base_height = LIGHT_VERTEX.z;
+		new_light_height = vec3(LIGHT_VERTEX.x, LIGHT_VERTEX.y, base_height - obj_height);
+		if (fake_spot_light && obj_height < base_height && light_change_thresh < new_light_height.z ){
+			if (level_1 != 1.0) {
+				level_1 -= (light_change_thresh - new_light_height.z) * (first_shrink_speed * .0001);
+				if (level_2 != 0.0 && level_2 != 1.0) {
+					level_2 -= (light_change_thresh - new_light_height.z) * (second_shrink_speed * .0001);
+				}
+			}
+		}
+		if (light_fade && new_light_height.z > light_change_thresh) {
+			float n_height_safety = new_light_height.z;
+			if (n_height_safety == 0.0) { n_height_safety += 0.01; }
+			float light_dist_safety = light_change_thresh;
+			if (light_dist_safety == 0.0) { light_dist_safety += 0.001; }
+			float new_intens = 1.0;
+			float dark_distance = light_fade_end;
+			if (dark_distance == 0.0) {dark_distance = 1.0;}
+			new_intens = 1.0 - abs(abs(light_dist_safety) - abs(n_height_safety)) / dark_distance;
+			float light_drop_a = clamp(LIGHT_COLOR.a * new_intens, 0.0, 1.0);
+			LIGHT = LIGHT_COLOR * light_drop_a;
+		}
+	}
+	//---- Light height calc end --------------------------------------
+
+	float mid_range_light = mid_light;
+	if (mid_light == 0.0) { mid_range_light = max_light * 0.5; }
+//	vec3 light_normal = normalize(vec3(LIGHT, -LIGHT_HEIGHT));
+	float would_be_strength = max(dot(new_light_height, NORMAL), 0.0);
+//-----Light Rim start------------------------------------------------------
+	if (rim_light) {
+		vec2 size = TEXTURE_PIXEL_SIZE * rim_thickness;
+		float outline = texture(TEXTURE, UV + vec2(-size.x, 0)).a;
+		outline *= texture(TEXTURE, UV + vec2(0, size.y)).a;
+		outline *= texture(TEXTURE, UV + vec2(size.x, 0)).a;
+		outline *= texture(TEXTURE, UV + vec2(0, -size.y)).a;
+		if (rim_extra_thick) {
+			outline *= texture(TEXTURE, UV + vec2(-size.x, size.y)).a;
+			outline *= texture(TEXTURE, UV + vec2(size.x, size.y)).a;
+			outline *= texture(TEXTURE, UV + vec2(-size.x, -size.y)).a;
+			outline *= texture(TEXTURE, UV + vec2(size.x, -size.y)).a;
+		}
+		outline = 1.0 - outline;
+
+		vec4 color = texture(TEXTURE, UV);
+		float rim_cap = outline * color.a * rim_intense * (max_light - min_light);
+		LIGHT += rim_cap;
+	}
+	//-----Light Rim end------------------------------------------------------
+	if (would_be_strength > level_1 && level_2 == 0.0 ) {
+		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
+		if (diff >= max_light) {diff = max_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else if (would_be_strength > level_1 && would_be_strength < level_2 && level_2 != 0.0 ) {
+		float diff = smoothstep(level_1, (level_1 + level_1_smooth), would_be_strength) + min_light;
+		if (diff >= mid_range_light ) {diff = mid_range_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else if (would_be_strength >= level_2 && level_2 != 0.0 ) {
+		float diff = smoothstep(level_2, (level_2 + level_2_smooth), would_be_strength) + mid_range_light;
+		if (diff < mid_range_light ) {diff = mid_range_light;}
+		if (diff >= max_light) {diff = max_light;}
+		LIGHT *= light_calc(diff, would_be_strength);
+	} else { 
+//		if (min_light != 0.0) { 
+//			LIGHT_VERTEX = -NORMAL.xy*length(LIGHT_VERTEX); 
+//		}
+		LIGHT *= min_light;                                                                                                                                  
+	}
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nooh4"]
+shader = SubResource("Shader_ii224")
+shader_parameter/speed = 1.0
+shader_parameter/minStrength = 0.05
+shader_parameter/maxStrength = 0.01
+shader_parameter/strengthScale = 300.0
+shader_parameter/interval = 3.5
+shader_parameter/detail = 1.0
+shader_parameter/distortion = null
+shader_parameter/heightOffset = null
+shader_parameter/offset = 0.0
+shader_parameter/first_stage = 1.0
+shader_parameter/first_smooth = 0.336
+shader_parameter/second_stage = 0.351
+shader_parameter/second_smooth = 0.256
+shader_parameter/rim_light = true
+shader_parameter/rim_thickness = 3.571
+shader_parameter/rim_intense = 0.5
+shader_parameter/rim_extra_thick = false
+shader_parameter/min_light = 0.0
+shader_parameter/mid_light = 0.441
+shader_parameter/max_light = 1.0
+shader_parameter/obj_light_add = 0.72
+shader_parameter/fake_light_depth = false
+shader_parameter/obj_height = 0.0
+shader_parameter/min_scale = 0.2
+shader_parameter/max_scale = 2.0
+shader_parameter/light_change_thresh = 0.0
+shader_parameter/light_fade = false
+shader_parameter/light_fade_end = 0.0
+shader_parameter/fake_spot_light = false
+shader_parameter/first_shrink_speed = 0.0
+shader_parameter/second_shrink_speed = 0.0
+shader_parameter/before_light_modulate = Color(1, 1, 1, 1)
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_va1rd"]
 diffuse_texture = ExtResource("4_15vah")
@@ -21,6 +212,11 @@ position = Vector2(191, -128)
 scale = Vector2(0.252, 0.252)
 texture = ExtResource("5")
 metadata/_edit_group_ = true
+
+[node name="Trees" parent="." instance=ExtResource("3_oaukm")]
+material = SubResource("ShaderMaterial_nooh4")
+scale = Vector2(0.4, 0.4)
+layer_0/tile_data = PackedInt32Array(4, 0, 0, 5, 65536, 0, 6, 131072, 0, 7, 196608, 0, 8, 262144, 0, 9, 327680, 0, 10, 393216, 0, 11, 458752, 0, 12, 524288, 0, 13, 589824, 0, 14, 655360, 0, 15, 720896, 0, 16, 786432, 0, 17, 851968, 0, 18, 917504, 0, 19, 983040, 0, 20, 1048576, 0, 21, 1114112, 0)
 
 [node name="ForestTileMap" parent="." instance=ExtResource("1")]
 layer_0/tile_data = PackedInt32Array(65534, 655360, 4, 65535, 720896, 4, 0, 655360, 4, 1, 589824, 4, 2, 655360, 4, 3, 720896, 4, 4, 589824, 4, 5, 655360, 0, 6, 589824, 4, 7, 720896, 4, 8, 327680, 1, 9, 589824, 2, 65545, 589824, 3, 65544, 589824, 3, 65543, 589824, 3, 65542, 589824, 3, 65541, 589824, 3, 65540, 589824, 3, 65539, 589824, 3, 65538, 589824, 3, 65537, 589824, 3, 65536, 589824, 3, 131071, 589824, 3, 131070, 589824, 3, -262146, 720896, 2, -196610, 720896, 3, 131069, 589824, 3, 65533, 720896, 4, -196611, 589824, 3, -262147, 327680, 1, -327683, 524288, 1, -327682, 393216, 2, -393218, 720896, 4, -393219, 524288, 0, -327681, 589824, 3, -393217, 589824, 4, -458752, 655360, 4, -458751, 720896, 4, -458750, 655360, 4, -393214, 589824, 3, -393213, 589824, 3, -393212, 589824, 3, -393211, 589824, 3, -393210, 589824, 3, -393209, 589824, 3, -458745, 655360, 4, -458746, 720896, 4, -458747, 589824, 4, -458748, 655360, 4, -458749, 655360, 0, -393215, 589824, 3, -393216, 589824, 3, -393208, 589824, 3, -458744, 589824, 4, -131064, 524288, 1, -65528, 524288, 1, -65527, 589824, 2, -131063, 589824, 2, -196600, 524288, 0, -196599, 327680, 1, -262135, 524288, 1, -327671, 524288, 1, -393207, 327680, 2, -458743, 655360, 4, -458742, 720896, 0, -393206, 720896, 2, -327670, 720896, 2, -262134, 720896, 2, -196598, 720896, 2, -131062, 720896, 2, 10, 720896, 2, 65546, 720896, 3, -65526, 720896, 2, -131076, 720896, 2, -65540, 720896, 2, -4, 720896, 2, 65532, 393216, 1, 131068, 589824, 3, -196612, 393216, 2, -262148, 655360, 0, -131077, 524288, 1, -65541, 524288, 1, -5, 524288, 1, 65531, 524288, 1, 131067, 524288, 3, -196613, 524288, 1, -262149, 524288, 0)
@@ -40,3 +236,9 @@ target_scene = "res://Levels/TestLevel.tscn"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(187, -93)
 zoom = Vector2(4.1, 4.1)
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+position = Vector2(161, -85)
+scale = Vector2(1.9375, 1.91016)
+texture = ExtResource("8_s5i6a")
