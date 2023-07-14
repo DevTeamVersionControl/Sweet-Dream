@@ -1,22 +1,22 @@
 2a60927148abd1d33b818b535e306557
-::res://::1689289367
-default_bus_layout.tres::AudioBusLayout::6962821666888854750::1689114952::0::1::::<><>::
-game_screenshot.png::CompressedTexture2D::1943377624795628641::1682370543::1687956440::1::::<><>::
-icon.png::CompressedTexture2D::822757457345671992::1672015868::1687956439::1::::<><>::
-Icon.png::CompressedTexture2D::8136801775319888951::1683399758::1687956439::1::::<><>::
+::res://::1689341619
+default_bus_layout.tres::AudioBusLayout::6962821666888854750::1689289370::0::1::::<><>::
+game_screenshot.png::CompressedTexture2D::1943377624795628641::1682370543::1689300691::1::::<><>::
+icon.png::CompressedTexture2D::822757457345671992::1672015868::1689300691::1::::<><>::
+Icon.png::CompressedTexture2D::8136801775319888951::1683399758::1689300691::1::::<><>::
 icon.svg::CompressedTexture2D::4282873458244843304::1687555425::1687555428::1::::<><>::
 README.md::TextFile::-1::1683470227::0::1::::<><>::
-::res://Abstract/::1689120047
-LevelSwitcher.gd::GDScript::-1::1688566450::0::1::::<>Node<>::
-LevelSwitcher.tscn::PackedScene::4127074056313671432::1689120047::0::1::::<><>::uid://c2lnmubsduxge<>uid://dif7qredean4g<>uid://c6143whyoo8h6<>res://Abstract/LevelSwitcher.gd<>uid://b8k2o6g87t0d2
-Shaker.gd::GDScript::-1::1688569368::0::1::::<>Node<>::
+::res://Abstract/::1689300691
+LevelSwitcher.gd::GDScript::-1::1689300691::0::1::::<>Node<>::
+LevelSwitcher.tscn::PackedScene::4127074056313671432::1689300691::0::1::::<><>::uid://c2lnmubsduxge<>uid://dif7qredean4g<>uid://c6143whyoo8h6<>res://Abstract/LevelSwitcher.gd<>uid://b8k2o6g87t0d2
+Shaker.gd::GDScript::-1::1689300691::0::1::::<>Node<>::
 Shaker.tscn::PackedScene::7733067104642704052::1685301557::0::1::::<><>::res://Abstract/Shaker.gd
 State.gd::GDScript::-1::1684613952::0::1::::State<>Node<>::
 StateMachine.gd::GDScript::-1::1684613952::0::1::::StateMachine<>Node<>::
 StateMachine.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Abstract/StateMachine.gd
-::res://Abstract/Checkpoint/::1689105311
-Checkpoint.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
-Checkpoint.tscn::PackedScene::3050622092662111953::1689105311::0::1::::<><>::uid://bqtm2usfyp1b6<>res://Abstract/Checkpoint/Checkpoint.gd<>uid://kc4xmrubwxlx<>uid://cld1epycmjd0m<>uid://d0wwpd0mp3hin<>uid://d30e8muq014ro<>uid://dgixu8po6yk37<>uid://bkffsrbooyrnv<>uid://bowcbf4k15i8k
+::res://Abstract/Checkpoint/::1689300691
+Checkpoint.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
+Checkpoint.tscn::PackedScene::3050622092662111953::1689300691::0::1::::<><>::uid://bqtm2usfyp1b6<>res://Abstract/Checkpoint/Checkpoint.gd<>uid://kc4xmrubwxlx<>uid://cld1epycmjd0m<>uid://d0wwpd0mp3hin<>uid://d30e8muq014ro<>uid://dgixu8po6yk37<>uid://bkffsrbooyrnv<>uid://bowcbf4k15i8k
 Checkpoint.wav::AudioStreamWAV::4181329156363357696::1682377334::1687563355::1::::<><>::
 ::res://Abstract/Checkpoint/Closed/::1687563299
 Closed720p.png::CompressedTexture2D::3549443258110735937::1672015867::1687563299::1::::<><>::
@@ -30,10 +30,10 @@ Opening720p_n.png::CompressedTexture2D::7598344098772801456::1673062692::1687563
 ::res://Abstract/GenericDoor/::1682370543
 GenericDoor.gd::GDScript::-1::1684613952::0::1::::<>Area2D<>::
 GenericDoor.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Abstract/GenericDoor/GenericDoor.gd
-::res://Abstract/Globals/::1689105311
-GlobalTypes.gd::GDScript::-1::1688048622::0::1::::<>Node<>::
+::res://Abstract/Globals/::1689300691
+GlobalTypes.gd::GDScript::-1::1689300691::0::1::::<>Node<>::
 GlobalTypes.tscn::PackedScene::4936258972213944127::1689105311::0::1::::<><>::res://Abstract/Globals/GlobalTypes.gd
-GlobalVars.gd::GDScript::-1::1685806780::0::1::::<>Node<>::
+GlobalVars.gd::GDScript::-1::1689300691::0::1::::<>Node<>::
 GlobalVars.tscn::PackedScene::5580601895769979294::1685306894::0::1::::<><>::res://Abstract/Globals/GlobalVars.gd
 ::res://Abstract/Portal/::1687551428
 Portal.gd::GDScript::-1::1685226923::0::1::::<>Area2D<>::
@@ -41,16 +41,16 @@ Portal.tscn::PackedScene::6014530074473252931::1687551428::0::1::::<><>::res://A
 ::res://Abstract/Saving/::1685806757
 GameSaver.gd::GDScript::-1::1685806757::0::1::::<>Node<>::
 GameSaver.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Abstract/Saving/GameSaver.gd
-::res://Actors/::1689106315
-flash.gdshader::Shader::-1::1689106315::0::1::::<><>::
-flash.tres::ShaderMaterial::330542206552490582::1689102572::0::1::::<><>::
-::res://Actors/Enemies/::1689120047
+::res://Actors/::1689300691
+flash.gdshader::Shader::-1::1689300691::0::1::::<><>::
+flash.tres::ShaderMaterial::330542206552490582::1689300691::0::1::::<><>::
+::res://Actors/Enemies/::1689300691
 Enemy Death.wav::AudioStreamWAV::5561188644715508609::1682373926::1687563355::1::::<><>::
 Enemy Hit.wav::AudioStreamWAV::8321912883426573341::1682373496::1687563355::1::::<><>::
-EnemyHealthBar.gd::GDScript::-1::1689118009::0::1::::HealthBar<>VBoxContainer<>::
-EnemyHealthBar.tscn::PackedScene::1700911627162348127::1689120047::0::1::::<><>::uid://bowcbf4k15i8k<>res://Actors/Enemies/EnemyHealthBar.gd<>uid://w7853orurkne<>uid://c7d6det0innbs
-healthbar.png::CompressedTexture2D::7026965321814679600::1688406288::1688406356::1::::<><>::
-healthbar_back.png::CompressedTexture2D::1612273375825940430::1688406338::1688406356::1::::<><>::
+EnemyHealthBar.gd::GDScript::-1::1689300691::0::1::::<>VBoxContainer<>::
+EnemyHealthBar.tscn::PackedScene::1700911627162348127::1689300691::0::1::::<><>::uid://bowcbf4k15i8k<>res://Actors/Enemies/EnemyHealthBar.gd<>uid://w7853orurkne<>uid://c7d6det0innbs
+healthbar.png::CompressedTexture2D::7026965321814679600::1689300691::1688406356::1::::<><>::
+healthbar_back.png::CompressedTexture2D::1612273375825940430::1689300691::1688406356::1::::<><>::
 ::res://Actors/Enemies/Bosses/::1674418232
 ::res://Actors/Enemies/Bosses/Jaw Breaker/::1687563355
 Charge.gd::GDScript::-1::1684613953::0::1::::<>JawbreakerBossState<>::
@@ -239,23 +239,23 @@ Jaw Breaker Wind Down720p_n.png::CompressedTexture2D::5787226903454034937::16730
 ::res://Actors/Enemies/Jawbreaker/Jaw Breaker Wind Up/::1687563338
 Jaw Breaker Wind Up720p.png::CompressedTexture2D::5382013037162556007::1672015868::1687563338::1::::<><>::
 Jaw Breaker Wind Up720p_n.png::CompressedTexture2D::8925373694285240641::1673065021::1687563338::1::::<><>::
-::res://Actors/Enemies/Jello/::1689127034
-Air.gd::GDScript::-1::1689120013::0::1::::<>JelloEnemyState<>::
-Death.gd::GDScript::-1::1688571132::0::1::::<>JelloEnemyState<>::
-Idle.gd::GDScript::-1::1688413264::0::1::::<>JelloEnemyState<>::
+::res://Actors/Enemies/Jello/::1689300691
+Air.gd::GDScript::-1::1689300691::0::1::::<>JelloEnemyState<>::
+Death.gd::GDScript::-1::1689300691::0::1::::<>JelloEnemyState<>::
+Idle.gd::GDScript::-1::1689300691::0::1::::<>JelloEnemyState<>::
 Jello 720p.png::CompressedTexture2D::5265851307909428734::1672015868::1687563355::1::::<><>::
 Jello Death.wav::AudioStreamWAV::8625542600055456311::1682376136::1687563355::1::::<><>::
 Jello Jump.wav::AudioStreamWAV::7621929408481521525::1682376088::1687563355::1::::<><>::
-Jello.gd::GDScript::-1::1689119751::0::1::::JelloEnemy<>CharacterBody2D<>::
-Jello.tscn::PackedScene::3712623871527577243::1689127034::0::1::::<><>::res://Actors/Enemies/Jello/Jello.gd<>uid://cha22i0wh1fi1<>uid://yh61bqudxtql<>res://Abstract/StateMachine.gd<>res://Actors/Enemies/Jello/Air.gd<>res://Actors/Enemies/Jello/Idle.gd<>res://Actors/Enemies/Jello/Jump.gd<>res://Actors/Enemies/Jello/Land.gd<>res://Actors/Enemies/Jello/Death.gd<>uid://eyd8naukduve
+Jello.gd::GDScript::-1::1689300691::0::1::::JelloEnemy<>CharacterBody2D<>::
+Jello.tscn::PackedScene::3712623871527577243::1689300691::0::1::::<><>::res://Actors/Enemies/Jello/Jello.gd<>uid://cha22i0wh1fi1<>uid://yh61bqudxtql<>res://Abstract/StateMachine.gd<>res://Actors/Enemies/Jello/Air.gd<>res://Actors/Enemies/Jello/Idle.gd<>res://Actors/Enemies/Jello/Jump.gd<>res://Actors/Enemies/Jello/Land.gd<>res://Actors/Enemies/Jello/Death.gd<>uid://eyd8naukduve
 JelloState.gd::GDScript::-1::1684613953::0::1::::JelloEnemyState<>State<>::
 Jump.gd::GDScript::-1::1684613953::0::1::::<>JelloEnemyState<>::
 Land.gd::GDScript::-1::1684613953::0::1::::<>JelloEnemyState<>::
-::res://Actors/Enemies/StatusEffects/::1689120047
-Slow.gd::GDScript::-1::1689120045::0::1::::<>StatusEffect<>::
-Slow.tscn::PackedScene::7321770573852374028::1689120047::0::1::::<><>::res://Actors/Enemies/StatusEffects/Slow.gd
-StatusEffects.gd::GDScript::-1::1689119963::0::1::::StatusEffect<>Node<>::
-::res://Actors/NPC/::1688044071
+::res://Actors/Enemies/StatusEffects/::1689300691
+Slow.gd::GDScript::-1::1689300691::0::1::::<>StatusEffect<>::
+Slow.tscn::PackedScene::7321770573852374028::1689300691::0::1::::<><>::res://Actors/Enemies/StatusEffects/Slow.gd
+StatusEffects.gd::GDScript::-1::1689300691::0::1::::StatusEffect<>Node<>::
+::res://Actors/NPC/::1689300691
 ::res://Actors/NPC/Birb/::1685806809
 Birb.gd::GDScript::-1::1685806809::0::1::::<>Sprite2D<>::
 Birb.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Actors/NPC/Birb/Idle/Idle720p.png<>res://Actors/NPC/Birb/Birb.gd<>res://Actors/NPC/Birb/Talk/Talk720p.png
@@ -265,26 +265,26 @@ Idle720p_n.png::CompressedTexture2D::1246431015292320326::1678754236::1687563338
 ::res://Actors/NPC/Birb/Talk/::1687563339
 Talk720p.png::CompressedTexture2D::7242105096809658180::1678754236::1687563339::1::::<><>::
 Talk720p_n.png::CompressedTexture2D::2485346760236763964::1678754236::1687563338::1::::<><>::
-::res://Actors/NPC/DrGimal/::1688044071
-DrGimal.gd::GDScript::-1::1685806809::0::1::::<>Sprite2D<>::
-DrGimal.tscn::PackedScene::-1::1688044071::0::1::::<><>::uid://c4jka6xny6ao4<>uid://c3gi7attuilgo<>res://Actors/NPC/DrGimal/DrGimal.gd
-::res://Actors/NPC/DrGimal/Idle/::1688044080
-Idle720p.png::CompressedTexture2D::6827506066981651409::1672608235::1688044080::1::::<><>::
-::res://Actors/NPC/DrGimal/Speak/::1688044113
-Speak720p.png::CompressedTexture2D::6751058167364166950::1672608235::1688044073::1::::<><>::
-::res://Actors/Player/::1689120047
+::res://Actors/NPC/DrGimal/::1689300691
+DrGimal.gd::GDScript::-1::1689300691::0::1::::<>Sprite2D<>::
+DrGimal.tscn::PackedScene::-1::1689300691::0::1::::<><>::uid://c4jka6xny6ao4<>uid://c3gi7attuilgo<>res://Actors/NPC/DrGimal/DrGimal.gd
+::res://Actors/NPC/DrGimal/Idle/::1689300691
+Idle720p.png::CompressedTexture2D::6827506066981651409::1689300691::1688044080::1::::<><>::
+::res://Actors/NPC/DrGimal/Speak/::1689300691
+Speak720p.png::CompressedTexture2D::6751058167364166950::1689300691::1688044073::1::::<><>::
+::res://Actors/Player/::1689300691
 Ammo Switch.wav::AudioStreamWAV::1257836639363679599::1682376988::1687563355::1::::<><>::
-AnimationNode.tres::AnimationNodeStateMachine::2547101716343776594::1689118009::0::1::::<><>::
+AnimationNode.tres::AnimationNodeStateMachine::2547101716343776594::1689300691::0::1::::<><>::
 cooldownbar.png::CompressedTexture2D::1916350705608407995::1672015868::1687563334::1::::<><>::
 Healing.wav::AudioStreamWAV::7177716825019432166::1682377256::1687563355::1::::<><>::
-Knockback.gd::GDScript::-1::1688566734::0::1::::<>PlayerState<>::
+Knockback.gd::GDScript::-1::1689300691::0::1::::<>PlayerState<>::
 KnockedOut.gd::GDScript::-1::1684613953::0::1::::<>PlayerState<>::
 LifeSaver.gd::GDScript::-1::1684613953::0::1::::<>Sprite2D<>::
 LifeSaver.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Actors/Player/Candy/Candy Normal720p.png<>res://Actors/Player/LifeSaver.gd<>res://Actors/Player/Candy/Heal/Heal720p.png<>res://Actors/Player/Candy/Spawn/Spawn720p.png<>res://Actors/Player/Candy/Death/Death720p.png
 LightMask.png::CompressedTexture2D::9028246643003809608::1672608235::1687563333::1::::<><>::
 Player Hit.wav::AudioStreamWAV::2311073766791705222::1682373362::1687563355::1::::<><>::
-Player.gd::GDScript::-1::1688755112::0::1::::Player<>CharacterBody2D<>::
-Player.tscn::PackedScene::4170089808483932756::1689120047::0::1::::<><>::uid://bcj3nmpwnp8w1<>uid://g1eo3i3is1wy<>res://Actors/Player/Player.gd<>res://Actors/Player/Idle/Idle.gd<>uid://eyd8naukduve<>uid://c0gcxtfdx3etv<>res://Actors/Player/Running/Run.gd<>uid://b11nt47qgxgvh<>uid://bdmwrldpgkvuo<>res://Actors/Player/Jump/Air.gd<>uid://dvpgj4o815iiw<>uid://co1yemn1ac7pt<>res://Actors/Player/Knockback.gd<>uid://cfmocxcci1htj<>res://Actors/Player/Shoot/Aim.gd<>uid://c75sgxnncagxq<>uid://b1h1bt5mp6twh<>res://Actors/Player/Crouch/Crouched.gd<>uid://cpo4w0trrl5c4<>res://Actors/Player/Dash/Dashing.gd<>uid://ovk7o07lkcco<>res://Actors/Player/KnockedOut.gd<>uid://chwd4h28gick5<>uid://bh8gr005xn833<>res://Abstract/StateMachine.gd<>uid://dy3xlqayynr4x<>uid://dbfnqrnypqbir<>uid://2kkaswlfumfr<>uid://cxijnb5gt7ngg<>res://Actors/Player/Death/Death.gd
+Player.gd::GDScript::-1::1689300691::0::1::::Player<>CharacterBody2D<>::
+Player.tscn::PackedScene::4170089808483932756::1689300691::0::1::::<><>::uid://bcj3nmpwnp8w1<>uid://g1eo3i3is1wy<>res://Actors/Player/Player.gd<>res://Actors/Player/Idle/Idle.gd<>uid://eyd8naukduve<>uid://c0gcxtfdx3etv<>res://Actors/Player/Running/Run.gd<>uid://b11nt47qgxgvh<>uid://bdmwrldpgkvuo<>res://Actors/Player/Jump/Air.gd<>uid://dvpgj4o815iiw<>uid://co1yemn1ac7pt<>res://Actors/Player/Knockback.gd<>uid://cfmocxcci1htj<>res://Actors/Player/Shoot/Aim.gd<>uid://c75sgxnncagxq<>uid://b1h1bt5mp6twh<>res://Actors/Player/Crouch/Crouched.gd<>uid://cpo4w0trrl5c4<>res://Actors/Player/Dash/Dashing.gd<>uid://ovk7o07lkcco<>res://Actors/Player/KnockedOut.gd<>uid://chwd4h28gick5<>uid://bh8gr005xn833<>res://Abstract/StateMachine.gd<>uid://dy3xlqayynr4x<>uid://dbfnqrnypqbir<>uid://2kkaswlfumfr<>uid://cxijnb5gt7ngg<>res://Actors/Player/Death/Death.gd
 PlayerState.gd::GDScript::-1::1684613953::0::1::::PlayerState<>State<>::
 shootbar.png::CompressedTexture2D::6404269560515845494::1672015868::1687563333::1::::<><>::
 ShootCrouched.gd::GDScript::-1::1684613953::0::1::::<>Node<>::
@@ -312,12 +312,12 @@ Dashing.gd::GDScript::-1::1684613953::0::1::::<>PlayerState<>::
 Death720p.png::CompressedTexture2D::6752067306411886372::1678776569::1687563329::1::::<><>::
 Death.gd::GDScript::-1::1684613953::0::1::::<>PlayerState<>::
 Death.wav::AudioStreamWAV::3087770144141930975::1682370444::1687563355::1::::<><>::
-::res://Actors/Player/Idle/::1687983501
+::res://Actors/Player/Idle/::1689300691
 Idle720p.png::CompressedTexture2D::475076236815343100::1678776675::1687563331::1::::<><>::
 Idle720p_n.png::CompressedTexture2D::6540112237942538523::1678778254::1687563331::1::::<><>::
-Idle.gd::GDScript::-1::1687983501::0::1::::<>PlayerState<>::
-::res://Actors/Player/Jump/::1687982592
-Air.gd::GDScript::-1::1687982592::0::1::::<>PlayerState<>::
+Idle.gd::GDScript::-1::1689300691::0::1::::<>PlayerState<>::
+::res://Actors/Player/Jump/::1689300691
+Air.gd::GDScript::-1::1689300691::0::1::::<>PlayerState<>::
 Down720p.png::CompressedTexture2D::5309813933324159610::1678776980::1687563326::1::::<><>::
 Down720p_n.png::CompressedTexture2D::2946263068594494896::1678778383::1687563326::1::::<><>::
 Quick_Jump.wav::AudioStreamWAV::7318625065372958215::1682370444::1687563355::1::::<><>::
@@ -331,9 +331,9 @@ Transition Up720p.png::CompressedTexture2D::7081920545771109046::1678776898::168
 Transition Up720p_n.png::CompressedTexture2D::5149412939340875963::1678778329::1687563326::1::::<><>::
 ::res://Actors/Player/Rebirth/::1687563327
 Rebirth720p.png::CompressedTexture2D::7984119326839331081::1678776507::1687563327::1::::<><>::
-::res://Actors/Player/Running/::1687983483
+::res://Actors/Player/Running/::1689300691
 Death.wav::AudioStreamWAV::3381748004546846643::1682370444::1687563355::1::::<><>::
-Run.gd::GDScript::-1::1687983483::0::1::::<>PlayerState<>::
+Run.gd::GDScript::-1::1689300691::0::1::::<>PlayerState<>::
 Running720p.png::CompressedTexture2D::4265829264224446209::1678777267::1687563325::1::::<><>::
 Running720p_n.png::CompressedTexture2D::2623126463074393178::1678778548::1687563324::1::::<><>::
 ::res://Actors/Player/Running/Sound/::1687563259
@@ -344,8 +344,8 @@ footstep4.mp3::AudioStreamMP3::5052485044468936295::1682370444::1687563259::1:::
 footstep5.mp3::AudioStreamMP3::1207817752607527252::1682370444::1687563259::1::::<><>::
 footstep6.mp3::AudioStreamMP3::8545092379318742237::1682370444::1687563259::1::::<><>::
 footstep7.mp3::AudioStreamMP3::8595838728299882056::1682370444::1687563259::1::::<><>::
-::res://Actors/Player/Shoot/::1688570659
-Aim.gd::GDScript::-1::1688570659::0::1::::<>PlayerState<>::
+::res://Actors/Player/Shoot/::1689300691
+Aim.gd::GDScript::-1::1689300691::0::1::::<>PlayerState<>::
 ::res://Actors/Player/Shoot/Shoot Big/::1687563323
 Shoot Big720p.png::CompressedTexture2D::4227362735020490919::1678777675::1687563323::1::::<><>::
 Shoot Big720p_n.png::CompressedTexture2D::8822126002903604086::1678778585::1687563322::1::::<><>::
@@ -356,9 +356,9 @@ Shoot Crouch720p_n.png::CompressedTexture2D::7240591591186612181::1678778652::16
 Shoot Small720p.png::CompressedTexture2D::4372138737447343526::1678777611::1687563320::1::::<><>::
 Shoot Small720p_n.png::CompressedTexture2D::6114901861280799155::1678778687::1687563335::1::::<><>::
 ::res://Ammo/::1671641346
-::res://Ammo/Candy Corn/::1688567544
+::res://Ammo/Candy Corn/::1689300691
 Candy Corn 720p.png::CompressedTexture2D::5126783678037948484::1672015868::1687563334::1::::<><>::
-CandyCorn.gd::GDScript::-1::1688567544::0::1::::<>Area2D<>::
+CandyCorn.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 CandyCorn.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Ammo/Candy Corn/CandyCorn.gd<>res://Ammo/Candy Corn/Candy Corn 720p.png
 ::res://Ammo/Jawbreaker/::1687563333
 Jaw Breaker 720p.png::CompressedTexture2D::3055105252014772837::1672015868::1687563333::1::::<><>::
@@ -371,11 +371,11 @@ Jello.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Ammo/Jello/Jello Bo
 Jello Bounce720p.png::CompressedTexture2D::3012157226538269712::1672015868::1687563332::1::::<><>::
 ::res://Ammo/Jello/Jello Pop/::1687563333
 Jello Pop720p.png::CompressedTexture2D::4989895614070452848::1672015868::1687563333::1::::<><>::
-::res://Ammo/Jelly Bean/::1687966091
+::res://Ammo/Jelly Bean/::1689300691
 Explode.gd::GDScript::-1::1684613952::0::1::::<>JellyBeanState<>::
 Flying.gd::GDScript::-1::1684613952::0::1::::<>JellyBeanState<>::
 JellyBean.gd::GDScript::-1::1685293963::0::1::::JellyBean<>CharacterBody2D<>::
-JellyBean.tscn::PackedScene::5219286715444000888::1687966091::0::1::::<><>::res://Ammo/Jelly Bean/JellyBean.gd<>res://Abstract/StateMachine.gd<>res://Ammo/Jelly Bean/Flying.gd<>uid://btlaxb2wxciyp<>res://Ammo/Jelly Bean/Explode.gd<>uid://ynbhdqbaxsgu<>uid://bpdl2w5y3n2iw
+JellyBean.tscn::PackedScene::5219286715444000888::1689300691::0::1::::<><>::res://Ammo/Jelly Bean/JellyBean.gd<>res://Abstract/StateMachine.gd<>res://Ammo/Jelly Bean/Flying.gd<>uid://btlaxb2wxciyp<>res://Ammo/Jelly Bean/Explode.gd<>uid://ynbhdqbaxsgu<>uid://bpdl2w5y3n2iw
 JellyBeanState.gd::GDScript::-1::1684613952::0::1::::JellyBeanState<>State<>::
 Small explosion - Sound effect.mp3::AudioStreamMP3::3446163777867875130::1682370543::1687563259::1::::<><>::
 ::res://Ammo/Jelly Bean/Jelly Bean Explosion/::1687563334
@@ -390,8 +390,8 @@ PopRocks.tscn::PackedScene::-1::1684613952::0::1::::<><>::
 ::res://Ammo/Sticky Bomb/Jelly Bean Fly/::1672608235
 ::res://Environment/::1671892737
 ::res://Environment/Backgrounds/::1671641346
-::res://Environment/Backgrounds/Forest Backgrounds/::1687969213
-WavyTrees.tres::ShaderMaterial::3648840880378884948::1687969213::0::1::::<><>::
+::res://Environment/Backgrounds/Forest Backgrounds/::1689300691
+WavyTrees.tres::ShaderMaterial::3648840880378884948::1689300691::0::1::::<><>::
 ::res://Environment/Backgrounds/Forest Backgrounds/Environment Extra/::1680330807
 ::res://Environment/Backgrounds/Forest Backgrounds/Environment Extra/1 Post/::1687563338
 1 Post4k.png::CompressedTexture2D::2376325699850581416::1682370543::1687563338::1::::<><>::
@@ -439,7 +439,7 @@ Clouds 1 720p.png::CompressedTexture2D::6027950102146086048::1672608235::1687563
 Clouds 1 720p_n.png::CompressedTexture2D::248540942485764158::1673041407::1687563263::1::::<><>::
 ::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Clouds/Clouds 2/::1687563268
 Clouds 2 720p.png::CompressedTexture2D::3075576323033677236::1672608235::1687563268::1::::<><>::
-::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/::1689118009
+::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/::1689289435
 Bush720p.png::CompressedTexture2D::4132623108578984446::1673276296::1687563269::1::::<><>::
 Bush720p_n.png::CompressedTexture2D::5806980990990609::1673277769::1687563269::1::::<><>::
 Bush.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Bush720p.png<>res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/ScatterShader.tres<>res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Bush720p_n.png
@@ -463,10 +463,10 @@ Mint720p_n.png::CompressedTexture2D::2304502945696581544::1673278231::1687563267
 MintScatter.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Mint720p.png<>res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/ScatterShader.tres<>res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Mint720p_n.png
 Scatter Terrain 720p.png::CompressedTexture2D::3935986887318783383::1672015868::1687563274::1::::<><>::
 Scatter Terrain 720p_n.png::CompressedTexture2D::4504737024555678854::1673114760::1687563270::1::::<><>::
-ScatterShader.tres::ShaderMaterial::707819715391296745::1689118009::0::1::::<><>::
+ScatterShader.tres::ShaderMaterial::707819715391296745::1689289435::0::1::::<><>::
 ScatterTerrain.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Scatter Terrain 720p.png<>res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/Scatter Terrain 720p_n.png<>res://Environment/Light3D/light.png
-::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/::1687974902
-Trees.tscn::PackedScene::6038140118773024903::1687974902::0::1::::<><>::uid://dr48e60uilss6<>uid://2iwjpnxptik5
+::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/::1689300691
+Trees.tscn::PackedScene::6038140118773024903::1689300691::0::1::::<><>::uid://dr48e60uilss6<>uid://2iwjpnxptik5
 ::res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/Tall Trees/::1687563267
 Tall Tree 720p.png::CompressedTexture2D::8414351819494317923::1672015868::1687563267::1::::<><>::
 Tall Tree 720p_n.png::CompressedTexture2D::1912966455243884602::1673106139::1687563266::1::::<><>::
@@ -529,8 +529,8 @@ Ghost Platforms 720p.png::CompressedTexture2D::8221929299067698771::1672015868::
 Moving Platforms 720p.png::CompressedTexture2D::2966331601761294275::1672015868::1687563260::1::::<><>::
 MovingPlatform.gd::GDScript::-1::1684613953::0::1::::<>Node2D<>::
 MovingPlatform.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Blocks/Forest/Platforms/Moving Platforms/Moving Platforms 720p.png<>res://Environment/Blocks/Forest/Platforms/Moving Platforms/MovingPlatform.gd
-::res://Environment/Blocks/Forest/TileSets/::1689105311
-ForestTileMap.tscn::PackedScene::2904791954260870301::1689105311::0::1::::<><>::uid://dlj2bltnhq5is<>uid://dr48e60uilss6<>uid://2iwjpnxptik5
+::res://Environment/Blocks/Forest/TileSets/::1689300691
+ForestTileMap.tscn::PackedScene::2904791954260870301::1689300691::0::1::::<><>::uid://dlj2bltnhq5is<>uid://dr48e60uilss6<>uid://2iwjpnxptik5
 ::res://Environment/Blocks/Forest/TileSets/Tile Pack/::1687563273
 ForestTileMap336p.png::CompressedTexture2D::7951560483191610986::1685224111::1687563273::1::::<><>::
 ::res://Environment/Blocks/Forest/TileSets/Tile Pack/Dirt Tile Pack/::1687563262
@@ -559,14 +559,14 @@ EnemyCounter.tscn::PackedScene::-1::1684613953::0::1::::<><>::
 Box720p.png::CompressedTexture2D::8326278123138462883::1672015868::1687563269::1::::<><>::
 Box.gd::GDScript::-1::1684613953::0::1::::<>CharacterBody2D<>::
 Box.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Box/Box1080p.png<>res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Box/Box.gd
-::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/::1688570796
+::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/::1689300691
 button720p.png::CompressedTexture2D::2286322113950121708::1672015868::1687563270::1::::<><>::
 button1080p.png::CompressedTexture2D::8559610457486678505::1672015868::1687563270::1::::<><>::
 button1440p.png::CompressedTexture2D::586811731246083139::1672015868::1687563270::1::::<><>::
 button2160p.png::CompressedTexture2D::6308547770304620233::1672015868::1687563272::1::::<><>::
 Button.gd::GDScript::-1::1684613953::0::1::::<>Area2D<>::
 Button.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/Button.gd<>res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/button1080p.png
-SpringlessButton.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
+SpringlessButton.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 SpringlessButton.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/SpringlessButton.gd<>res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Button/button1080p.png
 ::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/ClosedDoor/::1687563269
 ClosedDoor720p.png::CompressedTexture2D::2514975072568204890::1672015868::1687563269::1::::<><>::
@@ -590,28 +590,28 @@ Spike 2 720p.png::CompressedTexture2D::5426658406438726085::1678754236::16875632
 Spike 2 720p_n.png::CompressedTexture2D::7847488814205416577::1678754236::1687563269::1::::<><>::
 Spikes.gd::GDScript::-1::1684613953::0::1::::<>Area2D<>::
 Spikes.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spike 1 720p.png<>res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spike 1 720p_n.png<>res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spikes.gd
-::res://Environment/Light/::1688570796
-DarkZone.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
+::res://Environment/Light/::1689300691
+DarkZone.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 DarkZone.png::CompressedTexture2D::6425137462110895028::1673108021::1687563272::1::::<><>::
 DarkZone.tscn::PackedScene::-1::1684613953::0::1::::<><>::res://Environment/Light3D/DarkZone.gd<>res://Environment/Light3D/DarkZone.png
-godrays.tres::ShaderMaterial::3032661301681349760::1687958928::0::1::::<><>::
+godrays.tres::ShaderMaterial::3032661301681349760::1689300691::0::1::::<><>::
 light.jpg::CompressedTexture2D::6142464489872140129::1672015868::1687563272::1::::<><>::
 light.png::CompressedTexture2D::3414604332900674588::1673107109::1687563272::1::::<><>::
-::res://Levels/::1689120047
+::res://Levels/::1689300691
 Achaidh Cheide.mp3::AudioStreamMP3::3092295305537287600::1682370543::1687563259::1::::<><>::
 Crystal720p.png::CompressedTexture2D::1635115216277689391::1682887978::1687563270::1::::<><>::
 Digya.mp3::AudioStreamMP3::1993568134151323348::1682370543::1687563259::1::::<><>::
 Firesong.mp3::AudioStreamMP3::4672925739044722967::1682370543::1687563259::1::::<><>::
 Level.gd::GDScript::-1::1687731707::0::1::::<>Node2D<>::
 Master of the Feast.mp3::AudioStreamMP3::4267115728889367942::1682370543::1687563259::1::::<><>::
-TestLevel.tscn::PackedScene::7004181304227406369::1689120047::0::1::::<><>::res://Levels/Level.gd<>uid://bhndq77jvbr4h<>uid://crxqow6k53hol<>uid://bs5omw5j100bn<>res://Pickups/Pickup.tscn<>uid://bjp0kg8w4qdhh
-::res://Levels/FirstScreen/::1688570796
+TestLevel.tscn::PackedScene::7004181304227406369::1689300691::0::1::::<><>::res://Levels/Level.gd<>uid://bhndq77jvbr4h<>uid://crxqow6k53hol<>uid://bs5omw5j100bn<>res://Pickups/Pickup.tscn<>uid://bjp0kg8w4qdhh
+::res://Levels/FirstScreen/::1689300691
 Dream Culture.mp3::AudioStreamMP3::5297234753602831022::1682370543::1687563259::1::::<><>::
 FirstLevel.gd::GDScript::-1::1685305075::0::1::::<>Node2D<>::
-Pickup.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
+Pickup.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 Railroad.json::JSON::-1::1682370543::0::1::::<><>::
-::res://Levels/Funicular lift/::1687974902
-Funicular lift.tscn::PackedScene::3629776485665589125::1687974902::0::1::::<><>::uid://bhndq77jvbr4h<>res://Levels/Level.gd<>uid://csa6jyefk44op<>uid://ds7qkm5hr4h8w<>uid://bdm25ajcftu0l<>uid://dfri1xyfyrlnx<>uid://crxqow6k53hol<>uid://bowcbf4k15i8k
+::res://Levels/Funicular lift/::1689300691
+Funicular lift.tscn::PackedScene::3629776485665589125::1689300691::0::1::::<><>::uid://bhndq77jvbr4h<>res://Levels/Level.gd<>uid://csa6jyefk44op<>uid://ds7qkm5hr4h8w<>uid://bdm25ajcftu0l<>uid://dfri1xyfyrlnx<>uid://crxqow6k53hol<>uid://bowcbf4k15i8k
 ::res://Levels/Funicular lift/Funicular Background/::1687564961
 Funicular Background 480p.png::CompressedTexture2D::4546962458255293475::1678820316::1687564959::1::::<><>::
 Funicular Background 720p.png::CompressedTexture2D::1603097136101063619::1678820316::1687564959::1::::<><>::
@@ -634,7 +634,7 @@ Pillar 720p.png::CompressedTexture2D::889997209930807940::1677341265::1687563270
 Pillar 720p_n.png::CompressedTexture2D::7523084081681233502::1677341265::1687563270::1::::<><>::
 Pillar 1080p.png::CompressedTexture2D::4310316874061152100::1677341265::1687563270::1::::<><>::
 Pillar 1440p.png::CompressedTexture2D::9070852490120384463::1677341265::1687563271::1::::<><>::
-::res://Pickups/::1689118009
+::res://Pickups/::1689300691
 Artifacts.png::CompressedTexture2D::5489100341417373167::1678754236::1687563268::1::::<><>::
 Candy Corn 720p.png::CompressedTexture2D::5916430909735225748::1682370543::1687563268::1::::<><>::
 Collectibles720p.png::CompressedTexture2D::9163717461142599081::1682370543::1687563269::1::::<><>::
@@ -644,19 +644,19 @@ Jello 720p.png::CompressedTexture2D::6610589546176004163::1678754236::1687563268
 Jelly Bean 720p.png::CompressedTexture2D::5698403705364310356::1682370543::1687563268::1::::<><>::
 Pick Up Small.wav::AudioStreamWAV::6294710578445384075::1682377074::1687563355::1::::<><>::
 Pickup Big.wav::AudioStreamWAV::2677212289311991788::1682377100::1687563355::1::::<><>::
-Pickup.gd::GDScript::-1::1689118009::0::1::::<>Area2D<>::
+Pickup.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 Pickup.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://Pickups/Pickup.gd<>res://Pickups/Collectibles720p.png<>res://Pickups/Collectibles720p_n.png
 Pickup.wav::AudioStreamWAV::194707757329630512::1682370444::1687563355::1::::<><>::
-SpecialPickup.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
+SpecialPickup.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 Spoonful of sugar.png::CompressedTexture2D::3604642066473901393::1678754236::1687563268::1::::<><>::
 ::res://Pickups/Health Pickup/::1687563273
 Health Pickup720p.png::CompressedTexture2D::3206496639209396616::1672015868::1687563273::1::::<><>::
-::res://UserInterface/::1689118009
+::res://UserInterface/::1689289435
 DebugIndicator.gd::GDScript::-1::1687022070::0::1::::<>CanvasLayer<>::
 DebugIndicator.tscn::PackedScene::5996241479173016490::1687021205::0::1::::<><>::res://UserInterface/DebugIndicator.gd<>uid://7f0bpaqn1xgt
 GUI.gd::GDScript::-1::1687732896::0::1::::<>CanvasLayer<>::
 GUI.tscn::PackedScene::4724962300243719069::1687974902::0::1::::<><>::uid://cfy1dv7vc6nqw<>res://UserInterface/PauseMenu/input_menu/InputMenu.tscn<>res://UserInterface/GUI.gd<>res://UserInterface/Dialog/Dialog.gd<>uid://cqh2a20vqm1yq<>uid://e1oew5mv0bpp<>res://UserInterface/Shops/Shop.tscn<>res://UserInterface/RestMenu/RestMenu.tscn<>res://UserInterface/Map/Map.tscn
-theme.tres::Theme::3961516466704860459::1689118009::0::1::::<><>::uid://c7hmcjmdp0qpl
+theme.tres::Theme::3961516466704860459::1689289435::0::1::::<><>::uid://c7hmcjmdp0qpl
 ::res://UserInterface/Dialog/::1685293857
 Dialog.gd::GDScript::-1::1685293857::0::1::::<>Control<>::
 ::res://UserInterface/Dialog/Json/::1682370543
@@ -684,9 +684,9 @@ MainUI.png::CompressedTexture2D::6194650230132625639::1682370543::1687563268::1:
 MainUIOutline.png::CompressedTexture2D::6110075601310250567::1682370543::1687563268::1::::<><>::
 SugarBar.png::CompressedTexture2D::4662577954475207326::1682370543::1687563268::1::::<><>::
 UI720p.png::CompressedTexture2D::1070184921171681483::1682370543::1687563269::1::::<><>::
-::res://UserInterface/MainMenu/::1687974902
-MainMenu.gd::GDScript::-1::1687974697::0::1::::<>Control<>::
-MainMenu.tscn::PackedScene::2298694237882119778::1687974902::0::1::::<><>::res://UserInterface/SoundMenu/SoundMenu.tscn<>res://UserInterface/MainMenu/MainMenu.gd<>uid://dte0wfqgb2tvr<>uid://c7hmcjmdp0qpl<>uid://chqaxg6iy1pvy<>res://UserInterface/MoreMenu/MoreMenu.tscn<>res://UserInterface/MoreMenu/MoreMenu.gd
+::res://UserInterface/MainMenu/::1689300691
+MainMenu.gd::GDScript::-1::1689300691::0::1::::<>Control<>::
+MainMenu.tscn::PackedScene::2298694237882119778::1689300691::0::1::::<><>::res://UserInterface/SoundMenu/SoundMenu.tscn<>res://UserInterface/MainMenu/MainMenu.gd<>uid://dte0wfqgb2tvr<>uid://c7hmcjmdp0qpl<>uid://chqaxg6iy1pvy<>res://UserInterface/MoreMenu/MoreMenu.tscn<>res://UserInterface/MoreMenu/MoreMenu.gd
 ::res://UserInterface/Map/::1687563269
 Candy Icon.png::CompressedTexture2D::4003576482833795923::1683392917::1687563268::1::::<><>::
 Map 720p.png::CompressedTexture2D::4023221501133137167::1683395265::1687563268::1::::<><>::
@@ -701,9 +701,9 @@ CheckBox.png::CompressedTexture2D::3268112251756741106::1683772455::1687563268::
 CheckBoxChecked.png::CompressedTexture2D::9144039617760363861::1683772470::1687563268::1::::<><>::
 MoreMenu.gd::GDScript::-1::1685807083::0::1::::<>Control<>::
 MoreMenu.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf<>res://UserInterface/SoundMenu/SoundMenu.gd<>res://UserInterface/MoreMenu/CheckBoxChecked.png<>res://UserInterface/MoreMenu/CheckBox.png
-::res://UserInterface/PauseMenu/::1687994376
-Pause menu.gd::GDScript::-1::1687994376::0::1::::<>Control<>::
-PauseMenu.tscn::PackedScene::5174915804249586338::1687974902::0::1::::<><>::uid://bwo8ukvcke31h<>res://UserInterface/PauseMenu/Pause menu.gd<>uid://c7hmcjmdp0qpl<>res://UserInterface/SoundMenu/SoundMenu.tscn
+::res://UserInterface/PauseMenu/::1689300691
+Pause menu.gd::GDScript::-1::1689300691::0::1::::<>Control<>::
+PauseMenu.tscn::PackedScene::5174915804249586338::1689300691::0::1::::<><>::uid://bwo8ukvcke31h<>res://UserInterface/PauseMenu/Pause menu.gd<>uid://c7hmcjmdp0qpl<>res://UserInterface/SoundMenu/SoundMenu.tscn
 ::res://UserInterface/PauseMenu/input_menu/::1685302972
 InputMenu.gd::GDScript::-1::1685302972::0::1::::<>Control<>::
 InputMenu.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://UserInterface/PauseMenu/input_menu/InputMenu.gd<>res://UserInterface/PauseMenu/input_menu/input_mapper/InputMapper.tscn<>res://UserInterface/PauseMenu/input_menu/fonts/montserrat-extra-bold-48px.tres<>res://UserInterface/PauseMenu/input_menu/fonts/montserrat-extra-bold-24px.tres<>res://UserInterface/PauseMenu/input_menu/input_line/ActionList.gd<>res://UserInterface/PauseMenu/input_menu/KeySelectMenu.gd<>res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf
@@ -741,12 +741,12 @@ Item 3.png::CompressedTexture2D::4048527268779802213::1672770260::1687563268::1:
 Sugar.png::CompressedTexture2D::6393133067770101745::1682370543::1687563268::1::::<><>::
 ::res://UserInterface/Shops/Json/::1682370543
 MrGerald.json::JSON::-1::1682370543::0::1::::<><>::
-::res://UserInterface/SoundMenu/::1687974697
-SoundMenu.gd::GDScript::-1::1687974697::0::1::::<>Control<>::
+::res://UserInterface/SoundMenu/::1689300691
+SoundMenu.gd::GDScript::-1::1689300691::0::1::::<>Control<>::
 SoundMenu.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf<>res://UserInterface/SoundMenu/SoundMenu.gd
-::res://UserInterface/Tutorial/::1688570796
+::res://UserInterface/Tutorial/::1689300691
 Keyboard Extras.png::CompressedTexture2D::927939651124994808::1682370720::1687563268::1::::<><>::
 Keyboard Letters and Symbols.png::CompressedTexture2D::8949924369580667387::1682370632::1687563268::1::::<><>::
-SpecialTutorial.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
-Tutorial indicator.gd::GDScript::-1::1688570796::0::1::::<>Area2D<>::
+SpecialTutorial.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
+Tutorial indicator.gd::GDScript::-1::1689300691::0::1::::<>Area2D<>::
 Tutorial indicator.tscn::PackedScene::-1::1684613952::0::1::::<><>::res://UserInterface/Tutorial/Tutorial indicator.gd

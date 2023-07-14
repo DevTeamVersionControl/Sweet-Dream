@@ -21,7 +21,6 @@ const SHOOT_ANIMATION_TIME = 0.1
 const CHARGE = 1
 
 var bullet_strength : float
-var bullet_direction : Vector2
 var crouched : bool
 
 @onready var audio_stream_player = $AudioStreamPlayer
@@ -35,15 +34,15 @@ func enter(msg := {}) -> void:
 	player.shoot_bar.scale.x = 0
 	bullet_strength = 0
 	player.velocity.x = 0
-	bullet_direction = Vector2.RIGHT if player.facing_right else Vector2.LEFT
-	player.bullet_forward.position.x = 13 if player.facing_right else -13
 	
-	if msg.has("crouched"):
+	if msg.has("crouched") || not player.is_on_floor():
 		player.animation_mode.travel("Crouched")
 		crouched = true
+		player.bullet_forward.position = Vector2(21 if player.facing_right else -21,-10)
 	else:
 		player.animation_mode.travel("Idle")
 		crouched = false
+		player.bullet_forward.position = Vector2(13 if player.facing_right else -13,-35)
 	
 	match(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].type):
 		GlobalTypes.AMMO_TYPE.once:
@@ -88,7 +87,10 @@ func shoot_animation():
 	player.shoot_bar.visible = false
 	await get_tree().create_timer(SHOOT_ANIMATION_TIME).timeout
 	player.cooldown_bar.visible = true
-	state_machine.transition_to("Idle" if !crouched else "Crouched")
+	if player.is_on_floor():
+		state_machine.transition_to("Idle" if !crouched else "Crouched")
+	else:
+		state_machine.transition_to("Air")
 
 # Shoots individual bullets
 func shoot(position:NodePath) -> void:

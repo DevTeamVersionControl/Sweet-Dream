@@ -1,4 +1,4 @@
-[gd_resource type="AnimationNodeStateMachine" load_steps=34 format=3 uid="uid://bcj3nmpwnp8w1"]
+[gd_resource type="AnimationNodeStateMachine" load_steps=40 format=3 uid="uid://bcj3nmpwnp8w1"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nbtsv"]
 animation = &"Air"
@@ -15,6 +15,9 @@ blend_point_1/pos = 1.0
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2lhgw"]
 animation = &"Crouch"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dnlem"]
+animation = &"CrouchAir"
+
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a7jmw"]
 animation = &"Crouched"
 
@@ -23,6 +26,9 @@ animation = &"Death"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dj1d1"]
 animation = &"Fall"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vph5i"]
+animation = &"GetUpAir"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2hhr8"]
 animation = &"Idle"
@@ -96,18 +102,30 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jcpoj"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rcoj0"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2desn"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2gebk"]
+
 [resource]
 states/Air/node = SubResource("AnimationNodeBlendSpace1D_k2fpq")
 states/Air/position = Vector2(433.585, 297.572)
 states/Crouch/node = SubResource("AnimationNodeAnimation_2lhgw")
 states/Crouch/position = Vector2(111.585, 166.572)
+states/CrouchAir/node = SubResource("AnimationNodeAnimation_dnlem")
+states/CrouchAir/position = Vector2(166.585, 297.572)
 states/Crouched/node = SubResource("AnimationNodeAnimation_a7jmw")
 states/Crouched/position = Vector2(-62.415, 166.572)
 states/Death/node = SubResource("208")
-states/Death/position = Vector2(3.151, 251.589)
-states/End/position = Vector2(-134, 251.589)
+states/Death/position = Vector2(74.585, 55.589)
+states/End/position = Vector2(-62.566, 55.589)
 states/Fall/node = SubResource("AnimationNodeAnimation_dj1d1")
 states/Fall/position = Vector2(502.585, 225.572)
+states/GetUpAir/node = SubResource("AnimationNodeAnimation_vph5i")
+states/GetUpAir/position = Vector2(166.585, 350.572)
 states/Idle/node = SubResource("AnimationNodeAnimation_2hhr8")
 states/Idle/position = Vector2(245, 166.572)
 states/Jump/node = SubResource("AnimationNodeAnimation_4lsrl")
@@ -119,7 +137,7 @@ states/Run/position = Vector2(648.585, 166.572)
 states/Shoot/node = SubResource("AnimationNodeAnimation_7h18e")
 states/Shoot/position = Vector2(245, 71)
 states/ShootCrouched/node = SubResource("AnimationNodeAnimation_cbfb6")
-states/ShootCrouched/position = Vector2(-62.415, 71)
+states/ShootCrouched/position = Vector2(-62.415, 297.572)
 states/Start/position = Vector2(352.151, 71)
-transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_n5dtt"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_vrdhu"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_c184d"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_vbbbh"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_2lcgl"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd04e"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_dlhb1"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_7b0ck"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_dwiqu"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_31p1d"), "Jump", "Air", SubResource("AnimationNodeStateMachineTransition_wkro0"), "Air", "Land", SubResource("AnimationNodeStateMachineTransition_v3jba"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_lu1ja"), "Crouch", "Crouched", SubResource("AnimationNodeStateMachineTransition_uudkl"), "Crouched", "Land", SubResource("AnimationNodeStateMachineTransition_hjt4j"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_hkkoo"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_jkocm"), "Fall", "Air", SubResource("AnimationNodeStateMachineTransition_cx1tu"), "Crouched", "ShootCrouched", SubResource("AnimationNodeStateMachineTransition_4edne"), "ShootCrouched", "Crouched", SubResource("AnimationNodeStateMachineTransition_sovre")]
+transitions = ["Death", "End", SubResource("AnimationNodeStateMachineTransition_n5dtt"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_vrdhu"), "Idle", "Shoot", SubResource("AnimationNodeStateMachineTransition_c184d"), "Shoot", "Idle", SubResource("AnimationNodeStateMachineTransition_vbbbh"), "Idle", "Run", SubResource("AnimationNodeStateMachineTransition_2lcgl"), "Run", "Idle", SubResource("AnimationNodeStateMachineTransition_pd04e"), "Run", "Jump", SubResource("AnimationNodeStateMachineTransition_dlhb1"), "Idle", "Jump", SubResource("AnimationNodeStateMachineTransition_7b0ck"), "Idle", "Death", SubResource("AnimationNodeStateMachineTransition_dwiqu"), "Land", "Idle", SubResource("AnimationNodeStateMachineTransition_31p1d"), "Jump", "Air", SubResource("AnimationNodeStateMachineTransition_wkro0"), "Air", "Land", SubResource("AnimationNodeStateMachineTransition_v3jba"), "Idle", "Crouch", SubResource("AnimationNodeStateMachineTransition_lu1ja"), "Crouch", "Crouched", SubResource("AnimationNodeStateMachineTransition_uudkl"), "Crouched", "Land", SubResource("AnimationNodeStateMachineTransition_hjt4j"), "Idle", "Fall", SubResource("AnimationNodeStateMachineTransition_hkkoo"), "Run", "Fall", SubResource("AnimationNodeStateMachineTransition_jkocm"), "Fall", "Air", SubResource("AnimationNodeStateMachineTransition_cx1tu"), "Crouched", "ShootCrouched", SubResource("AnimationNodeStateMachineTransition_4edne"), "ShootCrouched", "Crouched", SubResource("AnimationNodeStateMachineTransition_sovre"), "Air", "CrouchAir", SubResource("AnimationNodeStateMachineTransition_jcpoj"), "CrouchAir", "ShootCrouched", SubResource("AnimationNodeStateMachineTransition_rcoj0"), "ShootCrouched", "GetUpAir", SubResource("AnimationNodeStateMachineTransition_2desn"), "GetUpAir", "Air", SubResource("AnimationNodeStateMachineTransition_2gebk")]
 graph_offset = Vector2(-612.415, 7.57199)

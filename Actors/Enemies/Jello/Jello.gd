@@ -62,12 +62,13 @@ func take_damage(damage, knockback):
 	if health <= 0 && animation_player.current_animation != "Death":
 		state_machine.transition_to("Death")
 		audio_stream_player.stream = JELLO_DEATH
+		audio_stream_player.play()
 	else:
+		audio_stream_player.stream = HIT
+		audio_stream_player.play()
 		$Sprite2D.get_material().set("shader_param/flashState", 1.0)
 		await get_tree().create_timer(0.1).timeout
 		$Sprite2D.get_material().set("shader_param/flashState", 0.0)
-		audio_stream_player.stream = HIT
-	audio_stream_player.play()
 
 func on_hit_something(something):
 	if something is Player && health > 0:

@@ -21,13 +21,16 @@ var save_path := DEFAULT_SAVE_PATH
 
 func obj_save():
 	if not FileAccess.file_exists(save_path):
-		return
-	var save_data = get_save(save_path)
-	for node in get_tree().get_nodes_in_group("save"):
-		node.obj_save(save_data)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_line(JSON.stringify(save_data))
-	file.close()
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_line(JSON.stringify({}))
+		file.close()
+	else:
+		var save_data = get_save(save_path)
+		for node in get_tree().get_nodes_in_group("save"):
+			node.obj_save(save_data)
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_line(JSON.stringify(save_data))
+		file.close()
 
 func obj_load():
 	var save_data : Dictionary = get_save(save_path)
@@ -44,12 +47,15 @@ func partial_load(node:Node):
 	
 func partial_save(node:Node) -> void:
 	if not FileAccess.file_exists(node.save_path):
-		return
-	var save_data = get_save(node.save_path)
-	node.obj_save(save_data)
-	var file = FileAccess.open(save_path, FileAccess.WRITE)
-	file.store_line(JSON.stringify(save_data))
-	file.close()
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_line(JSON.stringify({}))
+		file.close()
+	else:
+		var save_data = get_save(node.save_path)
+		node.obj_save(save_data)
+		var file = FileAccess.open(save_path, FileAccess.WRITE)
+		file.store_line(JSON.stringify(save_data))
+		file.close()
 
 func get_save(specific_save_path)->Dictionary:
 	if not FileAccess.file_exists(specific_save_path):

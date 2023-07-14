@@ -20,6 +20,7 @@ extends CanvasLayer
 @onready var health_bar = $Resizer/TextureProgressBar
 @onready var sugar_bar = $Resizer/TextureProgress2
 @onready var health_pack_display = $Resizer/TextureProgress3
+@onready var debug := $DebugIndicator
 var game_time := StopWatch.new()
 
 func connect_player():
@@ -27,6 +28,7 @@ func connect_player():
 	get_tree().current_scene.player.connect("changed_health", Callable(self, "_on_changed_health"))
 	get_tree().current_scene.player.connect("changed_sugar", Callable(self, "_on_changed_sugar"))
 	get_tree().current_scene.player.connect("changed_health_pack", Callable(self, "_on_changed_health_pack"))
+	debug.connect_obj(get_tree().current_scene.player)
 
 func activate_timer():
 	$SpeedrunTimer.visible = true

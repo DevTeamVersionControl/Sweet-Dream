@@ -125,8 +125,9 @@ func physics_update(delta: float) -> void:
 			jump_buffer = true
 			jump_buffer_timer.start()
 		
-		if Input.is_action_pressed("shoot") && player.can_shoot && GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
-			state_machine.transition_to("Aim")
+		if Input.is_action_pressed("shoot") && player.can_shoot:
+			if GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
+				state_machine.transition_to("Aim")
 
 func lock_input(direction : bool):
 	player.facing_right = direction

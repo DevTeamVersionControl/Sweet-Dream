@@ -20,13 +20,16 @@ extends CanvasLayer
 
 @onready var trigger_obj = get_node_or_null(trigger)
 
-
 func _ready():
 	if target_player:
-		await get_tree().create_timer(0.2).timeout
-		get_tree().current_scene.player.connect("debug_update", Callable(self, "on_update"))
+		pass
+#		await get_tree().create_timer(0.2).timeout
+#		get_tree().current_scene.player.connect("debug_update", Callable(self, "on_update"))
 	elif trigger_obj:
 		trigger_obj.connect("debug_update", Callable(self, "on_update"))
+
+func connect_obj(obj):
+	obj.connect("debug_update", Callable(self, "on_update"))
 
 func on_update(vari):
 	$Label.set_text(String(vari))
