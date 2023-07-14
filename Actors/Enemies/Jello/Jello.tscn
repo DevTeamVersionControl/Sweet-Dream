@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Jump.gd" id="6"]
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Land.gd" id="7"]
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Death.gd" id="8"]
-[ext_resource type="Material" uid="uid://bx81bfuhfq0sk" path="res://Actors/flash.tres" id="9"]
+[ext_resource type="Material" uid="uid://eyd8naukduve" path="res://Actors/flash.tres" id="9"]
 
 [sub_resource type="CapsuleShape2D" id="10"]
 radius = 29.0

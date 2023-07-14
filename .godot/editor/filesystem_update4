@@ -1,18 +1,15 @@
 res://default_bus_layout.tres
 res://Levels/TestLevel.tscn
-res://Actors/Player/AnimationNode.tres
-res://Actors/flash.tres
 res://Pickups/Pickup.gd
 res://Environment/Backgrounds/Forest Backgrounds/Main Background/Scatter Terrain/ScatterShader.tres
+res://Actors/Player/AnimationNode.tres
 res://UserInterface/theme.tres
 res://Actors/Player/Player.tscn
 res://Abstract/LevelSwitcher.tscn
-res://Actors/Enemies/Jello/Jello.tscn
 res://Actors/Enemies/EnemyHealthBar.tscn
-res://Abstract/Globals/GlobalTypes.tscn
-res://Environment/Blocks/Forest/TileSets/ForestTileMap.tscn
-res://Abstract/Checkpoint/Checkpoint.tscn
-res://Actors/Enemies/Jello/Air.gd
-res://Actors/Player/Player.gd
-res://Actors/Enemies/Jello/Jello.gd
+res://Actors/Enemies/Jello/Jello.tscn
+res://Actors/Enemies/StatusEffects/Slow.tscn
 res://Actors/Enemies/EnemyHealthBar.gd
+res://Abstract/Globals/GlobalTypes.gd
+res://Abstract/Globals/GlobalVars.gd
+res://Actors/Enemies/StatusEffects/Slow.gd

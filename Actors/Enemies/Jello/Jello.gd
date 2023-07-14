@@ -28,6 +28,7 @@ var target
 var facing_right := true
 var is_on_floor:bool
 var volume := 0.5
+var speed_scale := 1.0
 #var stuck := false
 
 const MAX_HEALTH = 3

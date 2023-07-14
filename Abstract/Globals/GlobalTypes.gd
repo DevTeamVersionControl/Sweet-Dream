@@ -42,3 +42,19 @@ class Checkpoint:
 	func _init(init_name, init_level):
 		name = init_name
 		level = init_level
+
+class ConstEffect:
+	var type:STATUS
+	var ressource:PackedScene
+	var icon
+	func _init(init_type:STATUS, init_ressource:PackedScene, init_icon):
+		type = init_type
+		ressource = init_ressource
+		icon = init_icon
+
+class Effect:
+	var instance
+	var icon
+	func _init(init_icon, init_instance = null):
+		instance = init_instance
+		icon = init_icon

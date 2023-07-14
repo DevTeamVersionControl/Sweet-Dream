@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://g1eo3i3is1wy" path="res://Actors/Player/Idle/Idle720p.png" id="1_cwfdh"]
 [ext_resource type="Script" path="res://Actors/Player/Player.gd" id="1_cxlkb"]
 [ext_resource type="Script" path="res://Actors/Player/Idle/Idle.gd" id="2"]
-[ext_resource type="Material" uid="uid://bx81bfuhfq0sk" path="res://Actors/flash.tres" id="2_0w3ay"]
+[ext_resource type="Material" uid="uid://eyd8naukduve" path="res://Actors/flash.tres" id="2_0w3ay"]
 [ext_resource type="Texture2D" uid="uid://c0gcxtfdx3etv" path="res://Actors/Player/Idle/Idle720p_n.png" id="2_cxufd"]
 [ext_resource type="Script" path="res://Actors/Player/Running/Run.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://b11nt47qgxgvh" path="res://Actors/Player/Running/Running720p.png" id="3_adllv"]

@@ -13,25 +13,16 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-extends JelloEnemyState
+extends Node
 
-func enter(_msg := {}) -> void:
-	jello.motion.y = -jello.JUMP_VELOCITY_Y
-	jello.motion.x = jello.JUMP_VELOCITY_X if jello.facing_right else -jello.JUMP_VELOCITY_X
-	jello.animation_player.play("Air")
+class_name StatusEffect
 
-func physics_update(delta):
-	delta *= jello.speed_scale
-	jello.motion.y += jello.GRAVITY
-	var collision = jello.move_and_collide(jello.motion * delta)
-	if collision && jello.health > 0:
-		# Keeps it from being stuck on a ceiling
-		if jello.motion.y < 0:
-			jello.motion = jello.motion.bounce(collision.get_normal())
-			collision = null
-		else:
-			state_machine.transition_to("Land")
-	# Turn around
-	if jello.facing_right == (jello.motion.x < 0):
-		jello.facing_right = not jello.motion.x < 0
-		jello.sprite.flip_h = !jello.facing_right
+var stacks := 1
+
+func add_stack():
+	stacks += 1
+
+func remove_stack():
+	stacks -= 1
+	if stacks < 1:
+		queue_free()

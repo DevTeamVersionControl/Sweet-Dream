@@ -24,6 +24,10 @@ var ammo_array := [GlobalTypes.Ammo.new("Candy Corn", GlobalTypes.AMMO_TYPE.once
 	GlobalTypes.Ammo.new("Jawbreaker", GlobalTypes.AMMO_TYPE.charge, 0, 6, 5, preload("res://Ammo/Jawbreaker/Jawbreaker.tscn"), preload("res://Pickups/Jaw Breaker 720p.png")), 
 	GlobalTypes.Ammo.new("Pop Rocks", GlobalTypes.AMMO_TYPE.constant, 0, 0.2, 0.1, preload("res://Ammo/Pop Rocks/PopRocks.tscn"), preload("res://Pickups/Jaw Breaker 720p.png")), 
 	GlobalTypes.Ammo.new("Jello", GlobalTypes.AMMO_TYPE.once, 1, 10, 2, preload("res://Ammo/Jello/Jello.tscn"), preload("res://Pickups/Jello 720p.png"))]
+
+var status_array := [GlobalTypes.ConstEffect.new(GlobalTypes.STATUS.slow, preload("res://Actors/Enemies/StatusEffects/Slow.tscn"), preload("res://Environment/Light/light.png"))]
+
+#Player
 var max_health := BASE_MAX_HEALTH
 var health := max_health
 var max_health_packs := 0
@@ -91,6 +95,12 @@ func get_ammo(ammo_name : String):
 	for ammo in ammo_array:
 		if ammo.name == ammo_name:
 			return ammo
+	return null
+
+func get_effect(effect_type := GlobalTypes.STATUS.slow):
+	for effect in status_array:
+		if effect.type == effect_type:
+			return effect
 	return null
 
 func add_to_inventory(item:Dictionary):

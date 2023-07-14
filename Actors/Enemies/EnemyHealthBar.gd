@@ -1,7 +1,20 @@
+# Sweet Dream, a sweet metroidvannia
+#    Copyright (C) 2022 Kamran Charles Nayebi and William Duplain
+#
+#    This program is free software: you can redistribute it and/or modify
+#    it under the terms of the GNU General Public License as published by
+#    the Free Software Foundation, either version 3 of the License, or
+#    (at your option) any later version.
+#
+#    This program is distributed in the hope that it will be useful,
+#    but WITHOUT ANY WARRANTY; without even the implied warranty of
+#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#    GNU General Public License for more details.
+#
+#    You should have received a copy of the GNU General Public License
+#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends VBoxContainer
-class_name HealthBar
 
-var icons := {GlobalTypes.STATUS.slow:preload("res://Environment/Light/light.png")}
 var effects := {}
 
 func _ready():
@@ -12,10 +25,16 @@ func update_health(max_health = 10.0, current_health = 5.0):
 	$HealthBar.value = current_health
 
 func add_status_effect(status = GlobalTypes.STATUS.slow):
-	if effects.find_key(status):
-		effects[status].get_children(0).text = str(1 + int(effects[status].get_children(0).text))
+	if effects.has(status):
+		effects[status].icon.get_children()[0].text = str(1 + int(effects[status].icon.get_children()[0].text))
+		effects[status].instance.add_stack()
 	else:
-		effects[status] = add_icon(icons[status])
+		effects[status] = GlobalTypes.Effect.new(add_icon(GlobalVars.get_effect(status).icon))
+		match(status):
+			GlobalTypes.STATUS.slow:
+				effects[status].instance = GlobalVars.get_effect(status).ressource.instantiate()
+				get_parent().add_child(effects[status].instance)
+	get_tree().create_timer(8.0).connect("timeout", remove_status_effect.bind(status))
 
 func add_icon(icon:CompressedTexture2D) -> HBoxContainer:
 	var box = HBoxContainer.new()
@@ -33,3 +52,14 @@ func add_icon(icon:CompressedTexture2D) -> HBoxContainer:
 	box.add_child(texture)
 	$StatusEffects.add_child(box)
 	return box
+
+func remove_status_effect(status) -> void:
+	if effects.has(status):
+		if is_instance_valid(effects[status].instance):
+			effects[status].instance.remove_stack()
+			if int(effects[status].icon.get_children()[0].text) <= 1:
+				effects[status].icon.queue_free()
+				effects.erase(status)
+			else:
+				effects[status].icon.get_children()[0].text = str(int(effects[status].icon.get_children()[0].text) - 1)
+
