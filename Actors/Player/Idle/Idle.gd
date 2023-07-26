@@ -30,13 +30,19 @@ func physics_update(delta: float) -> void:
 	player.velocity.x = 0
 	player.move_and_slide()
 	
+	var input_direction_x: float = (
+		Input.get_action_strength("move_right")
+		- Input.get_action_strength("move_left")
+	)
+	
 	if !get_tree().paused:
 		if Input.is_action_pressed("crouch"):
 			state_machine.transition_to("Crouched")
 			return
 		if Input.is_action_just_pressed("move_up"):
 			state_machine.transition_to("Air", {do_jump = true})
-		elif Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right"):
+		elif (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")) and not is_equal_approx(input_direction_x, 0.0):
+			print("run")
 			state_machine.transition_to("Run")
 		elif Input.is_action_pressed("shoot") && player.can_shoot:
 			if GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:
