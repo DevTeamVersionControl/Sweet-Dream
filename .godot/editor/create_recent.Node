@@ -1,9 +1,14 @@
+StaticBody2D
+CollisionPolygon2D
+CollisionShape2D
+RigidBody2D
+Label
+ColorRect
+TextureRect
 Node
 HBoxContainer
 HScrollBar
 VBoxContainer
-Label
-TextureRect
 Control
 TextureProgressBar
 Area2D
