@@ -111,11 +111,11 @@ func take_damage(damage:float, knockback_vector:Vector2) -> void:
 		GlobalVars.health -= damage
 		if GlobalVars.health <= 0:
 			GlobalVars.health = 0
-			if GlobalVars.health_packs > 0:
-				heal(1)
-				set_health_packs(0)
-			else:
-				state_machine.transition_to("Death")
+#			if GlobalVars.health_packs > 0:
+#				heal(1)
+#				set_health_packs(0)
+#			else:
+			state_machine.transition_to("Death")
 		else:
 			sprite.get_material().set("shader_param/flashState", 1.0)
 			await get_tree().create_timer(0.25).timeout

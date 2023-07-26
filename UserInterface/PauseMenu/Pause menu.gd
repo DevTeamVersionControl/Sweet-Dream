@@ -73,6 +73,7 @@ func resume():
 		mouse_filter = Control.MOUSE_FILTER_PASS
 		get_parent().request_unpause()
 		visible = false
+		index = 0
 
 func load_settings():
 	item_list.clear()

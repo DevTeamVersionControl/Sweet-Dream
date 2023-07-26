@@ -52,7 +52,7 @@ func physics_update(_delta: float) -> void:
 		return
 	
 	# Check to see if the player needs to turn around
-	if player.facing_right != (input_direction_x > 0) && input_direction_x != 0:
+	if player.facing_right != (input_direction_x > 0) && not is_equal_approx(input_direction_x, 0.0):
 		player.facing_right = input_direction_x > 0
 		player.sprite.flip_h = !player.facing_right
 		player.animation_tree.set('parameters/Run/blend_position', 1 if player.facing_right else -1)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=52 format=3 uid="uid://b0oa1f8xbajaa"]
+[gd_scene load_steps=55 format=3 uid="uid://b0oa1f8xbajaa"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bcj3nmpwnp8w1" path="res://Actors/Player/AnimationNode.tres" id="1_bl8bv"]
 [ext_resource type="Texture2D" uid="uid://g1eo3i3is1wy" path="res://Actors/Player/Idle/Idle720p.png" id="1_cwfdh"]
@@ -7,6 +7,7 @@
 [ext_resource type="Material" uid="uid://eyd8naukduve" path="res://Actors/flash.tres" id="2_0w3ay"]
 [ext_resource type="Texture2D" uid="uid://c0gcxtfdx3etv" path="res://Actors/Player/Idle/Idle720p_n.png" id="2_cxufd"]
 [ext_resource type="Script" path="res://Actors/Player/Running/Run.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://c3g0tdyx67hyi" path="res://Actors/Player/Death/Death720p.png" id="3_8wpx0"]
 [ext_resource type="Texture2D" uid="uid://b11nt47qgxgvh" path="res://Actors/Player/Running/Running720p.png" id="3_adllv"]
 [ext_resource type="Texture2D" uid="uid://bdmwrldpgkvuo" path="res://Actors/Player/Running/Running720p_n.png" id="4_sgdgw"]
 [ext_resource type="Script" path="res://Actors/Player/Jump/Air.gd" id="5"]
@@ -30,9 +31,10 @@
 [ext_resource type="Texture2D" uid="uid://dbfnqrnypqbir" path="res://Actors/Player/Shoot/Shoot Crouch/Shoot Crouch720p_n.png" id="17_3xlb6"]
 [ext_resource type="Texture2D" uid="uid://2kkaswlfumfr" path="res://Actors/Player/cooldownbar.png" id="21_jbjko"]
 [ext_resource type="Texture2D" uid="uid://cxijnb5gt7ngg" path="res://Actors/Player/shootbar.png" id="22_kgegy"]
+[ext_resource type="AudioStream" uid="uid://bj80egmdkjgpb" path="res://Actors/Player/Death/Death.wav" id="24_3ll3s"]
 [ext_resource type="Script" path="res://Actors/Player/Death/Death.gd" id="34"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_q468c"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_y6hnm"]
 diffuse_texture = ExtResource("1_cwfdh")
 normal_texture = ExtResource("2_cxufd")
 
@@ -1061,7 +1063,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_w5w4c"]
 resource_name = "Jump"
-length = 0.250004
+length = 0.0833376
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1070,10 +1072,10 @@ tracks/0/path = NodePath("Sprite:texture:normal_texture")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("2_cxufd"), ExtResource("7_7wel2"), ExtResource("6_oas7r")]
+"values": [ExtResource("7_7wel2"), ExtResource("6_oas7r")]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1082,10 +1084,10 @@ tracks/1/path = NodePath("Sprite:texture:diffuse_texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [ExtResource("1_cwfdh"), ExtResource("8_lbmjq"), ExtResource("5_u5qjp")]
+"values": [ExtResource("8_lbmjq"), ExtResource("5_u5qjp")]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -1094,10 +1096,10 @@ tracks/2/path = NodePath("Sprite:hframes")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [7, 2, 2]
+"values": [2, 2]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1106,10 +1108,10 @@ tracks/3/path = NodePath("Sprite:vframes")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [7, 2, 1]
+"values": [2, 1]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -1118,10 +1120,10 @@ tracks/4/path = NodePath("Sprite:frame")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 0.0833333, 0.166667),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.0833333),
+"transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [0, 2, 0]
+"values": [2, 0]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -1130,10 +1132,10 @@ tracks/5/path = NodePath("Sprite:position")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 0.0833333),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [Vector2(1, -28), Vector2(4, -13)]
+"values": [Vector2(4, -13)]
 }
 
 [sub_resource type="Animation" id="Animation_solwq"]
@@ -1381,6 +1383,7 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [52.0]
+
 }
 tracks/9/type = "value"
 tracks/9/imported = false
@@ -1405,6 +1408,19 @@ tracks/10/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0, -35)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("Sprite:texture")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CanvasTexture_y6hnm")]
 }
 
 [sub_resource type="Animation" id="Animation_7x7ot"]
@@ -1732,6 +1748,73 @@ tracks/11/keys = {
 "values": [Vector2(0, -10)]
 }
 
+[sub_resource type="Animation" id="Animation_8oag8"]
+resource_name = "Death"
+length = 0.541671
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_8wpx0")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite:frame")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333, 0.375, 0.416667, 0.458333, 0.5, 0.541667),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+}
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("StateMachine/Death")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.541667),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"die"
+}]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2haea"]
 _data = {
 "Air": SubResource("Animation_yvy0q"),
@@ -1739,6 +1822,7 @@ _data = {
 "Crouch": SubResource("Animation_kh55i"),
 "CrouchAir": SubResource("Animation_chbw5"),
 "Crouched": SubResource("Animation_0mxb6"),
+"Death": SubResource("Animation_8oag8"),
 "Fall": SubResource("Animation_bt7jr"),
 "GetUp": SubResource("Animation_gckds"),
 "GetUpAir": SubResource("Animation_hwqvf"),
@@ -1763,7 +1847,7 @@ script = ExtResource("1_cxlkb")
 material = ExtResource("2_0w3ay")
 position = Vector2(1, -28)
 scale = Vector2(0.095, 0.095)
-texture = SubResource("CanvasTexture_q468c")
+texture = SubResource("CanvasTexture_y6hnm")
 hframes = 7
 vframes = 7
 
@@ -1809,6 +1893,7 @@ script = ExtResource("2")
 script = ExtResource("34")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/Death"]
+stream = ExtResource("24_3ll3s")
 
 [node name="Crouched" type="Node" parent="StateMachine"]
 script = ExtResource("11")
