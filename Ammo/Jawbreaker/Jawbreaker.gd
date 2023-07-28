@@ -37,7 +37,7 @@ func _physics_process(delta):
 		if !touched_something:
 			$Timer.start()
 			touched_something = true
-		_on_impact(collision.normal)
+	_on_impact(collision.normal)
 		
 func launch(direction, strength)->Vector2:
 	velocity = direction * strength * THROW_VELOCITY

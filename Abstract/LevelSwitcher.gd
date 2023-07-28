@@ -19,18 +19,19 @@ signal level_loaded
 
 const PLAYER = preload("res://Actors/Player/Player.tscn")
 
+@export var first_level : PackedScene 
+
 @onready var gui = $GUI
 @onready var level_transition = gui.color_rect
 @onready var hud = $HUD
 @onready var shaker = $Shaker
-
-@export var first_level : PackedScene 
+@onready var checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
 
 var current_level : Node2D
 var next_level : PackedScene
 var door_location : String
 var player : Player
-var checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
+
 
 func _ready():
 	checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)

@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://bhndq77jvbr4h"]
 
-[ext_resource type="Texture2D" uid="uid://dlj2bltnhq5is" path="res://Environment/Blocks/Forest/TileSets/Tile Pack/ForestTileMap336p.png" id="1_amlpy"]
+[ext_resource type="Texture2D" uid="uid://da6npuonsyc6u" path="res://Environment/Blocks/Forest/TileSets/Tile Pack/ForestTileMap336p.png" id="1_amlpy"]
 [ext_resource type="Texture2D" uid="uid://dr48e60uilss6" path="res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/Tall Trees/Tall Tree 720p.png" id="2_5ktd3"]
 [ext_resource type="Texture2D" uid="uid://2iwjpnxptik5" path="res://Environment/Backgrounds/Forest Backgrounds/Main Background/Trees/Tall Trees/Tall Tree 720p_n.png" id="3_mg2f0"]
 
