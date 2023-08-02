@@ -16,22 +16,22 @@
 extends JelloEnemyState
 
 func enter(_msg := {}) -> void:
-	jello.motion.y = -jello.JUMP_VELOCITY_Y
-	jello.motion.x = jello.JUMP_VELOCITY_X if jello.facing_right else -jello.JUMP_VELOCITY_X
+	jello.velocity.y = -jello.JUMP_VELOCITY_Y
+	jello.velocity.x = jello.JUMP_VELOCITY_X if jello.facing_right else -jello.JUMP_VELOCITY_X
 	jello.animation_player.play("Air")
 
 func physics_update(delta):
 	delta *= jello.speed_scale
-	jello.motion.y += jello.GRAVITY
-	var collision = jello.move_and_collide(jello.motion * delta)
+	jello.velocity.y += jello.GRAVITY
+	var collision = jello.move_and_collide(jello.velocity * delta)
 	if collision && jello.health > 0:
 		# Keeps it from being stuck on a ceiling
-		if jello.motion.y < 0:
-			jello.motion = jello.motion.bounce(collision.get_normal())
-			collision = null
-		else:
+		if collision.get_normal().y < -0.3:
 			state_machine.transition_to("Land")
+		else:
+			jello.velocity = jello.velocity.bounce(collision.get_normal())
+			collision = null
 	# Turn around
-	if jello.facing_right == (jello.motion.x < 0):
-		jello.facing_right = not jello.motion.x < 0
+	if jello.facing_right == (jello.velocity.x < 0):
+		jello.facing_right = not jello.velocity.x < 0
 		jello.sprite.flip_h = !jello.facing_right

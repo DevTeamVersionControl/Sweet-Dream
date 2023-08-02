@@ -42,7 +42,6 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_just_pressed("move_up"):
 			state_machine.transition_to("Air", {do_jump = true})
 		elif (Input.is_action_pressed("move_left") or Input.is_action_pressed("move_right")) and not is_equal_approx(input_direction_x, 0.0):
-			print("run")
 			state_machine.transition_to("Run")
 		elif Input.is_action_pressed("shoot") && player.can_shoot:
 			if GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null && GlobalVars.sugar >= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar:

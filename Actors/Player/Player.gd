@@ -117,12 +117,12 @@ func take_damage(damage:float, knockback_vector:Vector2) -> void:
 #			else:
 			state_machine.transition_to("Death")
 		else:
-			sprite.get_material().set("shader_param/flashState", 1.0)
-			await get_tree().create_timer(0.25).timeout
-			sprite.get_material().set("shader_param/flashState", 0.0)
-			audio_stream_player.stream = HIT
-			audio_stream_player.play()
+			$AnimationPlayer2.play("Flash")
 		update_display()
+
+func play_hit():
+	audio_stream_player.stream = HIT
+	audio_stream_player.play()
 
 func heal(damage_healed:float):
 	GlobalVars.health += damage_healed

@@ -24,3 +24,8 @@ func enter(_msg := {}) -> void:
 		state_machine.transition_to("Air")
 		jello.audio_stream_player.stream = jello.JELLO_JUMP
 		jello.audio_stream_player.play()
+
+func physics_process(_delta):
+	jello.velocity.y += jello.GRAVITY
+	jello.velocity.x = lerp(jello.velocity.x, 0, 0.2)
+	jello.move_and_slide()

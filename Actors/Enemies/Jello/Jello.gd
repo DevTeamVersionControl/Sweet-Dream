@@ -23,7 +23,6 @@ const JUMP_VELOCITY_X = 80
 const GRAVITY = 10
 const DAMAGE = 10
 
-var motion = Vector2()
 var target
 var facing_right := true
 var is_on_floor:bool
@@ -50,13 +49,12 @@ func _ready():
 	grow(initial_volume)
 	health = MAX_HEALTH * volume
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
-		
 
 func take_damage(damage, knockback):
 	health -= damage
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
 	$EnemyHealthBar.add_status_effect()
-	motion += knockback
+	velocity += knockback
 	if state_machine.state.name == "Idle":
 		$StateMachine/Idle.on_something_detected(get_tree().current_scene.player)
 	if health <= 0 && animation_player.current_animation != "Death":
@@ -72,7 +70,7 @@ func take_damage(damage, knockback):
 
 func on_hit_something(something):
 	if something is Player && health > 0:
-		something.take_damage(DAMAGE, motion)
+		something.take_damage(DAMAGE, velocity)
 
 func grow(add_volume:float)->void:
 	volume += add_volume

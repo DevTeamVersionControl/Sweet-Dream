@@ -2,17 +2,14 @@
 
 [ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://UserInterface/MainMenu/MainMenu.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://dte0wfqgb2tvr" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://bxbta8y3jed7m" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="5"]
-[ext_resource type="AudioStream" uid="uid://chqaxg6iy1pvy" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
+[ext_resource type="AudioStream" uid="uid://dp7a0yo7rt0j1" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
 [ext_resource type="PackedScene" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
 [ext_resource type="Script" path="res://UserInterface/MoreMenu/MoreMenu.gd" id="8"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -19594,9 +19591,6 @@ default_font = SubResource("1")
 
 [sub_resource type="FontFile" id="6"]
 fallbacks = Array[Font]([ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0

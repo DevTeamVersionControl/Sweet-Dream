@@ -20,7 +20,7 @@ extends JelloEnemyState
 func enter(_msg := {}) -> void:
 	jello.animation_player.play("Idle")
 	if jello.target != null:
-		jello.motion.x = 0
+		jello.velocity.x = 0
 		await get_tree().create_timer(randf_range(0.0,0.2)).timeout
 		activate()
 
@@ -41,8 +41,8 @@ func turn_around() -> void:
 		activate()
 
 func physics_update(_delta):
-	jello.motion.y += jello.GRAVITY
-	jello.motion.x = lerp(jello.motion.x, 0.0, 0.2)
-	jello.set_velocity(jello.motion)
+	jello.velocity.y += jello.GRAVITY
+	jello.velocity.x = lerp(jello.velocity.x, 0.0, 0.2)
+	jello.set_velocity(jello.velocity)
 	jello.move_and_slide()
-	jello.motion = jello.velocity
+	jello.velocity = jello.velocity

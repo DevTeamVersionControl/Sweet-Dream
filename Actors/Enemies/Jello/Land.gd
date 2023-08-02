@@ -24,8 +24,6 @@ func enter(_msg := {}) -> void:
 		state_machine.transition_to("Idle")
 
 func physics_process(_delta):
-	jello.motion.y += jello.GRAVITY
-	jello.motion.x = lerp(jello.motion.x, 0, 0.2)
-	jello.set_velocity(jello.motion)
+	jello.velocity.y += jello.GRAVITY
+	jello.velocity.x = lerp(jello.velocity.x, 0, 0.2)
 	jello.move_and_slide()
-	jello.motion = jello.velocity
