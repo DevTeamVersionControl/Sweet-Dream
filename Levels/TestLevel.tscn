@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://ddjm6v4kkwoe5" path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spikes.tscn" id="4_htdtq"]
 [ext_resource type="PackedScene" uid="uid://s6du53raemic" path="res://Actors/Enemies/Jawbreaker/Jawbreaker.tscn" id="5_jvoix"]
 [ext_resource type="PackedScene" uid="uid://bjp0kg8w4qdhh" path="res://Abstract/Checkpoint/Checkpoint.tscn" id="6_5xnei"]
-[ext_resource type="PackedScene" path="res://Pickups/Pickup.tscn" id="7_qvxvq"]
+[ext_resource type="PackedScene" uid="uid://cdstbfdxoiqna" path="res://Pickups/Pickup.tscn" id="7_qvxvq"]
 [ext_resource type="PackedScene" uid="uid://bs5omw5j100bn" path="res://Actors/Enemies/Jello/Jello.tscn" id="7_u5v3l"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm162"]
@@ -151,7 +151,7 @@ shape = SubResource("RectangleShape2D_bm162")
 polygon = PackedVector2Array(-1, -140, 9, 118, 152, -3, 335, -138)
 
 [node name="JawbreakerEnemy" parent="." instance=ExtResource("5_jvoix")]
-position = Vector2(1110, 307)
+position = Vector2(1091, 355)
 
 [node name="JelloEnemy" parent="." instance=ExtResource("7_u5v3l")]
 position = Vector2(163, 362)
