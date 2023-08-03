@@ -31,12 +31,6 @@ func _ready():
 		if should_disappear:
 			timer.start()
 
-func _on_Artifact_body_entered(body):
-	if body is Player and not Engine.is_editor_hint():
-		GlobalVars.add_to_inventory(description)
-		disappear()
-		GameSaver.obj_save()
-
 func obj_save(game_data):
 	if not Engine.is_editor_hint():
 		game_data[get_tree().current_scene.current_level.scene_file_path + name] = should_delete
@@ -62,6 +56,13 @@ func _physics_process(delta):
 		sprite.global_position.y -= 3 * sin(rads)
 		rads += delta * 4.5
 		sprite.global_position.y += 3 * sin(rads)
+		var distance = get_tree().current_scene.player.bullet_center.global_position - global_position
+		if distance.length() < 5:
+			GlobalVars.add_to_inventory(description)
+			disappear()
+			GameSaver.obj_save()
+		elif distance.length() < 50:
+			global_position += distance.normalized() * 100/distance.length()
 
 func change_animation(new_animation):
 	sprite_num = new_animation
