@@ -27,7 +27,7 @@ func _physics_process(delta):
 
 func _on_Hit(body):
 	if body.is_in_group("enemy"):
-		body.take_damage(GlobalVars.get_ammo("Candy Corn").damage, direction.normalized() * enemy_knockback)
+		body.take_damage(GlobalVars.get_ammo("Candy Corn").damage, direction.normalized() * enemy_knockback, GlobalTypes.STATUS.slow)
 	queue_free()
 
 func launch(bullet_direction : Vector2, _strength) -> void:

@@ -21,7 +21,8 @@ size = Vector2(9.37276, 8.07059)
 [sub_resource type="RectangleShape2D" id="2"]
 size = Vector2(4.5, 8.75)
 
-[sub_resource type="Shader" id="Shader_kwsol"]
+[sub_resource type="Shader" id="Shader_g5vfh"]
+resource_local_to_scene = true
 code = "shader_type canvas_item;
 
 uniform vec4 flashColor : source_color;
@@ -150,8 +151,9 @@ void light() {
 	}
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_rxyu6"]
-shader = SubResource("Shader_kwsol")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_sahgn"]
+resource_local_to_scene = true
+shader = SubResource("Shader_g5vfh")
 shader_parameter/flashColor = Color(1, 1, 1, 1)
 shader_parameter/flashState = 0.0
 shader_parameter/first_stage = 0.5
@@ -322,7 +324,7 @@ scale = Vector2(1, 0.5)
 shape = SubResource("2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_rxyu6")
+material = SubResource("ShaderMaterial_sahgn")
 position = Vector2(0, 2)
 scale = Vector2(0.1, 0.1)
 texture = ExtResource("2")

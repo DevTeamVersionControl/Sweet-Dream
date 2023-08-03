@@ -1,11 +1,50 @@
-[gd_scene load_steps=5 format=3 uid="uid://dc0rg2k5tqi2n"]
+[gd_scene load_steps=8 format=3 uid="uid://dc0rg2k5tqi2n"]
 
 [ext_resource type="Script" path="res://Ammo/Special/Special.gd" id="1_piqc0"]
-[ext_resource type="Texture2D" uid="uid://cih238bqwxm3t" path="res://Ammo/Special/Special.png" id="2_2ggxw"]
+[ext_resource type="Texture2D" uid="uid://b1w1vnd38p314" path="res://Ammo/Special/Wave Attack/Advance/Advance720p.png" id="2_t21lj"]
 [ext_resource type="AudioStream" uid="uid://dqtgxo47lixpt" path="res://Actors/Enemies/Enemy Hit.wav" id="3_mla8a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yggx1"]
-size = Vector2(20, 77)
+size = Vector2(37, 77)
+
+[sub_resource type="Animation" id="Animation_yw3b6"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_2dt3r"]
+resource_name = "wave"
+length = 0.333338
+loop_mode = 1
+step = 0.0416667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.0416667, 0.0833333, 0.125, 0.166667, 0.208333, 0.25, 0.291667, 0.333333),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7, 8]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_2jbdr"]
+_data = {
+"RESET": SubResource("Animation_yw3b6"),
+"wave": SubResource("Animation_2dt3r")
+}
 
 [node name="Special" type="Area2D"]
 collision_layer = 2
@@ -15,14 +54,21 @@ SPEED = 200
 enemy_knockback = Vector2(100, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-modulate = Color(1, 1, 1, 0.388235)
-position = Vector2(0, 0.5)
-scale = Vector2(1, 0.77)
-texture = ExtResource("2_2ggxw")
+modulate = Color(1, 1, 1, 0.552941)
+position = Vector2(-6, -3)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("2_t21lj")
+hframes = 3
+vframes = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, 0.5)
+position = Vector2(-8.5, 0.5)
 shape = SubResource("RectangleShape2D_yggx1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_mla8a")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_2jbdr")
+}

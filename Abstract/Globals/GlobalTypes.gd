@@ -17,19 +17,21 @@ extends Node
 
 #Defines enums and classes visible for all objects
 enum AMMO_TYPE{once, charge, constant}
-enum STATUS{slow}
+enum STATUS{none, slow}
 
 class Ammo:
 	var name : String
 	var type : int
+	var status : STATUS
 	var cooldown : float
 	var damage : float
 	var sugar : float
 	var scene : PackedScene
 	var texture : Texture2D
-	func _init(ammo_name, ammo_type, ammo_cooldown, ammo_damage, ammo_sugar, ammo_scene, ammo_texture):
+	func _init(ammo_name, ammo_type, ammo_status, ammo_cooldown, ammo_damage, ammo_sugar, ammo_scene, ammo_texture):
 		name = ammo_name
 		type = ammo_type
+		status = ammo_status
 		cooldown = ammo_cooldown
 		damage = ammo_damage
 		sugar = ammo_sugar

@@ -29,6 +29,8 @@ func add_status_effect(status = GlobalTypes.STATUS.slow):
 		effects[status].icon.get_children()[0].text = str(1 + int(effects[status].icon.get_children()[0].text))
 		effects[status].instance.add_stack()
 	else:
+		if status == GlobalTypes.STATUS.none:
+			return
 		effects[status] = GlobalTypes.Effect.new(add_icon(GlobalVars.get_effect(status).icon))
 		match(status):
 			GlobalTypes.STATUS.slow:
