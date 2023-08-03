@@ -49,10 +49,10 @@ func _ready():
 	health = MAX_HEALTH * volume
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
 
-func take_damage(damage:float, knockback:Vector2):
+func take_damage(damage:float, knockback:Vector2, effect = GlobalTypes.STATUS.none):
 	health -= damage
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
-	$EnemyHealthBar.add_status_effect()
+	$EnemyHealthBar.add_status_effect(effect)
 	if state_machine.state.name == "Idle":
 		$StateMachine/Idle.on_something_detected(get_tree().current_scene.player)
 	if health <= 0 && animation_player.current_animation != "Death":

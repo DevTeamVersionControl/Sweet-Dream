@@ -2,8 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bowcbf4k15i8k" path="res://Environment/Light/light.png" id="1_3gpyd"]
 [ext_resource type="Script" path="res://Actors/Enemies/EnemyHealthBar.gd" id="2_72nlu"]
-[ext_resource type="Texture2D" uid="uid://c6tumqtt3plgv" path="res://Actors/Enemies/healthbar_back.png" id="2_bm63w"]
-[ext_resource type="Texture2D" uid="uid://ceer1p6bb8rd2" path="res://Actors/Enemies/healthbar.png" id="3_lnug5"]
+[ext_resource type="Texture2D" uid="uid://bmhuet2sf764v" path="res://Actors/Enemies/healthbar_back.png" id="2_bm63w"]
+[ext_resource type="Texture2D" uid="uid://4dcud2gr838m" path="res://Actors/Enemies/healthbar.png" id="3_lnug5"]
 
 [node name="EnemyHealthBar" type="VBoxContainer"]
 offset_left = -164.0

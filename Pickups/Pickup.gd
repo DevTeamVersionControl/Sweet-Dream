@@ -25,7 +25,6 @@ func _ready():
 		sprite.vframes = 1
 		sprite.frame = 0
 		sprite.texture = load(description.get("Icon"))
-#		sprite.update()
 	if not Engine.is_editor_hint():
 		save_path = GameSaver.save_path
 		if should_disappear:

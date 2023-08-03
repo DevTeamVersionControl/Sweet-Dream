@@ -26,6 +26,9 @@ var direction = Vector2.ZERO
 var damage_tick := true
 var damage_tick_timer := 0.05
 
+func _ready():
+	$AnimationPlayer.play("wave")
+
 func _physics_process(delta):
 	position += delta * SPEED * direction
 	if not damage_tick:
@@ -33,11 +36,14 @@ func _physics_process(delta):
 		if damage_tick_timer <= 0.0:
 			damage_tick_timer = 0.05
 			damage_tick = true
+	var enemy_touched := false
 	for body in get_overlapping_bodies():
 		if body.is_in_group("enemy") && damage_tick:
-			damage_tick = false
+			enemy_touched = true
 			$AudioStreamPlayer.play()
 			body.take_damage(0.5, direction * enemy_knockback)
+	if enemy_touched:
+		damage_tick = false
 
 func launch(bullet_direction : Vector2, _strength) -> void:
 	direction = bullet_direction.normalized()
