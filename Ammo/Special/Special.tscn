@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://dc0rg2k5tqi2n"]
+
+[ext_resource type="Script" path="res://Ammo/Special/Special.gd" id="1_piqc0"]
+[ext_resource type="Texture2D" uid="uid://cih238bqwxm3t" path="res://Ammo/Special/Special.png" id="2_2ggxw"]
+[ext_resource type="AudioStream" uid="uid://dqtgxo47lixpt" path="res://Actors/Enemies/Enemy Hit.wav" id="3_mla8a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yggx1"]
+size = Vector2(20, 77)
+
+[node name="Special" type="Area2D"]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_piqc0")
+SPEED = 200
+enemy_knockback = Vector2(100, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0.388235)
+position = Vector2(0, 0.5)
+scale = Vector2(1, 0.77)
+texture = ExtResource("2_2ggxw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 0.5)
+shape = SubResource("RectangleShape2D_yggx1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_mla8a")

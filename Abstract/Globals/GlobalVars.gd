@@ -33,7 +33,7 @@ var health := max_health
 var max_health_packs := 0
 var health_packs := max_health_packs
 var max_sugar := BASE_MAX_SUGAR
-var sugar := max_sugar
+var sugar := 0.0
 var equiped_ammo_index = 0
 var ammo_equipped_array := []
 var double_jump_lock := false
@@ -41,6 +41,7 @@ var dash_lock := false
 var map_lock := false
 var inventory := []
 var artifacts := 0
+var special_attack_sugar := 10
 
 func initialize():
 	ammo_equipped_array = []
@@ -50,7 +51,7 @@ func initialize():
 	health = max_health
 	health_packs = max_health_packs
 	max_sugar = BASE_MAX_SUGAR
-	sugar = max_sugar
+	sugar = 0
 	equiped_ammo_index = 0
 	double_jump_lock = true
 	dash_lock = true
@@ -125,7 +126,6 @@ func add_max_health(num:int)->void:
 
 func add_max_sugar(num:int)->void:
 	max_sugar += num
-	sugar = max_sugar
 	get_tree().current_scene.player.update_display()
 
 func add_currency(item:Dictionary):

@@ -57,9 +57,9 @@ func take_damage(damage, knockback):
 		state_machine.transition_to("Death")
 		GlobalVars.play_sound(DEATH)
 	else:
-		$Sprite2D.get_material().set("shader_param/flashState", 1.0)
+		$Sprite2D.get_material().set("shader_parameters/flashState", 1.0)
 		await get_tree().create_timer(0.1).timeout
-		$Sprite2D.get_material().set("shader_param/flashState", 0.0)
+		$Sprite2D.get_material().set("shader_parameters/flashState", 0.0)
 		$AudioStreamPlayer2D.stream = HIT
 		$AudioStreamPlayer2D.play()
 

@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://UserInterface/MainMenu/MainMenu.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://bxbta8y3jed7m" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
+[ext_resource type="Texture2D" uid="uid://dsqguat0tt5og" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="5"]
-[ext_resource type="AudioStream" uid="uid://dp7a0yo7rt0j1" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
+[ext_resource type="AudioStream" uid="uid://bjwjq0vhtcq21" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
 [ext_resource type="PackedScene" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
 [ext_resource type="Script" path="res://UserInterface/MoreMenu/MoreMenu.gd" id="8"]
 

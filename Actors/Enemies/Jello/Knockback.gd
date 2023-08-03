@@ -15,26 +15,22 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends JelloEnemyState
 
-func enter(msg := {}) -> void:
-	jello.animation_player.play("Air")
-	if not msg.has("do_jump"):
-		jello.velocity.y = -jello.JUMP_VELOCITY_Y
-		jello.velocity.x = jello.JUMP_VELOCITY_X if jello.facing_right else -jello.JUMP_VELOCITY_X
-	else:
-		jello.animation_player.seek(1.0/24*17, true)
+@onready var timer := $Timer
 
-func physics_update(delta):
-	delta *= jello.speed_scale
-	jello.velocity.y += jello.GRAVITY
-	var collision = jello.move_and_collide(jello.velocity * delta)
-	if collision && jello.health > 0:
-		# Keeps it from being stuck on a ceiling
-		if collision.get_normal().y < -0.3:
-			state_machine.transition_to("Land")
-		else:
-			jello.velocity = jello.velocity.bounce(collision.get_normal())
-			collision = null
-	# Turn around
-	if jello.facing_right == (jello.velocity.x < 0):
-		jello.facing_right = not jello.velocity.x < 0
-		jello.sprite.flip_h = !jello.facing_right
+var knockback : Vector2
+
+func enter(msg := {}) -> void:
+	if msg.has("knockback"):
+		knockback = msg.get("knockback")
+	else:
+		knockback = Vector2.ZERO
+	jello.animation_player.play("Idle")
+	jello.animation_player.pause()
+	timer.start()
+
+func physics_update(_delta):
+	jello.velocity = knockback
+	jello.move_and_slide()
+
+func _on_timer_timeout():
+	state_machine.transition_to("Air", {do_jump = false})

@@ -28,14 +28,13 @@ var facing_right := true
 var is_on_floor:bool
 var volume := 0.5
 var speed_scale := 1.0
-#var stuck := false
 
 const MAX_HEALTH = 3
 @export var health = MAX_HEALTH
 @export var initial_volume = 2.1 # (float, 0.5, 2.5)
 @export var inverse_drop_chance = 1
 
-@onready var animation_player = $AnimationPlayer
+@onready var animation_player := $AnimationPlayer
 @onready var state_machine = $StateMachine
 @onready var sprite = $Sprite2D
 
@@ -50,11 +49,10 @@ func _ready():
 	health = MAX_HEALTH * volume
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
 
-func take_damage(damage, knockback):
+func take_damage(damage:float, knockback:Vector2):
 	health -= damage
 	$EnemyHealthBar.update_health(MAX_HEALTH * volume, health)
 	$EnemyHealthBar.add_status_effect()
-	velocity += knockback
 	if state_machine.state.name == "Idle":
 		$StateMachine/Idle.on_something_detected(get_tree().current_scene.player)
 	if health <= 0 && animation_player.current_animation != "Death":
@@ -62,6 +60,8 @@ func take_damage(damage, knockback):
 		audio_stream_player.stream = JELLO_DEATH
 		audio_stream_player.play()
 	else:
+		if knockback.length() > 5:
+			state_machine.transition_to("Knockback", {knockback = knockback})
 		audio_stream_player.stream = HIT
 		audio_stream_player.play()
 		$Sprite2D.get_material().set("shader_parameter/flashState", 1.0)

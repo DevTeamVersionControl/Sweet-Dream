@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bs5omw5j100bn"]
+[gd_scene load_steps=23 format=3 uid="uid://bs5omw5j100bn"]
 
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Jello.gd" id="1"]
 [ext_resource type="Texture2D" uid="uid://cha22i0wh1fi1" path="res://Actors/Enemies/Jello/Jello 720p.png" id="2"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Jump.gd" id="6"]
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Land.gd" id="7"]
 [ext_resource type="Script" path="res://Actors/Enemies/Jello/Death.gd" id="8"]
+[ext_resource type="Script" path="res://Actors/Enemies/Jello/Knockback.gd" id="10_utumg"]
 
 [sub_resource type="CapsuleShape2D" id="10"]
 radius = 29.0
@@ -348,6 +349,13 @@ script = ExtResource("5")
 [node name="Death" type="Node" parent="StateMachine"]
 script = ExtResource("8")
 
+[node name="Knockback" type="Node" parent="StateMachine"]
+script = ExtResource("10_utumg")
+
+[node name="Timer" type="Timer" parent="StateMachine/Knockback"]
+wait_time = 0.1
+one_shot = true
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_hdcpw")
@@ -358,3 +366,4 @@ max_distance = 500.0
 
 [connection signal="body_entered" from="PlayerDetector" to="StateMachine/Idle" method="on_something_detected"]
 [connection signal="body_entered" from="BodyHitZone" to="." method="on_hit_something"]
+[connection signal="timeout" from="StateMachine/Knockback/Timer" to="StateMachine/Knockback" method="_on_timer_timeout"]
