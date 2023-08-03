@@ -1,23 +1,21 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=4 format=3 uid="uid://ddjm6v4kkwoe5"]
 
-[ext_resource path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spike 1 720p.png" type="Texture2D" id=1]
-[ext_resource path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spike 1 720p_n.png" type="Texture2D" id=2]
-[ext_resource path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spikes.gd" type="Script" id=3]
+[ext_resource type="Texture2D" uid="uid://d2tesrbau03qm" path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spike 1 720p.png" id="1"]
+[ext_resource type="Script" path="res://Environment/Blocks/Forest/Walls & Puzzles/Puzzles/Spikes/Spikes.gd" id="3"]
 
-[sub_resource type="RectangleShape2D" id=1]
-size = Vector2( 16.5, 10.5 )
+[sub_resource type="RectangleShape2D" id="1"]
+size = Vector2(32, 15.75)
 
 [node name="Spikes" type="Area2D"]
-script = ExtResource( 3 )
+script = ExtResource("3")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 4.5, -0.5 )
-shape = SubResource( 1 )
+position = Vector2(5, 2.125)
+shape = SubResource("1")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2( 4.66368, -6.65632 )
-scale = Vector2( 0.027356, 0.027356 )
-texture = ExtResource( 1 )
-normal_map = ExtResource( 2 )
+position = Vector2(4.66368, -6.65632)
+scale = Vector2(0.027356, 0.027356)
+texture = ExtResource("1")
 
 [connection signal="body_entered" from="." to="." method="_on_Spikes_body_entered"]

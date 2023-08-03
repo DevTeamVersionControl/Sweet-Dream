@@ -19,9 +19,11 @@ extends PlayerState
 # Will probably need to change when the real animation comes and forget about it and have a really annoying bug to find
 const SHOOT_ANIMATION_TIME = 0.1
 const CHARGE = 1
+const SPECIAL = preload("res://Ammo/Special/Special.tscn")
 
 var bullet_strength : float
 var crouched : bool
+var special : bool
 
 @onready var audio_stream_player = $AudioStreamPlayer
 @onready var secondary_audio_stream_player = $AudioStreamPlayer2
@@ -35,13 +37,20 @@ func enter(msg := {}) -> void:
 	bullet_strength = 0
 	player.velocity.x = 0
 	
+	if msg.has("special"):
+		special = true
+	else:
+		special = false
+	
 	if msg.has("crouched") || not player.is_on_floor():
 		player.animation_mode.travel("Crouched")
 		crouched = true
+		player.bullet_center.position = Vector2(0,-10)
 		player.bullet_forward.position = Vector2(21 if player.facing_right else -21,-10)
 	else:
 		player.animation_mode.travel("Idle")
 		crouched = false
+		player.bullet_center.position = Vector2(0,-35)
 		player.bullet_forward.position = Vector2(13 if player.facing_right else -13,-35)
 	
 	match(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].type):
@@ -94,37 +103,42 @@ func shoot_animation():
 
 # Shoots individual bullets
 func shoot(position:NodePath) -> void:
-	if !player.can_shoot or GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] == null:
-		return
-	player.sugar_recovery = false
-	player.can_shoot = false
-	var bullet = GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].scene.instantiate()
-	get_tree().current_scene.add_child(bullet)
-	
-	bullet.global_position = player.get_node(position).global_position
-	
-	player.cooldown_timer.start(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].cooldown)
-	
-	var knockback = bullet.launch((player.get_node(position).global_position - player.bullet_center.global_position).normalized(), bullet_strength)
-	
-	GlobalVars.sugar -= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar
-	player.update_display()
-	player.sugar_timer.start()
-	
-	if !crouched:
-		state_machine.transition_to("Knockback", {0: knockback})
-	
-	#Play sound
-	if audio_stream_player.playing:
-		if secondary_audio_stream_player.playing:
-			tertiary_audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
-			tertiary_audio_stream_player.play()
-		else:
-			secondary_audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
-			secondary_audio_stream_player.play()
+	if special:
+		var special_bullet = SPECIAL.instantiate()
+		get_tree().current_scene.add_child(special_bullet)
+		special_bullet.global_position = player.get_node(position).global_position
+		special_bullet.launch((player.get_node(position).global_position - player.bullet_center.global_position).normalized(), bullet_strength)
+		GlobalVars.sugar -= GlobalVars.special_attack_sugar
+		player.update_display()
 	else:
-		audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
-		audio_stream_player.play()
+		if !player.can_shoot or GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] == null:
+			return
+		player.can_shoot = false
+		var bullet = GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].scene.instantiate()
+		get_tree().current_scene.add_child(bullet)
+		
+		bullet.global_position = player.get_node(position).global_position
+		
+		player.cooldown_timer.start(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].cooldown)
+		
+		var knockback = bullet.launch((player.get_node(position).global_position - player.bullet_center.global_position).normalized(), bullet_strength)
+		
+	#	GlobalVars.sugar -= GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar
+		
+		if !crouched:
+			state_machine.transition_to("Knockback", {0: knockback})
+		
+		#Play sound
+		if audio_stream_player.playing:
+			if secondary_audio_stream_player.playing:
+				tertiary_audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
+				tertiary_audio_stream_player.play()
+			else:
+				secondary_audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
+				secondary_audio_stream_player.play()
+		else:
+			audio_stream_player.pitch_scale = 2 - GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].sugar/3
+			audio_stream_player.play()
 
 func _on_cooldown_timer_timeout() -> void:
 	player.can_shoot = true

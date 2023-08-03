@@ -39,7 +39,6 @@ var facing_right := true
 var can_shoot := true
 var invulnerable := false
 var lifesaver
-var sugar_recovery := true
 
 # References to nodes in case they are changed
 @onready var cooldown_timer := $CooldownTimer
@@ -55,7 +54,6 @@ var sugar_recovery := true
 @onready var shoot_bar := $ShootBar
 @onready var cooldown_bar := $CooldownBar
 @onready var invulnerability_timer := $InvulnerabilityTimer
-@onready var sugar_timer := $SugarTimer
 @onready var audio_stream_player := $AudioStreamPlayer
 
 func _ready():
@@ -72,15 +70,10 @@ func _ready():
 	set_max_slides(4)
 	set_floor_max_angle(PI/4)
 	$AnimationTree.active = true
+	GlobalVars.double_jump_lock = false
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	emit_signal("debug_update", state_machine.state.name)
-	if sugar_recovery:
-		if GlobalVars.sugar < GlobalVars.max_sugar:
-			GlobalVars.sugar += delta
-			if GlobalVars.sugar > GlobalVars.max_sugar:
-				GlobalVars.sugar = GlobalVars.max_sugar
-			update_display()
 	if Input.is_action_just_pressed("ammo_next") && state_machine.state != $StateMachine/Aim && GlobalVars.ammo_equipped_array.size() != 0:
 		GlobalVars.equiped_ammo_index = (GlobalVars.equiped_ammo_index + 1) % GlobalVars.ammo_equipped_array.size()
 		audio_stream_player.stream = AMMO_SWITCH
@@ -146,10 +139,6 @@ func set_health_packs(packs:int):
 
 func on_invulnerability_off():
 	invulnerable = false
-
-func on_sugar_timer_timeout():
-	sugar_recovery = true
-	update_display()
 
 func update_display():
 	emit_signal("changed_health")

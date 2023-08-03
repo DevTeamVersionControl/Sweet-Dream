@@ -35,6 +35,7 @@ func input():
 			get_parent().request_pause()
 			visible = true
 			item_list.select(0)
+			index = 0
 	if sound_menu.visible:
 		sound_menu.input(null)
 	else:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://b0oa1f8xbajaa"]
+[gd_scene load_steps=58 format=3 uid="uid://b0oa1f8xbajaa"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bcj3nmpwnp8w1" path="res://Actors/Player/AnimationNode.tres" id="1_bl8bv"]
 [ext_resource type="Texture2D" uid="uid://g1eo3i3is1wy" path="res://Actors/Player/Idle/Idle720p.png" id="1_cwfdh"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://2kkaswlfumfr" path="res://Actors/Player/cooldownbar.png" id="21_jbjko"]
 [ext_resource type="Texture2D" uid="uid://cxijnb5gt7ngg" path="res://Actors/Player/shootbar.png" id="22_kgegy"]
 [ext_resource type="AudioStream" uid="uid://bj80egmdkjgpb" path="res://Actors/Player/Death/Death.wav" id="24_3ll3s"]
+[ext_resource type="AudioStream" uid="uid://bn1tm8c21wcwy" path="res://Actors/Player/shot.mp3" id="30_7k5v7"]
 [ext_resource type="Script" path="res://Actors/Player/Death/Death.gd" id="34"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_y6hnm"]
@@ -1888,7 +1889,7 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3a4va"]
 size = Vector2(20, 52)
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_cxlkb")
 
 [node name="Sprite" type="Sprite2D" parent="."]
@@ -1912,7 +1913,6 @@ libraries = {
 [node name="AnimationTree" type="AnimationTree" parent="."]
 tree_root = ExtResource("1_bl8bv")
 anim_player = NodePath("../AnimationPlayer")
-active = true
 parameters/Air/blend_position = 0.00408638
 
 [node name="Physics" type="CollisionShape2D" parent="."]
@@ -1982,10 +1982,13 @@ one_shot = true
 script = ExtResource("8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/Aim"]
+stream = ExtResource("30_7k5v7")
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="StateMachine/Aim"]
+stream = ExtResource("30_7k5v7")
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="StateMachine/Aim"]
+stream = ExtResource("30_7k5v7")
 
 [node name="Dashing" type="Node" parent="StateMachine"]
 script = ExtResource("12")
@@ -2007,15 +2010,11 @@ one_shot = true
 [node name="InvulnerabilityTimer" type="Timer" parent="."]
 one_shot = true
 
-[node name="SugarTimer" type="Timer" parent="."]
-wait_time = 3.5
-one_shot = true
-
 [node name="BulletCenter" type="Node2D" parent="."]
 position = Vector2(0, -35)
 
 [node name="BulletForward" type="Node2D" parent="."]
-position = Vector2(13, -8)
+position = Vector2(21, -10)
 
 [node name="CooldownBar" type="Sprite2D" parent="."]
 visible = false
@@ -2038,4 +2037,3 @@ texture = ExtResource("22_kgegy")
 [connection signal="timeout" from="StateMachine/Dashing/DashLengthTimer" to="StateMachine/Dashing" method="_on_dash_lenght_timer_timeout"]
 [connection signal="timeout" from="CooldownTimer" to="StateMachine/Aim" method="_on_cooldown_timer_timeout"]
 [connection signal="timeout" from="InvulnerabilityTimer" to="." method="on_invulnerability_off"]
-[connection signal="timeout" from="SugarTimer" to="." method="on_sugar_timer_timeout"]
