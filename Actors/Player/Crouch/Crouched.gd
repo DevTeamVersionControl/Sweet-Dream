@@ -40,3 +40,6 @@ func physics_update(delta: float) -> void:
 		state_machine.transition_to("Aim", {crouched = true})
 	elif !Input.is_action_pressed("crouch"):
 		state_machine.transition_to("Idle")
+	elif Input.is_action_pressed("special"):
+			if GlobalVars.sugar >= GlobalVars.special_attack_sugar:
+				state_machine.transition_to("Aim", {special = true})

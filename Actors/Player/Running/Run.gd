@@ -70,6 +70,9 @@ func physics_update(_delta: float) -> void:
 	if Input.is_action_pressed("shoot") && player.can_shoot:
 		if GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null:
 			state_machine.transition_to("Aim")
+	elif Input.is_action_pressed("special"):
+			if GlobalVars.sugar >= GlobalVars.special_attack_sugar:
+				state_machine.transition_to("Aim", {special = true})
 
 func check_floor():
 	if is_instance_valid(player) and not player.is_on_floor():

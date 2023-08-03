@@ -128,6 +128,9 @@ func physics_update(delta: float) -> void:
 		if Input.is_action_pressed("shoot") && player.can_shoot:
 			if GlobalVars.ammo_equipped_array.size() != 0 && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null:
 				state_machine.transition_to("Aim")
+		elif Input.is_action_pressed("special"):
+			if GlobalVars.sugar >= GlobalVars.special_attack_sugar:
+				state_machine.transition_to("Aim", {special = true})
 
 func lock_input(direction : bool):
 	player.facing_right = direction
