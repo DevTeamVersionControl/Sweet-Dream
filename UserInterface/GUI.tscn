@@ -1,9 +1,10 @@
-[gd_scene load_steps=14 format=3 uid="uid://b8k2o6g87t0d2"]
+[gd_scene load_steps=16 format=3 uid="uid://b8k2o6g87t0d2"]
 
 [ext_resource type="PackedScene" uid="uid://cfy1dv7vc6nqw" path="res://UserInterface/PauseMenu/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
 [ext_resource type="Script" path="res://UserInterface/GUI.gd" id="3"]
 [ext_resource type="Script" path="res://UserInterface/Dialog/Dialog.gd" id="4"]
+[ext_resource type="Shader" path="res://UserInterface/Transition.gdshader" id="4_ocivv"]
 [ext_resource type="FontFile" uid="uid://cqh2a20vqm1yq" path="res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf" id="5"]
 [ext_resource type="Texture2D" uid="uid://e1oew5mv0bpp" path="res://UserInterface/Dialog/Portraits/Player.png" id="6"]
 [ext_resource type="PackedScene" path="res://UserInterface/Shops/Shop.tscn" id="7"]
@@ -15,9 +16,6 @@ subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
 fallbacks = Array[Font]([ExtResource("5"), ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -33,9 +31,6 @@ subpixel_positioning = 0
 msdf_pixel_range = 14
 msdf_size = 128
 fallbacks = Array[Font]([ExtResource("5"), ExtResource("5")])
-face_index = null
-embolden = null
-transform = null
 cache/0/16/0/ascent = 0.0
 cache/0/16/0/descent = 0.0
 cache/0/16/0/underline_position = 0.0
@@ -45,6 +40,12 @@ cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
 
 [sub_resource type="Theme" id="4"]
 default_font = SubResource("3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_tuett"]
+shader = ExtResource("4_ocivv")
+shader_parameter/fragment_number = Vector2(32, 18)
+shader_parameter/dissolve_state = 2.0
+shader_parameter/color = null
 
 [node name="GUI" type="CanvasLayer"]
 process_mode = 3
@@ -114,6 +115,7 @@ grow_vertical = 2
 mouse_filter = 1
 
 [node name="ColorRect" type="ColorRect" parent="LevelTransition"]
+material = SubResource("ShaderMaterial_tuett")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0

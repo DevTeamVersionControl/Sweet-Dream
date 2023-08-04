@@ -22,7 +22,7 @@ const PLAYER = preload("res://Actors/Player/Player.tscn")
 @export var first_level : PackedScene 
 
 @onready var gui = $GUI
-@onready var level_transition = gui.color_rect
+@onready var level_transition = gui.color_rect.get_material()
 @onready var hud = $HUD
 @onready var shaker = $Shaker
 @onready var checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
@@ -53,7 +53,7 @@ func obj_load(game_data):
 func change_level(new_level:String, portal_name:String):
 	var tween = get_tree().create_tween()
 	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
-	tween.tween_property(level_transition, "self_modulate", Color(0, 0, 0, 1), 1)
+	tween.tween_property(level_transition, "shader_parameter/dissolve_state", 2, 1)
 	tween.tween_callback(Callable(self, "_on_animation_finished").bind(new_level))
 	gui.request_pause()
 	door_location = portal_name
@@ -85,7 +85,7 @@ func load_level(level:PackedScene, location:String):
 	player.level_limit_max = Vector2(current_level.level_range_x.y, current_level.level_range_y.y)
 	shaker.camera = player.camera
 	var tween = get_tree().create_tween()
-	tween.tween_property(level_transition, "self_modulate", Color(0, 0, 0, 0), 1)
+	tween.tween_property(level_transition, "shader_parameter/dissolve_state", 0, 1)
 	next_level = null
 	gui.map.set_level(current_level.name)
 	GlobalVars.apply_items()
