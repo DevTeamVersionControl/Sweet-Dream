@@ -21,7 +21,7 @@ func enter(_msg := {}) -> void:
 	if jawbreaker.health > 0:
 		jawbreaker.animation_player.play("WindDown")
 		var tween = get_tree().create_tween()
-		tween.tween_property(jawbreaker, "motion", Vector2(0,0), 1)
+		tween.tween_property(jawbreaker, "velocity", Vector2(0,0), 1)
 	jawbreaker.audio_stream_player.volume_db = 0
 	jawbreaker.audio_stream_player.stream = jawbreaker.WIND_DOWN
 	jawbreaker.audio_stream_player.play()
@@ -30,13 +30,13 @@ func enter(_msg := {}) -> void:
 		state_machine.transition_to("Idle")
 
 func physics_update(_delta: float) -> void:
-	jawbreaker.motion.y += jawbreaker.gravity
-	jawbreaker.set_velocity(jawbreaker.motion)
+	jawbreaker.velocity.y += jawbreaker.gravity
+	jawbreaker.velocity *= jawbreaker.speed_scale
 	jawbreaker.move_and_slide()
-	jawbreaker.motion = jawbreaker.velocity
+	jawbreaker.velocity /= jawbreaker.speed_scale
 
 func stun():
-	jawbreaker.motion.x = 0
+	jawbreaker.velocity.x = 0
 	jawbreaker.animation_player.play("WindDown")
 #	jawbreaker.animation_player.stop(false)
 #	jawbreaker.animation_player.seek(0, true)

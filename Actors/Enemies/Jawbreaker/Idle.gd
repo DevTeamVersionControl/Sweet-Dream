@@ -37,3 +37,9 @@ func activate():
 func turn_around():
 	jawbreaker.facing_right = !jawbreaker.facing_right
 	jawbreaker.sprite.flip_h = !jawbreaker.facing_right
+
+func physics_update(_delta):
+	jawbreaker.velocity.y += jawbreaker.gravity
+	jawbreaker.velocity *= jawbreaker.speed_scale
+	jawbreaker.move_and_slide()
+	jawbreaker.velocity /= jawbreaker.speed_scale
