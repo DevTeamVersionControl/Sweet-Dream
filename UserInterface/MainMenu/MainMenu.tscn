@@ -1,8 +1,9 @@
-[gd_scene load_steps=19 format=3 uid="uid://70rfm7bfy2cc"]
+[gd_scene load_steps=21 format=3 uid="uid://70rfm7bfy2cc"]
 
 [ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://UserInterface/MainMenu/MainMenu.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dsqguat0tt5og" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
+[ext_resource type="Shader" path="res://UserInterface/MainMenu/MainMenu.gdshader" id="4_mh5pn"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="5"]
 [ext_resource type="AudioStream" uid="uid://bjwjq0vhtcq21" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
 [ext_resource type="PackedScene" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
@@ -19658,6 +19659,12 @@ ItemList/styles/panel = SubResource("StyleBoxEmpty_0qy3b")
 ItemList/styles/selected = SubResource("15")
 ItemList/styles/selected_focus = SubResource("12")
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_br58h"]
+shader = ExtResource("4_mh5pn")
+shader_parameter/fragment_number = Vector2(32, 18)
+shader_parameter/dissolve_state = -1.0
+shader_parameter/color = null
+
 [node name="MainMenu" type="Control"]
 process_mode = 3
 layout_mode = 3
@@ -19703,6 +19710,7 @@ item_1/text = "Settings"
 item_2/text = "Exit"
 
 [node name="LevelTransition" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_br58h")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0

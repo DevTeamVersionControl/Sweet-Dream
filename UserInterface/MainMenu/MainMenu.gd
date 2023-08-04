@@ -2,7 +2,7 @@ extends Control
 
 @onready var item_list = $ItemList
 #@onready var input_menu = $InputMenu
-@onready var level_transition = $LevelTransition
+@onready var level_transition = $LevelTransition.get_material()
 @onready var sound_menu := $SoundMenu
 @onready var more_menu := $MoreMenu
 
@@ -59,7 +59,7 @@ func select_option():
 	else:
 		var tween = get_tree().create_tween()
 		GameSaver.save_path = "user://Save%s.json"%(item_list.get_selected_items()[0]+1)
-		tween.tween_property(level_transition, "color", Color(0,0,0,1.2), 0.3)
+		tween.tween_property(level_transition, "shader_parameter/dissolve_state", 1, 1)
 		tween.tween_callback(Callable(get_tree(), "change_scene_to_file").bind("res://Abstract/LevelSwitcher.tscn"))
 
 func load_saves():
