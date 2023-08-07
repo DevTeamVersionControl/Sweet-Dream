@@ -24,7 +24,8 @@ func enter(msg := {}) -> void:
 		jello.animation_player.seek(1.0/24*17, true)
 
 func physics_update(delta):
-	delta *= jello.speed_scale
+	if not is_equal_approx(1.0, jello.speed_scale):
+		delta *= jello.speed_scale / 1.5
 	jello.velocity.y += jello.GRAVITY
 	var collision = jello.move_and_collide(jello.velocity * delta)
 	if collision && jello.health > 0:

@@ -26,19 +26,16 @@ func enter(_msg := {}) -> void:
 		charge_length_timer.start(DASH_TIME)
 
 func physics_update(_delta: float) -> void:
-	jawbreaker.motion.y += jawbreaker.gravity
-	jawbreaker.set_velocity(jawbreaker.motion)
-	jawbreaker.move_and_slide()
-	jawbreaker.motion = jawbreaker.velocity
+	if not jawbreaker.stunned:
+		jawbreaker.velocity.y += jawbreaker.gravity
+		jawbreaker.velocity *= 1-(1-jawbreaker.speed_scale)/2
+		jawbreaker.move_and_slide()
+		jawbreaker.velocity /= 1-(1-jawbreaker.speed_scale)/2
+#		for i in jawbreaker.get_slide_collision_count():
+#			var collision = jawbreaker.get_slide_collision(i)
+#			if (collision.get_normal().x < -0.5 and jawbreaker.facing_right) or (collision.get_normal().x > 0.5 and not jawbreaker.facing_right):
+#				jawbreaker.stun()
 
 func on_dash_end():
-	if state_machine.state.name == "Charge":
+	if state_machine.state.name == "Charge" and not jawbreaker.stunned:
 		state_machine.transition_to("WindDown")
-
-func stun():
-	jawbreaker.motion.x = 0
-	jawbreaker.animation_player.play("WindDown")
-#	jawbreaker.animation_player.stop(false)
-#	jawbreaker.animation_player.seek(0, true)
-	await get_tree().create_timer(1.5).timeout
-	state_machine.transition_to("Idle")

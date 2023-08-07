@@ -18,7 +18,7 @@ extends JawbreakerState
 #Handles winding up
 const DASH_SPEED = 500
 
-var stunned := false
+var charging := false
 
 func enter(_msg := {}) -> void:
 	if jawbreaker.health > 0:
@@ -26,25 +26,21 @@ func enter(_msg := {}) -> void:
 #	jawbreaker.audio_stream_player.stream = jawbreaker.WIND_UP
 #	jawbreaker.audio_stream_player.volume_db = -4
 #	jawbreaker.audio_stream_player.play()
-	await jawbreaker.animation_player.animation_finished
-	if state_machine.state.name == "WindUp" && !stunned:
-		state_machine.transition_to("Charge")
 
-func physics_update(_delta: float) -> void:
-	jawbreaker.motion.y += jawbreaker.gravity
-	jawbreaker.set_velocity(jawbreaker.motion)
-	jawbreaker.move_and_slide()
-	jawbreaker.motion = jawbreaker.velocity
+func physics_update(delta: float) -> void:
+	if not jawbreaker.stunned:
+		if charging:
+			jawbreaker.velocity.x += delta * (DASH_SPEED if jawbreaker.facing_right else -DASH_SPEED)/24.0
+			if -DASH_SPEED > jawbreaker.velocity.x || jawbreaker.velocity.x > DASH_SPEED:
+				if state_machine.state.name == "WindUp":
+					state_machine.transition_to("Charge")
+		
+		jawbreaker.velocity.y += jawbreaker.gravity
+		jawbreaker.velocity *= 1-(1-jawbreaker.speed_scale)/2
+		jawbreaker.move_and_slide()
+		jawbreaker.velocity /= 1-(1-jawbreaker.speed_scale)/2
 
 func charge():
+	charging = true
 	var tween = get_tree().create_tween()
-	tween.tween_property(jawbreaker, "motion", Vector2(DASH_SPEED if jawbreaker.facing_right else -DASH_SPEED,0), 14.0/24.0)
-
-func stun():
-	stunned = true
-	jawbreaker.motion.x = 0
-	jawbreaker.animation_player.play("WindDown")
-#	jawbreaker.animation_player.stop(false)
-#	jawbreaker.animation_player.seek(0, true)
-	await get_tree().create_timer(2.5).timeout
-	state_machine.transition_to("Idle")
+	tween.tween_property(jawbreaker, "velocity", Vector2(DASH_SPEED if jawbreaker.facing_right else -DASH_SPEED,0), 14.0/24.0)

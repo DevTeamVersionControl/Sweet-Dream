@@ -32,11 +32,10 @@ func add_status_effect(status = GlobalTypes.STATUS.slow):
 		if status == GlobalTypes.STATUS.none:
 			return
 		effects[status] = GlobalTypes.Effect.new(add_icon(GlobalVars.get_effect(status).icon))
-		match(status):
-			GlobalTypes.STATUS.slow:
-				effects[status].instance = GlobalVars.get_effect(status).ressource.instantiate()
-				get_parent().add_child(effects[status].instance)
-	get_tree().create_timer(8.0).connect("timeout", remove_status_effect.bind(status))
+		effects[status].instance = GlobalVars.get_effect(status).ressource.instantiate()
+		get_parent().add_child(effects[status].instance)
+		
+	get_tree().create_timer(GlobalVars.get_effect(status).time).connect("timeout", remove_status_effect.bind(status))
 
 func add_icon(icon:CompressedTexture2D) -> HBoxContainer:
 	var box = HBoxContainer.new()

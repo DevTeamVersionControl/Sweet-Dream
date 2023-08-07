@@ -15,9 +15,10 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends StatusEffect
 
-func _physics_process(_delta):
-	if stacks < 10:
-		get_parent().speed_scale = 1 - 0.1 * stacks
+func _ready():
+	get_parent().stunned = true
 
 func _exit_tree():
-	get_parent().speed_scale = 1.0
+	get_parent().stunned = false
+	if get_parent().state_machine.state.name != "Death":
+		get_parent().state_machine.transition_to("Idle")

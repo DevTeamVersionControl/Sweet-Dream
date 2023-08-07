@@ -27,7 +27,7 @@ func enter(_msg := {}) -> void:
 	
 	if randi()%1 == 0:
 		var pickup := PICKUP.instantiate()
-		pickup.disappear = true
+		pickup.should_disappear = true
 		get_tree().current_scene.add_child(pickup)
 		pickup.global_position = jawbreaker.global_position
 		pickup.scale = Vector2(0.6,0.6)

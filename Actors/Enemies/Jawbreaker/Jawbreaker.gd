@@ -20,13 +20,16 @@ signal died
 
 const BASE_DAMAGE = 5
 const CHARGE_DAMAGE = 20
+const MAX_HEALTH = 40
 
 var target
+var speed_scale := 1.0
+var stunned := false
+var health = MAX_HEALTH
 
 @export var initial_target_player : bool
 @export var facing_right := true
-@export var motion = Vector2()
-@export var health = 50
+
 @export var gravity = 100
 
 @onready var animation_player := $AnimationPlayer
@@ -48,15 +51,21 @@ func _ready():
 		if get_tree().current_scene.player == null:
 			await get_tree().current_scene.ready
 		_on_PlayerDetector_body_entered(get_tree().current_scene.player)
+	$EnemyHealthBar.update_health(MAX_HEALTH, health)
 
-func take_damage(damage, knockback):
+func take_damage(damage, knockback, effect = GlobalTypes.STATUS.none):
+	if not is_instance_valid(target):
+		_on_PlayerDetector_body_entered(get_tree().current_scene.player)
 	health -= damage
-	motion += knockback
+	$EnemyHealthBar.update_health(MAX_HEALTH, health)
+	$EnemyHealthBar.add_status_effect(effect)
 	if health <= 0:
 		emit_signal("died")
 		state_machine.transition_to("Death")
 		GlobalVars.play_sound(DEATH)
 	else:
+		if knockback.length() > 5:
+			state_machine.transition_to("Knockback", {knockback = knockback})
 		$Sprite2D.get_material().set("shader_parameters/flashState", 1.0)
 		await get_tree().create_timer(0.1).timeout
 		$Sprite2D.get_material().set("shader_parameters/flashState", 0.0)
@@ -71,12 +80,17 @@ func _on_PlayerDetector_body_entered(body):
 
 func on_hit_something(something):
 	if something is Player && health > 0:
-		if motion.x > 100 || motion.x < -100:
-			something.take_damage(CHARGE_DAMAGE, motion)
+		if velocity.x > 100 || velocity.x < -100:
+			something.take_damage(CHARGE_DAMAGE, velocity)
 		else:
 			something.take_damage(BASE_DAMAGE, Vector2.ZERO)
 
 func _on_WallDetector_body_entered(body):
 	if body.is_in_group("floor"):
-		if state_machine.state.name == "Charge" || state_machine.state.name == "WindUp" || state_machine.state.name == "WindDown":
-			state_machine.state.stun()
+		stun()
+
+func stun():
+	$EnemyHealthBar.add_status_effect(GlobalTypes.STATUS.stun)
+	stunned = true
+	velocity.x = 0
+	animation_player.play("Stun")

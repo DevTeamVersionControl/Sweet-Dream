@@ -19,26 +19,18 @@ extends JawbreakerState
 
 func enter(_msg := {}) -> void:
 	if jawbreaker.health > 0:
-		jawbreaker.animation_player.play("WindDown")
+		jawbreaker.animation_player.play("WindDown" if jawbreaker.facing_right else "WindDownLeft")
 		var tween = get_tree().create_tween()
-		tween.tween_property(jawbreaker, "motion", Vector2(0,0), 1)
+		tween.tween_property(jawbreaker, "velocity", Vector2(0,0), 1)
 	jawbreaker.audio_stream_player.volume_db = 0
 	jawbreaker.audio_stream_player.stream = jawbreaker.WIND_DOWN
 	jawbreaker.audio_stream_player.play()
 	await jawbreaker.animation_player.animation_finished
-	if state_machine.state.name == "WindDown":
+	if state_machine.state.name == "WindDown" and not jawbreaker.stunned:
 		state_machine.transition_to("Idle")
 
 func physics_update(_delta: float) -> void:
-	jawbreaker.motion.y += jawbreaker.gravity
-	jawbreaker.set_velocity(jawbreaker.motion)
+	jawbreaker.velocity.y += jawbreaker.gravity
+	jawbreaker.velocity *= 1-(1-jawbreaker.speed_scale)/2
 	jawbreaker.move_and_slide()
-	jawbreaker.motion = jawbreaker.velocity
-
-func stun():
-	jawbreaker.motion.x = 0
-	jawbreaker.animation_player.play("WindDown")
-#	jawbreaker.animation_player.stop(false)
-#	jawbreaker.animation_player.seek(0, true)
-	await get_tree().create_timer(1.5).timeout
-	state_machine.transition_to("Idle")
+	jawbreaker.velocity /= 1-(1-jawbreaker.speed_scale)/2

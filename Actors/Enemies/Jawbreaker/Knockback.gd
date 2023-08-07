@@ -15,31 +15,24 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends JawbreakerState
 
-#Handles turning around
+@onready var timer := $Timer
 
-func enter(_msg := {}) -> void:
-	if jawbreaker.target != null && jawbreaker.health > 0:
-		activate()
+var knockback : Vector2
+
+func enter(msg := {}) -> void:
+	if msg.has("knockback"):
+		knockback = msg.get("knockback")
 	else:
-		if !jawbreaker.facing_right:
-			jawbreaker.facing_right = true
-			turn_around()
-
-func activate():
-	if jawbreaker == null:
-		await get_parent().ready
-	jawbreaker.target = get_tree().current_scene.player
-	if jawbreaker.health > 0:
-		if jawbreaker.facing_right == (jawbreaker.target.global_position.x - jawbreaker.global_position.x < 0):
-			turn_around()
-	state_machine.transition_to("WindUp")
-
-func turn_around():
-	jawbreaker.facing_right = !jawbreaker.facing_right
-	jawbreaker.sprite.flip_h = !jawbreaker.facing_right
+		knockback = Vector2.ZERO
+	jawbreaker.animation_player.play("Stun")
+	jawbreaker.animation_player.pause()
+	timer.start()
 
 func physics_update(_delta):
-	jawbreaker.velocity.y += jawbreaker.gravity
-	jawbreaker.velocity *= jawbreaker.speed_scale
+	jawbreaker.velocity = knockback
 	jawbreaker.move_and_slide()
-	jawbreaker.velocity /= jawbreaker.speed_scale
+
+func _on_timer_timeout():
+	if not is_instance_valid(jawbreaker.target):
+		jawbreaker.target = get_tree().current_scene.player
+	state_machine.transition_to("Idle")
