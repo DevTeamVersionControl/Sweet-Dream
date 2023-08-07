@@ -25,7 +25,8 @@ var ammo_array := [GlobalTypes.Ammo.new("Candy Corn", GlobalTypes.AMMO_TYPE.once
 	GlobalTypes.Ammo.new("Pop Rocks", GlobalTypes.AMMO_TYPE.constant, GlobalTypes.STATUS.none, 0, 0.2, 0.1, preload("res://Ammo/Pop Rocks/PopRocks.tscn"), preload("res://Pickups/Jaw Breaker 720p.png")), 
 	GlobalTypes.Ammo.new("Jello", GlobalTypes.AMMO_TYPE.once, GlobalTypes.STATUS.none, 1, 10, 2, preload("res://Ammo/Jello/Jello.tscn"), preload("res://Pickups/Jello 720p.png"))]
 
-var status_array := [GlobalTypes.ConstEffect.new(GlobalTypes.STATUS.slow, preload("res://Actors/Enemies/StatusEffects/Slow.tscn"), preload("res://Environment/Light/light.png"))]
+var status_array := [GlobalTypes.ConstEffect.new(GlobalTypes.STATUS.slow, preload("res://Actors/Enemies/StatusEffects/Slow.tscn"), 8.0, preload("res://Actors/Enemies/StatusEffects/Slow.png")),
+	GlobalTypes.ConstEffect.new(GlobalTypes.STATUS.stun, preload("res://Actors/Enemies/StatusEffects/Stun.tscn"), 3.0, preload("res://Actors/Enemies/StatusEffects/Stun.png"))]
 
 #Player
 var max_health := BASE_MAX_HEALTH

@@ -13,11 +13,26 @@
 #
 #    You should have received a copy of the GNU General Public License
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-extends StatusEffect
+extends JawbreakerState
 
-func _physics_process(_delta):
-	if stacks < 10:
-		get_parent().speed_scale = 1 - 0.1 * stacks
+@onready var timer := $Timer
 
-func _exit_tree():
-	get_parent().speed_scale = 1.0
+var knockback : Vector2
+
+func enter(msg := {}) -> void:
+	if msg.has("knockback"):
+		knockback = msg.get("knockback")
+	else:
+		knockback = Vector2.ZERO
+	jawbreaker.animation_player.play("Stun")
+	jawbreaker.animation_player.pause()
+	timer.start()
+
+func physics_update(_delta):
+	jawbreaker.velocity = knockback
+	jawbreaker.move_and_slide()
+
+func _on_timer_timeout():
+	if not is_instance_valid(jawbreaker.target):
+		jawbreaker.target = get_tree().current_scene.player
+	state_machine.transition_to("Idle")

@@ -17,7 +17,7 @@ extends Node
 
 #Defines enums and classes visible for all objects
 enum AMMO_TYPE{once, charge, constant}
-enum STATUS{none, slow}
+enum STATUS{none, slow, stun}
 
 class Ammo:
 	var name : String
@@ -48,10 +48,12 @@ class Checkpoint:
 class ConstEffect:
 	var type:STATUS
 	var ressource:PackedScene
+	var time:float
 	var icon
-	func _init(init_type:STATUS, init_ressource:PackedScene, init_icon):
+	func _init(init_type:STATUS, init_ressource:PackedScene, new_time:float, init_icon):
 		type = init_type
 		ressource = init_ressource
+		time = new_time
 		icon = init_icon
 
 class Effect:
