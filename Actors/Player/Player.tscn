@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://b0oa1f8xbajaa"]
+[gd_scene load_steps=60 format=3 uid="uid://b0oa1f8xbajaa"]
 
 [ext_resource type="AnimationNodeStateMachine" uid="uid://bcj3nmpwnp8w1" path="res://Actors/Player/AnimationNode.tres" id="1_bl8bv"]
 [ext_resource type="Texture2D" uid="uid://g1eo3i3is1wy" path="res://Actors/Player/Idle/Idle720p.png" id="1_cwfdh"]
@@ -32,7 +32,9 @@
 [ext_resource type="Texture2D" uid="uid://2kkaswlfumfr" path="res://Actors/Player/cooldownbar.png" id="21_jbjko"]
 [ext_resource type="Texture2D" uid="uid://cxijnb5gt7ngg" path="res://Actors/Player/shootbar.png" id="22_kgegy"]
 [ext_resource type="AudioStream" uid="uid://bj80egmdkjgpb" path="res://Actors/Player/Death/Death.wav" id="24_3ll3s"]
+[ext_resource type="AudioStream" uid="uid://dcjgxkrloytwp" path="res://Actors/Player/Jump/Quick_Jump.wav" id="29_oceke"]
 [ext_resource type="AudioStream" uid="uid://bn1tm8c21wcwy" path="res://Actors/Player/shot.mp3" id="30_7k5v7"]
+[ext_resource type="AudioStream" uid="uid://dup5hcoy8e7xk" path="res://Actors/Player/Running/Sound/footstep7.mp3" id="30_qpl6r"]
 [ext_resource type="Script" path="res://Actors/Player/Death/Death.gd" id="34"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_y6hnm"]
@@ -1662,10 +1664,24 @@ tracks/6/keys = {
 "update": 1,
 "values": [Vector2(0, -35)]
 }
+tracks/7/type = "method"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("StateMachine/Aim")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0.458333),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"shoot_animation_end"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_onoul"]
 resource_name = "ShootCrouched"
-length = 0.291671
+length = 0.458338
 step = 0.0416667
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -1794,11 +1810,14 @@ tracks/10/path = NodePath("StateMachine/Aim")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
+"times": PackedFloat32Array(0, 0.458333),
+"transitions": PackedFloat32Array(1, 1),
 "values": [{
 "args": [NodePath("BulletForward")],
 "method": &"shoot"
+}, {
+"args": [],
+"method": &"shoot_animation_end"
 }]
 }
 tracks/11/type = "value"
@@ -1965,6 +1984,10 @@ script = ExtResource("3")
 script = ExtResource("5")
 
 [node name="Jump" type="AudioStreamPlayer" parent="StateMachine/Air"]
+stream = ExtResource("29_oceke")
+
+[node name="Land" type="AudioStreamPlayer" parent="StateMachine/Air"]
+stream = ExtResource("30_qpl6r")
 
 [node name="JumpCutOffTimer" type="Timer" parent="StateMachine/Air"]
 wait_time = 0.5
