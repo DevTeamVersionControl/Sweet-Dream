@@ -6077,3 +6077,7 @@ item_3/text = "Resume"
 [node name="SoundMenu" parent="." instance=ExtResource("4")]
 visible = false
 anchors_preset = 0
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

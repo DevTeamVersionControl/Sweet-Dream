@@ -1966,6 +1966,7 @@ script = ExtResource("34")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/Death"]
 stream = ExtResource("24_3ll3s")
+bus = &"Sound Effects"
 
 [node name="Crouched" type="Node" parent="StateMachine"]
 script = ExtResource("11")
@@ -1977,17 +1978,21 @@ script = ExtResource("7")
 script = ExtResource("3")
 
 [node name="Footstep1" type="AudioStreamPlayer" parent="StateMachine/Run"]
+bus = &"Sound Effects"
 
 [node name="Footstep2" type="AudioStreamPlayer" parent="StateMachine/Run"]
+bus = &"Sound Effects"
 
 [node name="Air" type="Node" parent="StateMachine"]
 script = ExtResource("5")
 
 [node name="Jump" type="AudioStreamPlayer" parent="StateMachine/Air"]
 stream = ExtResource("29_oceke")
+bus = &"Sound Effects"
 
 [node name="Land" type="AudioStreamPlayer" parent="StateMachine/Air"]
 stream = ExtResource("30_qpl6r")
+bus = &"Sound Effects"
 
 [node name="JumpCutOffTimer" type="Timer" parent="StateMachine/Air"]
 wait_time = 0.5
@@ -2006,12 +2011,15 @@ script = ExtResource("8")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="StateMachine/Aim"]
 stream = ExtResource("30_7k5v7")
+bus = &"Sound Effects"
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="StateMachine/Aim"]
 stream = ExtResource("30_7k5v7")
+bus = &"Sound Effects"
 
 [node name="AudioStreamPlayer3" type="AudioStreamPlayer" parent="StateMachine/Aim"]
 stream = ExtResource("30_7k5v7")
+bus = &"Sound Effects"
 
 [node name="Dashing" type="Node" parent="StateMachine"]
 script = ExtResource("12")
@@ -2023,6 +2031,7 @@ one_shot = true
 one_shot = true
 
 [node name="Dash" type="AudioStreamPlayer" parent="StateMachine/Dashing"]
+bus = &"Sound Effects"
 
 [node name="KnockedOut" type="Node" parent="StateMachine"]
 script = ExtResource("13")
@@ -2052,6 +2061,7 @@ scale = Vector2(1e-05, 0.01)
 texture = ExtResource("22_kgegy")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+bus = &"Sound Effects"
 
 [connection signal="timeout" from="StateMachine/Air/JumpCutOffTimer" to="StateMachine/Air" method="_on_jump_cut_off_timer_timeout"]
 [connection signal="timeout" from="StateMachine/Air/JumpBufferTimer" to="StateMachine/Air" method="_on_jump_buffer_timer_timeout"]

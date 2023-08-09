@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dc0rg2k5tqi2n"]
+[gd_scene load_steps=9 format=3 uid="uid://dc0rg2k5tqi2n"]
 
 [ext_resource type="Script" path="res://Ammo/Special/Special.gd" id="1_piqc0"]
 [ext_resource type="Texture2D" uid="uid://b1w1vnd38p314" path="res://Ammo/Special/Wave Attack/Advance/Advance720p.png" id="2_t21lj"]
 [ext_resource type="AudioStream" uid="uid://dqtgxo47lixpt" path="res://Actors/Enemies/Enemy Hit.wav" id="3_mla8a"]
+[ext_resource type="AudioStream" uid="uid://bu45bqh2qjcte" path="res://Ammo/Special/Special.mp3" id="4_kbaxf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yggx1"]
 size = Vector2(37, 77)
@@ -72,3 +73,11 @@ stream = ExtResource("3_mla8a")
 libraries = {
 "": SubResource("AnimationLibrary_2jbdr")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_kbaxf")
+volume_db = 4.55
+autoplay = true
+max_distance = 800.0
+attenuation = 1.31951
+bus = &"Sound Effects"
