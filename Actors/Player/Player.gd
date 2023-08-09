@@ -24,6 +24,7 @@ signal debug_update(str)
 
 const SPEED = 120
 const GRAVITY = 1200
+const TERMINAL_VELOCITY = 620
 const JUMP_IMPULSE = 370
 const JUMP_ACCEL = 620
 const DECELERATION = 0.5

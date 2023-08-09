@@ -79,6 +79,7 @@ func physics_update(delta: float) -> void:
 
 	# Vertical movement.
 	player.velocity.y += player.GRAVITY * delta
+	player.velocity.y = clamp(player.velocity.y, -player.TERMINAL_VELOCITY, player.TERMINAL_VELOCITY)
 	player.set_velocity(player.velocity)
 	player.set_up_direction(Vector2.UP)
 	player.move_and_slide()

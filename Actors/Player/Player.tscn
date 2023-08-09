@@ -1950,7 +1950,7 @@ position = Vector2(0, -28)
 zoom = Vector2(2.85, 2.85)
 process_callback = 0
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
+position_smoothing_speed = 3.0
 editor_draw_limits = true
 editor_draw_drag_margin = true
 
