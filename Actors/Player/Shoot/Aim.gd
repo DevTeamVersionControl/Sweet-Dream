@@ -78,7 +78,11 @@ func physics_update(delta: float) -> void:
 		else:
 			player.shoot_bar.visible = false
 			state_machine.transition_to("Idle" if !crouched else "Crouched")
-			
+	elif Input.is_action_pressed("shoot") and player.can_shoot:
+		if crouched:
+			state_machine.transition_to("Aim", {crouched = true})
+		else:
+			state_machine.transition_to("Aim")
 	var input_direction_x: float = (
 		Input.get_action_strength("move_right")
 		- Input.get_action_strength("move_left")
@@ -94,8 +98,8 @@ func physics_update(delta: float) -> void:
 func shoot_animation():
 	player.animation_mode.travel("Shoot" if !crouched else "ShootCrouched")
 	player.shoot_bar.visible = false
-	await get_tree().create_timer(SHOOT_ANIMATION_TIME).timeout
-	player.cooldown_bar.visible = true
+
+func shoot_animation_end():
 	if player.is_on_floor():
 		state_machine.transition_to("Idle" if !crouched else "Crouched")
 	else:
@@ -120,6 +124,7 @@ func shoot(position:NodePath) -> void:
 		bullet.global_position = player.get_node(position).global_position
 		
 		player.cooldown_timer.start(GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index].cooldown)
+		player.cooldown_bar.visible = true
 		
 		var knockback = bullet.launch((player.get_node(position).global_position - player.bullet_center.global_position).normalized(), bullet_strength)
 		
@@ -142,4 +147,4 @@ func shoot(position:NodePath) -> void:
 
 func _on_cooldown_timer_timeout() -> void:
 	player.can_shoot = true
-	player.cooldown_bar.visible = false
+	player.cooldown_bar.hide()

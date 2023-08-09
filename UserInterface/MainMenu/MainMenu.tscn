@@ -19714,6 +19714,7 @@ material = SubResource("ShaderMaterial_br58h")
 layout_mode = 0
 anchor_right = 1.0
 anchor_bottom = 1.0
+mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
 [node name="SoundMenu" parent="." instance=ExtResource("1")]
@@ -19723,8 +19724,14 @@ anchors_preset = 0
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_v1qwx")
 autoplay = true
+bus = &"Music"
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
+bus = &"Sound Effects"
 
 [node name="MoreMenu" parent="." instance=ExtResource("7")]
 visible = false
 anchors_preset = 0
 script = ExtResource("8")
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

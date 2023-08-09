@@ -45,20 +45,20 @@ var artifacts := 0
 var special_attack_sugar := 10
 
 func initialize():
-	ammo_equipped_array = []
-	equiped_ammo_index = 0
 	max_health = BASE_MAX_HEALTH
-	max_health_packs = 0
 	health = max_health
+	max_health_packs = 0
 	health_packs = max_health_packs
 	max_sugar = BASE_MAX_SUGAR
-	sugar = 0
+	sugar = 0.0
 	equiped_ammo_index = 0
-	double_jump_lock = true
-	dash_lock = true
-	map_lock = true
+	ammo_equipped_array = []
+	double_jump_lock = false
+	dash_lock = false
+	map_lock = false
 	inventory = []
 	artifacts = 0
+	special_attack_sugar = 10
 	GameSaver.obj_load()
 	call_deferred("apply_items")
 

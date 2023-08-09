@@ -16,6 +16,7 @@
 extends PlayerState
 
 func enter(_msg := {}) -> void:
+	player.camera_arm.position.y = 20.0
 	player.velocity.x = 0
 	player.animation_tree.set('parameters/Crouched/blend_position', 1 if player.facing_right else -1)
 	player.animation_tree.set('parameters/Crouch/blend_position', 1 if player.facing_right else -1)
@@ -36,10 +37,13 @@ func physics_update(delta: float) -> void:
 	
 	if Input.is_action_just_pressed("move_up"):
 		state_machine.transition_to("Air", {do_jump = true})
+		player.camera_arm.position.y = -28.0
 	elif Input.is_action_pressed("shoot") && GlobalVars.ammo_equipped_array.size() != 0 && player.can_shoot && GlobalVars.ammo_equipped_array[GlobalVars.equiped_ammo_index] != null:
 		state_machine.transition_to("Aim", {crouched = true})
 	elif !Input.is_action_pressed("crouch"):
 		state_machine.transition_to("Idle")
+		player.camera_arm.position.y = -28.0
 	elif Input.is_action_pressed("special"):
 			if GlobalVars.sugar >= GlobalVars.special_attack_sugar:
 				state_machine.transition_to("Aim", {special = true})
+				player.camera_arm.position.y = -28.0

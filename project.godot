@@ -106,3 +106,9 @@ special={
 2d_physics/layer_2="enemies"
 2d_physics/layer_3="bounce"
 2d_physics/layer_4="ammo"
+
+[rendering]
+
+anti_aliasing/quality/use_taa=true
+2d/snap/snap_2d_transforms_to_pixel=true
+2d/snap/snap_2d_vertices_to_pixel=true

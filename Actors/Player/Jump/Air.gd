@@ -26,6 +26,7 @@ var cache := Vector2.ZERO
 @onready var coyote_time_timer := $CoyoteTimeTimer
 @onready var jump_cut_off_timer := $JumpCutOffTimer
 @onready var jump_audio := $Jump
+@onready var land_audio := $Land
 
 # If we get a message asking us to jump, we jump.
 func enter(msg := {}) -> void:
@@ -78,6 +79,7 @@ func physics_update(delta: float) -> void:
 
 	# Vertical movement.
 	player.velocity.y += player.GRAVITY * delta
+	player.velocity.y = clamp(player.velocity.y, -player.TERMINAL_VELOCITY, player.TERMINAL_VELOCITY)
 	player.set_velocity(player.velocity)
 	player.set_up_direction(Vector2.UP)
 	player.move_and_slide()
@@ -85,6 +87,7 @@ func physics_update(delta: float) -> void:
 
 	# Landing.
 	if player.is_on_floor():
+		land_audio.play()
 		double_jump = false
 		if jump_buffer:
 			state_machine.transition_to("Air", {do_jump = true})

@@ -15,8 +15,12 @@
 #    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 extends Control
 
+const SWITCH = preload("res://UserInterface/Menu-Selection-Change-D2-www.fesliyanstudios.com.mp3")
+const SELECT = preload("res://UserInterface/Game-Menu-Selection-Z-www.fesliyanstudios.com.mp3")
+
 @onready var item_list := $ItemList
 @onready var sound_menu := $SoundMenu
+@onready var sound_effect := $AudioStreamPlayer
 
 var index := 0
 
@@ -39,21 +43,29 @@ func input():
 	if sound_menu.visible:
 		sound_menu.input(null)
 	else:
-		if Input.is_action_just_pressed("ui_accept") && visible:
-			select_option()
-		if Input.is_action_pressed("ui_up"):
-			index = int(clamp(index - 1, 0, item_list.get_item_count()-1))
-			item_list.select(index)
-		if Input.is_action_pressed("ui_down"):
-			index = int(clamp(index + 1, 0, item_list.get_item_count()-1))
-			item_list.select(index)
+		if visible:
+			if Input.is_action_just_pressed("ui_accept") && visible:
+				select_option()
+			if Input.is_action_pressed("ui_up"):
+				sound_effect.stream = SWITCH
+				sound_effect.play()
+				index = int(clamp(index - 1, 0, item_list.get_item_count()-1))
+				item_list.select(index)
+			if Input.is_action_pressed("ui_down"):
+				sound_effect.stream = SWITCH
+				sound_effect.play()
+				index = int(clamp(index + 1, 0, item_list.get_item_count()-1))
+				item_list.select(index)
 
 func select_option():
+	sound_effect.stream = SELECT
+	sound_effect.play()
 	match item_list.get_item_text(item_list.get_selected_items()[0]):
 		"Settings":
 			load_settings()
 		"Main menu":
 			GameSaver.obj_save()
+			GlobalVars.initialize()
 			get_tree().paused = false
 			get_tree().change_scene_to_file("res://UserInterface/MainMenu/MainMenu.tscn")
 		"Close game":
@@ -92,3 +104,7 @@ func load_menu():
 	item_list.add_item("Resume")
 	index = 0
 	item_list.select(index)
+
+func _on_item_list_item_clicked(new_index, _at_position, _mouse_button_index):
+	index = new_index
+	select_option()
