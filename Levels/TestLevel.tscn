@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6143whyoo8h6"]
+[gd_scene load_steps=11 format=3 uid="uid://c6143whyoo8h6"]
 
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_vikpt"]
 [ext_resource type="PackedScene" uid="uid://dmfq3y22e5pol" path="res://Environment/Backgrounds/Forest Backgrounds/Underground Background/Back Textures/UndergroundBackground.tscn" id="2_hw63h"]
@@ -11,6 +11,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bm162"]
 size = Vector2(138, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nwbr4"]
+size = Vector2(144, 17)
 
 [node name="TestLevel" type="Node2D"]
 script = ExtResource("1_vikpt")
@@ -180,3 +183,10 @@ position = Vector2(144, 365)
 
 [node name="JelloEnemy2" parent="." instance=ExtResource("7_u5v3l")]
 position = Vector2(1080, -59)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(673, 449)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(10, 10)
+shape = SubResource("RectangleShape2D_nwbr4")
