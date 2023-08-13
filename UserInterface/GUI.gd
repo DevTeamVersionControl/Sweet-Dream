@@ -22,10 +22,11 @@ extends CanvasLayer
 @onready var pause_menu = $PauseMenu
 @onready var input_menu := $InputMenu
 @onready var map := $Map
+@onready var inventory := $Inventory
 
 var pause_requests := 0
 
-func _input(event):
+func _unhandled_input(event):
 	if shop.visible:
 		shop.input()
 	elif rest_menu.visible:

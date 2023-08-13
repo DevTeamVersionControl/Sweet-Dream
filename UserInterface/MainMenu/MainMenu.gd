@@ -24,7 +24,7 @@ func _input(event):
 #		input_menu.input(event)
 	if sound_menu.visible:
 		sound_menu.input(event)
-	else:
+	elif not more_menu.visible:
 		if Input.is_action_pressed("ui_accept"):
 			select_option()
 		elif Input.is_action_pressed("ui_cancel"):

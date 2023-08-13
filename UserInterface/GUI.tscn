@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8k2o6g87t0d2"]
+[gd_scene load_steps=17 format=3 uid="uid://b8k2o6g87t0d2"]
 
 [ext_resource type="PackedScene" uid="uid://cfy1dv7vc6nqw" path="res://UserInterface/PauseMenu/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
@@ -7,9 +7,10 @@
 [ext_resource type="Shader" path="res://UserInterface/Transition.gdshader" id="4_ocivv"]
 [ext_resource type="FontFile" uid="uid://cqh2a20vqm1yq" path="res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf" id="5"]
 [ext_resource type="Texture2D" uid="uid://e1oew5mv0bpp" path="res://UserInterface/Dialog/Portraits/Player.png" id="6"]
-[ext_resource type="PackedScene" path="res://UserInterface/Shops/Shop.tscn" id="7"]
-[ext_resource type="PackedScene" path="res://UserInterface/RestMenu/RestMenu.tscn" id="8"]
+[ext_resource type="PackedScene" uid="uid://coh44oo42d74j" path="res://UserInterface/Shops/Shop.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bxqkhptwj5lw2" path="res://UserInterface/RestMenu/RestMenu.tscn" id="8"]
 [ext_resource type="PackedScene" path="res://UserInterface/Map/Map.tscn" id="9"]
+[ext_resource type="PackedScene" uid="uid://y601wptx5oci" path="res://UserInterface/Inventory/Inventory.tscn" id="11_1tp1s"]
 
 [sub_resource type="FontFile" id="1"]
 subpixel_positioning = 0
@@ -123,14 +124,10 @@ color = Color(0, 0, 0, 1)
 
 [node name="Shop" parent="." instance=ExtResource("7")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
 offset_left = 281.0
 offset_top = 137.0
 offset_right = 281.0
 offset_bottom = 137.0
-grow_horizontal = 2
-grow_vertical = 2
 mouse_filter = 1
 
 [node name="PauseMenu" parent="." instance=ExtResource("1")]
@@ -165,3 +162,6 @@ layout_mode = 3
 anchors_preset = 15
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="Inventory" parent="." instance=ExtResource("11_1tp1s")]
+visible = false

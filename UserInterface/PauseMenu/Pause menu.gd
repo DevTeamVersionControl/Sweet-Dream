@@ -61,6 +61,8 @@ func select_option():
 	sound_effect.stream = SELECT
 	sound_effect.play()
 	match item_list.get_item_text(item_list.get_selected_items()[0]):
+		"Save":
+			GameSaver.obj_save()
 		"Settings":
 			load_settings()
 		"Main menu":
@@ -98,10 +100,11 @@ func load_settings():
 
 func load_menu():
 	item_list.clear()
+	item_list.add_item("Save")
+	item_list.add_item("Resume")
 	item_list.add_item("Settings")
 	item_list.add_item("Main menu")
 	item_list.add_item("Close game")	
-	item_list.add_item("Resume")
 	index = 0
 	item_list.select(index)
 

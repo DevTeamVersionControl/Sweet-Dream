@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bjp0kg8w4qdhh"]
+[gd_scene load_steps=18 format=3 uid="uid://bjp0kg8w4qdhh"]
 
 [ext_resource type="Texture2D" uid="uid://bqtm2usfyp1b6" path="res://Abstract/Checkpoint/Closed/Closed720p.png" id="1"]
 [ext_resource type="Script" path="res://Abstract/Checkpoint/Checkpoint.gd" id="2"]
@@ -13,7 +13,7 @@
 [sub_resource type="RectangleShape2D" id="1"]
 size = Vector2(15.7895, 38.5)
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_40vxe"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_e4eq5"]
 diffuse_texture = ExtResource("1")
 normal_texture = ExtResource("8")
 
@@ -59,34 +59,22 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Sprite2D:normal_map")
+tracks/3/path = NodePath("Sprite2D:texture:diffuse_texture")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("8")]
+"values": [ExtResource("1")]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
 tracks/4/enabled = true
-tracks/4/path = NodePath("Sprite2D:texture:diffuse_texture")
+tracks/4/path = NodePath("Sprite2D:texture:normal_texture")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [ExtResource("1")]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:texture:normal_texture")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
@@ -182,6 +170,10 @@ tracks/6/keys = {
 "update": 1,
 "values": [ExtResource("6")]
 }
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_40vxe"]
+diffuse_texture = ExtResource("1")
+normal_texture = ExtResource("8")
 
 [sub_resource type="Animation" id="4"]
 resource_name = "Opening"
@@ -349,50 +341,26 @@ tracks/4/keys = {
 tracks/5/type = "value"
 tracks/5/imported = false
 tracks/5/enabled = true
-tracks/5/path = NodePath("Sprite2D:normal_map")
+tracks/5/path = NodePath("Sprite2D:texture:diffuse_texture")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [ExtResource("8")]
+"update": 1,
+"values": [ExtResource("1")]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Sprite2D:texture:diffuse_texture")
+tracks/6/path = NodePath("Sprite2D:texture:normal_texture")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [ExtResource("1")]
-}
-tracks/7/type = "value"
-tracks/7/imported = false
-tracks/7/enabled = true
-tracks/7/path = NodePath("Sprite2D:texture:normal_texture")
-tracks/7/interp = 1
-tracks/7/loop_wrap = true
-tracks/7/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
 "values": [ExtResource("8")]
-}
-tracks/8/type = "value"
-tracks/8/imported = false
-tracks/8/enabled = true
-tracks/8/path = NodePath("Sprite2D:texture")
-tracks/8/interp = 1
-tracks/8/loop_wrap = true
-tracks/8/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("CanvasTexture_40vxe")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2tm1f"]
@@ -416,7 +384,7 @@ shape = SubResource("1")
 material = ExtResource("2_afmsv")
 position = Vector2(9, -36)
 scale = Vector2(0.12, 0.12)
-texture = SubResource("CanvasTexture_40vxe")
+texture = SubResource("CanvasTexture_e4eq5")
 hframes = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]

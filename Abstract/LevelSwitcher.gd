@@ -96,7 +96,6 @@ func die():
 	next_level = checkpoint.level
 	GlobalVars.health_packs = GlobalVars.max_health_packs
 	GlobalVars.health = GlobalVars.max_health
-	GlobalVars.sugar = GlobalVars.max_sugar
 	call_deferred("load_level", next_level, checkpoint.name)
 
 func set_checkpoint(new_checkpoint):

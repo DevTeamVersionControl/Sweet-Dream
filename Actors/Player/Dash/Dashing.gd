@@ -47,7 +47,7 @@ func enter(_msg := {}) -> void:
 func physics_update(delta: float) -> void:
 	var collision = player.move_and_collide(player.velocity * delta)
 	if collision != null:
-		on_impact(collision.normal)
+		on_impact(collision.get_normal())
 
 func on_impact(normal):
 	player.velocity = player.velocity.bounce(normal)

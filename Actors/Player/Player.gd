@@ -66,12 +66,7 @@ func _ready():
 	camera.limit_right = level_limit_max.x
 	camera.limit_bottom = level_limit_max.y
 	set_canvas_item_light_mask_value(sprite, 5, true)
-	set_up_direction(Vector2.UP)
-	set_floor_stop_on_slope_enabled(false)
-	set_max_slides(4)
-	set_floor_max_angle(PI/4)
 	$AnimationTree.active = true
-	GlobalVars.double_jump_lock = false
 
 func _physics_process(_delta):
 	emit_signal("debug_update", state_machine.state.name)
@@ -135,7 +130,7 @@ func set_later(object:Node, variable:String, val):
 	object.set_deferred(variable, val)
 
 func set_health_packs(packs:int):
-	GlobalVars.health_packs = packs
+	GlobalVars.health_packs = clamp(packs, 0, GlobalVars.max_health_packs)
 	update_display()
 
 func on_invulnerability_off():

@@ -36,10 +36,11 @@ func _on_Checkpoint_body_exited(body):
 		player_is_in_zone = false
 
 func _input(_event):
-	if player_is_in_zone && Input.is_action_just_pressed("interact") && not get_tree().current_scene.gui.pause_menu.visible:
+	if player_is_in_zone && Input.is_action_just_pressed("interact") && not get_tree().paused:
 		if get_tree().current_scene.checkpoint_on(name):
 			GameSaver.obj_save()
-			get_tree().current_scene.die()
+			get_tree().current_scene.player.heal(999999)
+			get_tree().current_scene.player.set_health_packs(999999)
 			get_tree().current_scene.start_rest_menu()
 			GlobalVars.play_sound(CHECKPOINT)
 		else:
