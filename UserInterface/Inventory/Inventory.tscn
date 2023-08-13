@@ -218,6 +218,7 @@ offset_right = 40.0
 offset_bottom = 34.0
 
 [node name="Selected" type="Sprite2D" parent="Slot1"]
+visible = false
 position = Vector2(1496, 632)
 scale = Vector2(0.240234, 0.247559)
 texture = ExtResource("6_da78q")
@@ -238,6 +239,7 @@ offset_right = -114.0
 offset_bottom = 185.0
 
 [node name="Selected" type="Sprite2D" parent="Slot2"]
+visible = false
 position = Vector2(1496, 632)
 scale = Vector2(0.240234, 0.247559)
 texture = ExtResource("6_da78q")
@@ -252,5 +254,37 @@ expand_mode = 2
 
 [node name="SoundEffect" type="AudioStreamPlayer" parent="."]
 bus = &"Sound Effects"
+
+[node name="IconContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+offset_left = 816.0
+offset_top = 648.0
+offset_right = 1176.0
+offset_bottom = 844.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="IconContainer"]
+custom_minimum_size = Vector2(110, 94)
+layout_mode = 2
+size_flags_horizontal = 3
+expand_mode = 2
+stretch_mode = 5
+
+[node name="SelectedContainer" type="HFlowContainer" parent="."]
+layout_mode = 2
+offset_left = 822.0
+offset_top = 652.0
+offset_right = 1171.0
+offset_bottom = 840.0
+size_flags_vertical = 3
+
+[node name="TextureRect" type="TextureRect" parent="SelectedContainer"]
+visible = false
+custom_minimum_size = Vector2(110, 92)
+layout_mode = 2
+size_flags_horizontal = 3
+texture = ExtResource("6_da78q")
+expand_mode = 2
+stretch_mode = 5
 
 [connection signal="item_selected" from="ItemList" to="." method="_on_ItemList_item_selected"]

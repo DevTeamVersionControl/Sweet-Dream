@@ -29,9 +29,13 @@ const SELECT = preload("res://UserInterface/Game-Menu-Selection-Z-www.fesliyanst
 @onready var texture1 := $Slot1/TextureRect
 @onready var texture2 := $Slot2/TextureRect
 @onready var sound_effect := $SoundEffect
+@onready var icon_container := $IconContainer
+@onready var selected_container := $SelectedContainer
 
 var items
+var ammo := []
 var item_list_focus := true
+var ammo_select_focus := false
 var index := 0
 
 func start():
@@ -67,30 +71,57 @@ func _input(event):
 		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_pressed("show_inventory"):
 			close_dialog()
 			get_tree().get_root().set_input_as_handled()
+		if Input.is_action_just_pressed("ui_select") or Input.is_action_just_pressed("ui_accept"):
+			if not item_list_focus:
+				sound_effect.stream = SELECT
+				sound_effect.play()
+				if not ammo_select_focus:
+					index = 0
+					ammo_select_focus = true
+					selected_container.get_children()[index].show()
+				else:
+					if selected1.visible:
+						select_item(0)
+					else:
+						select_item(1)
 		if Input.is_action_pressed("ui_right"):
-			if selected1.visible:
-				selected2.show()
-				selected1.hide()
-			elif selected2.visible:
-				selected1.show()
-				selected2.hide()
+			if ammo_select_focus:
+				sound_effect.stream = SWITCH
+				sound_effect.play()
+				selected_container.get_children()[index].hide()
+				index = int(clamp(index + 1, 0, selected_container.get_children().size()-1))
+				selected_container.get_children()[index].show()
 			else:
-				selected1.show()
-				item_list.deselect_all()
-				item_list_focus = false
+				if selected1.visible:
+					selected2.show()
+					selected1.hide()
+				elif selected2.visible:
+					selected1.show()
+					selected2.hide()
+				else:
+					selected1.show()
+					item_list.deselect_all()
+					item_list_focus = false
 		if Input.is_action_pressed("ui_left"):
-			if selected1.visible:
-				selected1.hide()
-				item_list_focus = true
-				item_list.select(0)
-			elif selected2.visible:
-				selected2.hide()
-				item_list_focus = true
-				item_list.select(0)
+			if ammo_select_focus:
+				sound_effect.stream = SWITCH
+				sound_effect.play()
+				selected_container.get_children()[index].hide()
+				index = int(clamp(index - 1, 0, selected_container.get_children().size()-1))
+				selected_container.get_children()[index].show()
 			else:
-				selected2.show()
-				item_list.deselect_all()
-				item_list_focus = false
+				if selected1.visible:
+					selected1.hide()
+					item_list_focus = true
+					item_list.select(0)
+				elif selected2.visible:
+					selected2.hide()
+					item_list_focus = true
+					item_list.select(0)
+				else:
+					selected2.show()
+					item_list.deselect_all()
+					item_list_focus = false
 		if Input.is_action_pressed("ui_down"):
 			if item_list_focus:
 				sound_effect.stream = SWITCH
@@ -123,8 +154,20 @@ func _input(event):
 		if Input.is_action_pressed("show_inventory"):
 			start()
 
+func select_item(new_index : int) -> void:
+	GlobalVars.ammo_equipped_array[new_index] = GlobalVars.get_ammo(ammo[index]["Name"])
+	texture1.texture = load(ammo[index]["Icon"])
+	ammo_select_focus = false
+	selected_container.get_children()[index].hide()
+
 func default_load():
 	items = GlobalVars.inventory.duplicate(true)
 	for item in items:
 		if not item.has("Description"):
 			items.erase(item)
+		if item.has("Ammo"):
+			ammo.append(item)
+			if icon_container.get_children().size() != 1:
+				icon_container.add_child(icon_container.get_children()[icon_container.get_children().size()-1].duplicate())
+				icon_container.add_child(selected_container.get_children()[selected_container.get_children().size()-1].duplicate())
+			icon_container.get_children()[icon_container.get_children().size()-1].texture = load(item["Icon"])
