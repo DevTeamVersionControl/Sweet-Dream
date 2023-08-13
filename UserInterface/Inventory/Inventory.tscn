@@ -1,7 +1,7 @@
 [gd_scene load_steps=19 format=3 uid="uid://y601wptx5oci"]
 
 [ext_resource type="Script" path="res://UserInterface/Inventory/Inventory.gd" id="1_ve0du"]
-[ext_resource type="Texture2D" uid="uid://cdnoaxe0iy2q0" path="res://UserInterface/UI Sprint 2/UI Boxes/Inventory Box720p.png" id="2_hisxo"]
+[ext_resource type="Texture2D" uid="uid://turnvte6bt6u" path="res://UserInterface/UI Sprint 2/UI Boxes/Inventory Box4k.png" id="2_desvg"]
 [ext_resource type="FontFile" uid="uid://7f0bpaqn1xgt" path="res://UserInterface/Fonts/Ubuntu-M.ttf" id="3_yc3kk"]
 [ext_resource type="Texture2D" uid="uid://dq4kggpkenyu2" path="res://UserInterface/Shops/Icon/Item 1.png" id="4_parll"]
 [ext_resource type="Theme" uid="uid://bwo8ukvcke31h" path="res://UserInterface/theme.tres" id="5_x660l"]
@@ -151,13 +151,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -400.0
-offset_top = -289.0
-offset_right = 439.0
-offset_bottom = 183.0
+offset_left = -34.0
+offset_top = -331.0
+offset_right = 805.0
+offset_bottom = 749.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("2_hisxo")
+scale = Vector2(0.729769, 0.747665)
+texture = ExtResource("2_desvg")
 stretch_mode = 5
 
 [node name="ItemList" type="ItemList" parent="."]
@@ -212,11 +213,11 @@ text = "Artifacts:"
 
 [node name="Slot1" type="Control" parent="."]
 anchors_preset = 0
+offset_top = -6.0
 offset_right = 40.0
-offset_bottom = 40.0
+offset_bottom = 34.0
 
 [node name="Selected" type="Sprite2D" parent="Slot1"]
-visible = false
 position = Vector2(1496, 632)
 scale = Vector2(0.240234, 0.247559)
 texture = ExtResource("6_da78q")
@@ -237,7 +238,6 @@ offset_right = -114.0
 offset_bottom = 185.0
 
 [node name="Selected" type="Sprite2D" parent="Slot2"]
-visible = false
 position = Vector2(1496, 632)
 scale = Vector2(0.240234, 0.247559)
 texture = ExtResource("6_da78q")
