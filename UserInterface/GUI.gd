@@ -18,7 +18,6 @@ extends CanvasLayer
 @onready var color_rect = $LevelTransition/ColorRect
 @onready var dialog = $Dialog
 @onready var shop = $Shop
-@onready var rest_menu = $RestMenu
 @onready var pause_menu = $PauseMenu
 @onready var input_menu := $InputMenu
 @onready var map := $Map
@@ -29,8 +28,6 @@ var pause_requests := 0
 func _unhandled_input(event):
 	if shop.visible:
 		shop.input()
-	elif rest_menu.visible:
-		rest_menu.input()
 	elif dialog.visible:
 		dialog.input(event)
 	elif input_menu.visible:

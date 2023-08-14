@@ -113,5 +113,4 @@ func start_shop(shop_file:String, multiplier = 1.0):
 	gui.request_pause()
 
 func start_rest_menu():
-	gui.rest_menu.start()
-	gui.request_pause()
+	gui.inventory.start()
