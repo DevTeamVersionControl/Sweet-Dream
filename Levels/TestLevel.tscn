@@ -71,6 +71,17 @@ description = {
 "Temporary": null
 }
 
+[node name="Pickup3" parent="." instance=ExtResource("7_qvxvq")]
+position = Vector2(48, 173)
+scale = Vector2(0.1, 0.1)
+description = {
+"Ammo": null,
+"Description": "Bouncy and destructive",
+"Icon": "res://Pickups/Jelly Bean 720p.png",
+"Name": "Jelly Bean",
+"Temporary": null
+}
+
 [node name="Pickup2" parent="." instance=ExtResource("7_qvxvq")]
 position = Vector2(54, 357)
 description = {

@@ -152,8 +152,6 @@ offset_left = -723.0
 offset_top = -401.0
 offset_right = 1197.0
 offset_bottom = 679.0
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Map" parent="." instance=ExtResource("9")]
 visible = false

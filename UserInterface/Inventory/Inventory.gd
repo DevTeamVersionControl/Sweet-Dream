@@ -20,6 +20,7 @@ signal talk
 
 const SWITCH = preload("res://UserInterface/Menu-Selection-Change-D2-www.fesliyanstudios.com.mp3")
 const SELECT = preload("res://UserInterface/Game-Menu-Selection-Z-www.fesliyanstudios.com.mp3")
+const SELECTED_SPRITE = preload("res://UserInterface/Inventory/selected.png")
 
 @onready var item_list = $ItemList
 @onready var description = $Description
@@ -46,6 +47,10 @@ func start():
 	get_parent().request_pause()
 	load_items()
 	money.text = "Artifacts : " + str(GlobalVars.artifacts)
+	if GlobalVars.ammo_equipped_array[0] != null:
+		texture1.texture = load(GlobalVars.get_from_inventory(GlobalVars.ammo_equipped_array[0].name)["Icon"])
+	if GlobalVars.ammo_equipped_array[1] != null:
+		texture2.texture = load(GlobalVars.get_from_inventory(GlobalVars.ammo_equipped_array[1].name)["Icon"])
 
 func load_items() -> void:
 	default_load()
@@ -63,10 +68,7 @@ func close_dialog()->void:
 		set_process_internal(false)
 		emit_signal("dialog_end")
 
-func _on_ItemList_item_selected(index):
-	description.text = items[index]["Description"]
-
-func _input(event):
+func _input(_event):
 	if visible:
 		if Input.is_action_just_pressed("ui_cancel") or Input.is_action_pressed("show_inventory"):
 			close_dialog()
@@ -78,7 +80,7 @@ func _input(event):
 				if not ammo_select_focus:
 					index = 0
 					ammo_select_focus = true
-					selected_container.get_children()[index].show()
+					selected_container.get_children()[index].texture = SELECTED_SPRITE
 				else:
 					if selected1.visible:
 						select_item(0)
@@ -88,9 +90,9 @@ func _input(event):
 			if ammo_select_focus:
 				sound_effect.stream = SWITCH
 				sound_effect.play()
-				selected_container.get_children()[index].hide()
+				selected_container.get_children()[index].texture = null
 				index = int(clamp(index + 1, 0, selected_container.get_children().size()-1))
-				selected_container.get_children()[index].show()
+				selected_container.get_children()[index].texture = SELECTED_SPRITE
 			else:
 				if selected1.visible:
 					selected2.show()
@@ -106,18 +108,22 @@ func _input(event):
 			if ammo_select_focus:
 				sound_effect.stream = SWITCH
 				sound_effect.play()
-				selected_container.get_children()[index].hide()
+				selected_container.get_children()[index].texture = null
 				index = int(clamp(index - 1, 0, selected_container.get_children().size()-1))
-				selected_container.get_children()[index].show()
+				selected_container.get_children()[index].texture = SELECTED_SPRITE
 			else:
 				if selected1.visible:
 					selected1.hide()
 					item_list_focus = true
-					item_list.select(0)
+					index = 0
+					item_list.select(index)
+					_on_item_list_item_selected(index)
 				elif selected2.visible:
 					selected2.hide()
 					item_list_focus = true
-					item_list.select(0)
+					index = 0
+					item_list.select(index)
+					_on_item_list_item_selected(index)
 				else:
 					selected2.show()
 					item_list.deselect_all()
@@ -128,6 +134,7 @@ func _input(event):
 				sound_effect.play()
 				index = int(clamp(index + 1, 0, item_list.get_item_count()-1))
 				item_list.select(index)
+				_on_item_list_item_selected(index)
 			else:
 				if selected1.visible:
 					selected1.hide()
@@ -135,18 +142,22 @@ func _input(event):
 				elif selected2.visible:
 					selected2.hide()
 					item_list_focus = true
-					item_list.select(0)
+					index = 0
+					item_list.select(index)
+					_on_item_list_item_selected(index)
 		if Input.is_action_pressed("ui_up"):
 			if item_list_focus:
 				sound_effect.stream = SWITCH
 				sound_effect.play()
 				index = int(clamp(index - 1, 0, item_list.get_item_count()-1))
 				item_list.select(index)
+				_on_item_list_item_selected(index)
 			else:
 				if selected1.visible:
 					selected1.hide()
 					item_list_focus = true
 					item_list.select(0)
+					_on_item_list_item_selected(0)
 				elif selected2.visible:
 					selected1.show()
 					selected2.hide()
@@ -155,19 +166,40 @@ func _input(event):
 			start()
 
 func select_item(new_index : int) -> void:
+	while GlobalVars.ammo_equipped_array.size() < 2:
+		GlobalVars.ammo_equipped_array.append(null)
 	GlobalVars.ammo_equipped_array[new_index] = GlobalVars.get_ammo(ammo[index]["Name"])
-	texture1.texture = load(ammo[index]["Icon"])
+#	if new_index == 0:
+#		texture1.texture = load(ammo[index]["Icon"])
+#	else:
+#		texture2.texture = load(ammo[index]["Icon"])
+	if GlobalVars.ammo_equipped_array[0] != null:
+		texture1.texture = load(GlobalVars.get_from_inventory(GlobalVars.ammo_equipped_array[0].name)["Icon"])
+	if GlobalVars.ammo_equipped_array[1] != null:
+		texture2.texture = load(GlobalVars.get_from_inventory(GlobalVars.ammo_equipped_array[1].name)["Icon"])
 	ammo_select_focus = false
-	selected_container.get_children()[index].hide()
+	selected_container.get_children()[index].texture = null
+	get_tree().current_scene.player.update_display()
 
 func default_load():
+	for i in icon_container.get_child_count():
+		if i > 0:
+			icon_container.get_children()[i].queue_free()
+			selected_container.get_children()[i].queue_free()
+		else:
+			icon_container.get_children()[i].texture = null
 	items = GlobalVars.inventory.duplicate(true)
 	for item in items:
 		if not item.has("Description"):
 			items.erase(item)
 		if item.has("Ammo"):
 			ammo.append(item)
-			if icon_container.get_children().size() != 1:
+			if icon_container.get_children()[0].texture != null:
 				icon_container.add_child(icon_container.get_children()[icon_container.get_children().size()-1].duplicate())
-				icon_container.add_child(selected_container.get_children()[selected_container.get_children().size()-1].duplicate())
+				selected_container.add_child(selected_container.get_children()[selected_container.get_children().size()-1].duplicate())
+				selected_container.get_children()[selected_container.get_children().size()-1].texture = null
 			icon_container.get_children()[icon_container.get_children().size()-1].texture = load(item["Icon"])
+
+func _on_item_list_item_selected(new_index):
+	description.text = items[new_index]["Description"]
+	index = new_index

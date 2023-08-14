@@ -36,7 +36,7 @@ var health_packs := max_health_packs
 var max_sugar := BASE_MAX_SUGAR
 var sugar := 0.0
 var equiped_ammo_index = 0
-var ammo_equipped_array := []
+var ammo_equipped_array := [null, null]
 var double_jump_lock := true
 var dash_lock := true
 var map_lock := true
@@ -52,7 +52,7 @@ func initialize():
 	max_sugar = BASE_MAX_SUGAR
 	sugar = 0.0
 	equiped_ammo_index = 0
-	ammo_equipped_array = []
+	ammo_equipped_array = [null, null]
 	double_jump_lock = true
 	dash_lock = true
 	map_lock = true

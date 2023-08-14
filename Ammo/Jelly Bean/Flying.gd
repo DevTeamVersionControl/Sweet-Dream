@@ -26,9 +26,9 @@ func physics_update(delta: float) -> void:
 	jelly_bean.velocity.y += jelly_bean.GRAVITY * delta
 	var collision = jelly_bean.move_and_collide(jelly_bean.velocity*delta, false)
 	if collision != null && !sticky:
-		_on_inpact(collision.normal)
+		_on_impact(collision.get_normal())
 
-func _on_inpact(normal):
+func _on_impact(normal):
 	bounces += 1
 	if bounces < 2:
 		jelly_bean.velocity = jelly_bean.velocity.bounce(normal)

@@ -74,8 +74,6 @@ func _physics_process(_delta):
 		GlobalVars.equiped_ammo_index = (GlobalVars.equiped_ammo_index + 1) % GlobalVars.ammo_equipped_array.size()
 		audio_stream_player.stream = AMMO_SWITCH
 		audio_stream_player.play()
-		if GlobalVars.sugar < GlobalVars.max_sugar/2:
-			GlobalVars.sugar = GlobalVars.max_sugar/2
 		update_display()
 	if Input.is_action_just_pressed("consume_health_pack"):
 		if GlobalVars.health_packs > 0:

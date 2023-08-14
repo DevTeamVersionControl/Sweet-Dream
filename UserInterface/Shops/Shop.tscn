@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://7f0bpaqn1xgt" path="res://UserInterface/Fonts/Ubuntu-M.ttf" id="1"]
 [ext_resource type="Script" path="res://UserInterface/Shops/Shop.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://cdnoaxe0iy2q0" path="res://UserInterface/UI Sprint 2/UI Boxes/Inventory Box720p.png" id="2_lvk7l"]
+[ext_resource type="Texture2D" uid="uid://turnvte6bt6u" path="res://UserInterface/UI Sprint 2/UI Boxes/Inventory Box4k.png" id="2_lvk7l"]
 [ext_resource type="Texture2D" uid="uid://dq4kggpkenyu2" path="res://UserInterface/Shops/Icon/Item 1.png" id="3"]
 [ext_resource type="Theme" uid="uid://bwo8ukvcke31h" path="res://UserInterface/theme.tres" id="5_lyv3k"]
 

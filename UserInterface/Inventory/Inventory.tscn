@@ -279,12 +279,10 @@ offset_bottom = 840.0
 size_flags_vertical = 3
 
 [node name="TextureRect" type="TextureRect" parent="SelectedContainer"]
-visible = false
 custom_minimum_size = Vector2(110, 92)
 layout_mode = 2
 size_flags_horizontal = 3
-texture = ExtResource("6_da78q")
 expand_mode = 2
 stretch_mode = 5
 
-[connection signal="item_selected" from="ItemList" to="." method="_on_ItemList_item_selected"]
+[connection signal="item_selected" from="ItemList" to="." method="_on_item_list_item_selected"]
