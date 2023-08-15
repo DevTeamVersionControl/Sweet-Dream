@@ -8,7 +8,7 @@ extends StaticBody2D
 
 func _ready():
 	if trigger_obj:
-		trigger_obj.connect("on", Callable(self, "on_trigger_on"))
+		trigger_obj.connect("on", on_trigger_on)
 		if trigger_obj.has_signal("off"):
 			trigger_obj.connect("off", Callable(self, "on_trigger_off"))
 

@@ -57,7 +57,7 @@ func partial_save(node:Node) -> void:
 		file.store_line(JSON.stringify(save_data))
 		file.close()
 
-func get_save(specific_save_path)->Dictionary:
+func get_save(specific_save_path):
 	if not FileAccess.file_exists(specific_save_path):
 		return {}
 	var json_as_text = FileAccess.get_file_as_string(specific_save_path)

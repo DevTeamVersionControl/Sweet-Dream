@@ -1,45 +1,16 @@
-[gd_scene load_steps=16 format=3 uid="uid://b8k2o6g87t0d2"]
+[gd_scene load_steps=13 format=3 uid="uid://b8k2o6g87t0d2"]
 
 [ext_resource type="PackedScene" uid="uid://cfy1dv7vc6nqw" path="res://UserInterface/PauseMenu/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
 [ext_resource type="Script" path="res://UserInterface/GUI.gd" id="3"]
+[ext_resource type="Texture2D" uid="uid://dcpw4i5w0im2r" path="res://UserInterface/Dialog/Dialog Box4k.png" id="3_x5lxn"]
 [ext_resource type="Script" path="res://UserInterface/Dialog/Dialog.gd" id="4"]
 [ext_resource type="Shader" path="res://UserInterface/Transition.gdshader" id="4_ocivv"]
-[ext_resource type="FontFile" uid="uid://cqh2a20vqm1yq" path="res://UserInterface/Fonts/MangabeyRegular-rgqVO.otf" id="5"]
+[ext_resource type="Theme" uid="uid://bwo8ukvcke31h" path="res://UserInterface/theme.tres" id="4_vb7qv"]
 [ext_resource type="Texture2D" uid="uid://e1oew5mv0bpp" path="res://UserInterface/Dialog/Portraits/Player.png" id="6"]
 [ext_resource type="PackedScene" uid="uid://coh44oo42d74j" path="res://UserInterface/Shops/Shop.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://UserInterface/Map/Map.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://y601wptx5oci" path="res://UserInterface/Inventory/Inventory.tscn" id="11_1tp1s"]
-
-[sub_resource type="FontFile" id="1"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("5"), ExtResource("5")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="2"]
-default_font = SubResource("1")
-
-[sub_resource type="FontFile" id="3"]
-subpixel_positioning = 0
-msdf_pixel_range = 14
-msdf_size = 128
-fallbacks = Array[Font]([ExtResource("5"), ExtResource("5")])
-cache/0/16/0/ascent = 0.0
-cache/0/16/0/descent = 0.0
-cache/0/16/0/underline_position = 0.0
-cache/0/16/0/underline_thickness = 0.0
-cache/0/16/0/scale = 1.0
-cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
-
-[sub_resource type="Theme" id="4"]
-default_font = SubResource("3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuett"]
 shader = ExtResource("4_ocivv")
@@ -65,31 +36,41 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4")
 
-[node name="ColorRect" type="ColorRect" parent="Dialog"]
-layout_mode = 0
-anchor_right = 1.0
-offset_left = 150.0
-offset_top = 125.0
-offset_right = -150.0
-offset_bottom = 443.0
-color = Color(0.160784, 0.0901961, 0.239216, 1)
+[node name="TextureRect2" type="TextureRect" parent="Dialog"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.078
+anchor_top = 0.114
+anchor_right = 0.921
+anchor_bottom = 0.413
+offset_left = 20.24
+offset_top = -726.12
+offset_right = 19.6799
+offset_bottom = 568.96
+texture = ExtResource("3_x5lxn")
+expand_mode = 4
+stretch_mode = 5
 
 [node name="Text" type="RichTextLabel" parent="Dialog"]
 layout_mode = 0
-offset_left = 425.0
-offset_top = 198.0
-offset_right = 1790.0
-offset_bottom = 407.0
-theme = SubResource("2")
+offset_left = 565.0
+offset_top = 132.0
+offset_right = 1674.0
+offset_bottom = 353.0
+theme = ExtResource("4_vb7qv")
+theme_override_colors/default_color = Color(0.368627, 0.278431, 0.498039, 1)
+theme_override_font_sizes/normal_font_size = 32
 text = "Lorem ipsium sit atmet"
 
 [node name="Name" type="RichTextLabel" parent="Dialog"]
 layout_mode = 0
-offset_left = 179.0
-offset_top = 144.0
-offset_right = 506.0
-offset_bottom = 198.0
-theme = SubResource("4")
+offset_left = 553.0
+offset_top = 43.0
+offset_right = 1340.0
+offset_bottom = 97.0
+theme = ExtResource("4_vb7qv")
+theme_override_colors/default_color = Color(0.368627, 0.278431, 0.498039, 1)
+theme_override_font_sizes/normal_font_size = 45
 text = "Placeholder"
 
 [node name="Timer" type="Timer" parent="Dialog"]
@@ -98,12 +79,13 @@ one_shot = true
 
 [node name="TextureRect" type="TextureRect" parent="Dialog"]
 layout_mode = 0
-offset_left = 179.0
-offset_top = 196.0
-offset_right = 399.0
-offset_bottom = 416.0
+offset_left = 251.0
+offset_top = 47.0
+offset_right = 544.0
+offset_bottom = 318.0
 texture = ExtResource("6")
-stretch_mode = 1
+expand_mode = 2
+stretch_mode = 5
 
 [node name="LevelTransition" type="Control" parent="."]
 layout_mode = 3

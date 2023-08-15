@@ -1,0 +1,61 @@
+[
+	[
+	
+	{"Name":"Dead guy",
+		"Text":"I'm the dead guy don't mind my sprite", 
+	"Signal":"talk", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+	
+	{"Name":"Cadus III",
+		"Text":"You don't really look like him but sure ig", 
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+
+	{"Name":"Dead guy", 
+		"Text":"Just shut the fuck up and take this jelly bean to break through the jello, there's an upgrade that should help you get further", 
+	"Signal":"jelly_bean", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+
+	{"Name":"Cadus III",
+		"Text":"Alright jesus christ but how do I equip it, I'm way too stupid to figure that shit out",
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+
+	{"Name":"Dead guy", 
+		"Text":"Just go to the checkpoint and use the interact button, it should be floating above it, kinda weird how that happens", 
+	"Signal":"talk", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+
+	{"Name":"Cadus III", 
+		"Text":"Alright, but I will leave a 0 out of 10 on Itch if I can't put it in my gun", 
+	"Signal":"talk", "Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+
+	{"Name":"Dead guy", 
+		"Text":"Don't forget to talk to me again after getting the double jump or I will kill myself ... again", 
+	"Signal":"talk", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+	
+	],
+	
+	[{"Name":"Dead guy",
+		"Text":"I don't feel like helping you figure this out so use your brain",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+	
+	],
+	
+	[{"Name":"Cadus III",
+		"Text":"I found what you were looking for.",
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+	
+	{"Name":"Dead guy",
+		"Text":"You did it! I need you to fetch a special candy and bring it back to me so you can complete this demo",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+
+	{"Name":"Cadus III",
+		"Text":"But that's a one way trip, how do I get back?",
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+
+	{"Name":"Dr.Gamal",
+		"Text":"Wow, you really do have braincells! Use another checkpoint to teleport here, don't ask too many questions it makes sense I swear",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+
+	{"Name":"Cadus III",
+		"Text":"Alright I guess I'll do that, it's not like I have anything else to do",
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"}
+	
+	]
+]

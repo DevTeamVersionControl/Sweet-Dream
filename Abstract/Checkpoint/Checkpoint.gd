@@ -22,10 +22,8 @@ const CHECKPOINT = preload("res://Abstract/Checkpoint/Checkpoint.wav")
 var player_is_in_zone := false
 
 func _ready():
-	if get_tree().current_scene.checkpoint_on(name):
-		animation_player.play("Opened")
-	else:
-		animation_player.play("Closed")
+	update()
+	get_tree().current_scene.connect("update_checkpoint", update)
 
 func _on_Checkpoint_body_entered(body):
 	if body is Player:
@@ -47,8 +45,16 @@ func _input(_event):
 			get_tree().current_scene.set_checkpoint(GlobalTypes.Checkpoint.new(name, load(get_tree().current_scene.current_level.scene_file_path)))
 			animation_player.play("Opening")
 			await animation_player.animation_finished
-			animation_player.play("Opened")
+			get_tree().current_scene.checkpoint_update()
 			GameSaver.obj_save()
 
 func get_spawn_position() -> Vector2:
 	return global_position
+
+func update():
+	if get_tree().current_scene.checkpoint_on(name):
+		animation_player.play("Opened")
+	else:
+		animation_player.play("RESET")
+		await get_tree().create_timer(0.1).timeout
+		animation_player.play("Closed")

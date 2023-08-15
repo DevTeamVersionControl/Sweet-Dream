@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c6143whyoo8h6"]
+[gd_scene load_steps=11 format=3 uid="uid://c6143whyoo8h6"]
 
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_vikpt"]
 [ext_resource type="PackedScene" uid="uid://dmfq3y22e5pol" path="res://Environment/Backgrounds/Forest Backgrounds/Underground Background/Back Textures/UndergroundBackground.tscn" id="2_hw63h"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bjp0kg8w4qdhh" path="res://Abstract/Checkpoint/Checkpoint.tscn" id="6_5xnei"]
 [ext_resource type="PackedScene" uid="uid://cdstbfdxoiqna" path="res://Pickups/Pickup.tscn" id="7_qvxvq"]
 [ext_resource type="PackedScene" uid="uid://bs5omw5j100bn" path="res://Actors/Enemies/Jello/Jello.tscn" id="7_u5v3l"]
+[ext_resource type="PackedScene" uid="uid://caqf8hahsxiw6" path="res://Actors/NPC/DeadGuy/DeadGuy.tscn" id="9_m3jgf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwbr4"]
 size = Vector2(144, 17)
@@ -67,18 +68,6 @@ description = {
 "Description": "Basic but reliable ammo",
 "Icon": "res://Pickups/Candy Corn 720p.png",
 "Name": "Candy Corn",
-"StoryPoint": ["Gilmald", 1],
-"Temporary": null
-}
-
-[node name="Pickup3" parent="." instance=ExtResource("7_qvxvq")]
-position = Vector2(48, 173)
-scale = Vector2(0.1, 0.1)
-description = {
-"Ammo": null,
-"Description": "Bouncy and destructive",
-"Icon": "res://Pickups/Jelly Bean 720p.png",
-"Name": "Jelly Bean",
 "Temporary": null
 }
 
@@ -88,7 +77,7 @@ description = {
 "Description": "Unlocks a double jump",
 "Effect": ["unlock_double_jump", "placeholder"],
 "Name": "Jump accelerator",
-"StoryPoint": ["Gilmald", 1],
+"StoryPoint": ["DeadGuy", 2],
 "Temporary": null
 }
 sprite_num = 2
@@ -105,3 +94,9 @@ position = Vector2(673, 449)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
 position = Vector2(10, 10)
 shape = SubResource("RectangleShape2D_nwbr4")
+
+[node name="DeadGuy" parent="." instance=ExtResource("9_m3jgf")]
+position = Vector2(24, 174)
+
+[node name="Checkpoint2" parent="." instance=ExtResource("6_5xnei")]
+position = Vector2(1125, -44)

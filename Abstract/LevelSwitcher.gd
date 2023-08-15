@@ -16,6 +16,7 @@
 extends Node
 
 signal level_loaded
+signal update_checkpoint
 
 const PLAYER = preload("res://Actors/Player/Player.tscn")
 
@@ -114,3 +115,6 @@ func start_shop(shop_file:String, multiplier = 1.0):
 
 func start_rest_menu():
 	gui.inventory.start()
+
+func checkpoint_update():
+	emit_signal("update_checkpoint")
