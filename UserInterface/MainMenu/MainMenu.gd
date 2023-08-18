@@ -4,7 +4,7 @@ const SWITCH = preload("res://UserInterface/Menu-Selection-Change-D2-www.fesliya
 const SELECT = preload("res://UserInterface/Game-Menu-Selection-Z-www.fesliyanstudios.com.mp3")
 
 @onready var item_list = $ItemList
-#@onready var input_menu = $InputMenu
+@onready var input_menu = $InputMenu
 @onready var level_transition = $LevelTransition.get_material()
 @onready var sound_menu := $SoundMenu
 @onready var more_menu := $MoreMenu
@@ -20,11 +20,13 @@ func _ready():
 	item_list.select(index)
 
 func _input(event):
-#	if input_menu.visible:
-#		input_menu.input(event)
-	if sound_menu.visible:
+	if input_menu.visible:
+		input_menu.input(event)
+	elif sound_menu.visible:
 		sound_menu.input(event)
-	elif not more_menu.visible:
+	elif more_menu.visible:
+		more_menu.input(event)
+	else:
 		if Input.is_action_pressed("ui_accept"):
 			select_option()
 		elif Input.is_action_pressed("ui_cancel"):
@@ -60,8 +62,7 @@ func select_option():
 			"Sound":
 				sound_menu.show()
 			"Controls":
-				pass
-#				input_menu.show()
+				input_menu.show()
 			"More":
 				more_menu.show()
 			"Back":

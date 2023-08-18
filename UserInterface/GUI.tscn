@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b8k2o6g87t0d2"]
 
 [ext_resource type="PackedScene" uid="uid://cfy1dv7vc6nqw" path="res://UserInterface/PauseMenu/PauseMenu.tscn" id="1"]
-[ext_resource type="PackedScene" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
+[ext_resource type="PackedScene" uid="uid://bd5il2eom8sy" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
 [ext_resource type="Script" path="res://UserInterface/GUI.gd" id="3"]
 [ext_resource type="Texture2D" uid="uid://dcpw4i5w0im2r" path="res://UserInterface/Dialog/Dialog Box4k.png" id="3_x5lxn"]
 [ext_resource type="Script" path="res://UserInterface/Dialog/Dialog.gd" id="4"]
@@ -117,10 +117,6 @@ visible = false
 
 [node name="InputMenu" parent="." instance=ExtResource("2")]
 visible = false
-layout_mode = 3
-anchors_preset = 15
-grow_horizontal = 2
-grow_vertical = 2
 
 [node name="Map" parent="." instance=ExtResource("9")]
 visible = false

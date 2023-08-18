@@ -33,9 +33,8 @@ var next_level : PackedScene
 var door_location : String
 var player : Player
 
-
 func _ready():
-	checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
+	checkpoint = GlobalTypes.Checkpoint.new("Checkpoint", first_level)
 	GlobalVars.initialize()
 	var save_data = GameSaver.get_save("user://MoreSettings.json")
 	hud.set_physics_process_internal(false)

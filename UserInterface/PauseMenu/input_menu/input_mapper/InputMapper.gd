@@ -27,10 +27,11 @@ var save_path := "user://InputProfiles.json"
 
 var current_profile_id := 0
 var profiles = {
-	0: {"Name":"normal", "customizable":false},
-	1: {"Name":"custom", "customizable":true},
+	0: {"Name":"profile1", "customizable":true},
+	1: {"Name":"profile2", "customizable":true},
+	2: {"Name":"profile3", "customizable":true}
 }
-var normal = {
+var profile1 = {
 	'move_up': KEY_Z,
 	'crouch': KEY_DOWN,
 	'move_left': KEY_LEFT,
@@ -45,7 +46,9 @@ var normal = {
 	'delete' : KEY_DELETE,
 	'show_map' : KEY_TAB
 }
-var custom = normal
+var profile2 = profile1.duplicate()
+var profile3 = profile1.duplicate()
+
 
 func change_profile(id):
 	current_profile_id = id
@@ -78,9 +81,15 @@ func _on_ProfilesMenu_item_selected(ID):
 
 func obj_save(save_data):
 	save_data["current_profile"] = current_profile_id
-	save_data["custom"] = custom
+	save_data["profile1"] = profile1
+	save_data["profile2"] = profile2
+	save_data["profile3"] = profile3
 
 func obj_load(save_data):
-	if save_data.has("custom"):
-		custom = save_data["custom"]
+	if save_data.has("profile1"):
+		profile1 = save_data["profile1"]
+	if save_data.has("profile2"):
+		profile2 = save_data["profile2"]
+	if save_data.has("profile3"):
+		profile3 = save_data["profile3"]
 	change_profile(int(save_data["current_profile"]))

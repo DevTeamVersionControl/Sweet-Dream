@@ -29,9 +29,6 @@ func input(_event):
 		if Input.is_action_pressed("ui_cancel"):
 			GameSaver.partial_save(self)
 			hide()
-		elif Input.is_action_pressed("ui_back"):
-			GameSaver.partial_save(self)
-			hide()
 
 func obj_save(save_data):
 	if is_instance_valid(timer):

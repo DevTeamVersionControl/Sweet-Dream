@@ -2,9 +2,9 @@
 
 [ext_resource type="Theme" uid="uid://bwo8ukvcke31h" path="res://UserInterface/theme.tres" id="1"]
 [ext_resource type="Script" path="res://UserInterface/PauseMenu/Pause menu.gd" id="2"]
-[ext_resource type="Texture2D" uid="uid://cbi54miayw0wt" path="res://UserInterface/UI Sprint 2/UI Boxes/Pause Box720p.png" id="2_k8tte"]
+[ext_resource type="Texture2D" uid="uid://btb2nihi0ux8c" path="res://UserInterface/UI Sprint 2/UI Boxes/Pause Box4k.png" id="2_nels4"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="3"]
-[ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="4"]
+[ext_resource type="PackedScene" uid="uid://ijyy4vdw7piq" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="4"]
 
 [sub_resource type="FontFile" id="14"]
 fallbacks = Array[Font]([ExtResource("3")])
@@ -6022,7 +6022,7 @@ bg_color = Color(0.360784, 0.631373, 0.968627, 0.32549)
 
 [sub_resource type="Theme" id="11"]
 default_font = SubResource("14")
-default_font_size = 73
+default_font_size = 70
 ItemList/colors/font_color = Color(0.270588, 0.196078, 0.423529, 1)
 ItemList/colors/font_outline_color = Color(1, 1, 1, 0)
 ItemList/colors/font_selected_color = Color(0.270588, 0.196078, 0.423529, 1)
@@ -6049,14 +6049,14 @@ layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 60.0
-offset_top = -456.0
-offset_right = 60.0
-offset_bottom = 384.0
+offset_left = 224.0
+offset_top = -454.0
+offset_right = -145.0
+offset_bottom = 386.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.943902, 0.947979)
-texture = ExtResource("2_k8tte")
+texture = ExtResource("2_nels4")
 expand_mode = 5
 stretch_mode = 5
 
@@ -6064,22 +6064,23 @@ stretch_mode = 5
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_left = 3.0
-offset_top = 84.0
-offset_right = 3.0
-offset_bottom = 216.0
+offset_left = -11.0
+offset_top = 152.0
+offset_right = -11.0
+offset_bottom = 284.0
 grow_horizontal = 2
 theme = ExtResource("1")
 text = "PAUSE"
 horizontal_alignment = 1
 
 [node name="ItemList" type="ItemList" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_bottom = 0.838
-offset_left = 743.0
-offset_top = 272.0
-offset_right = 1300.0
-offset_bottom = 79.96
+offset_left = 774.0
+offset_top = 320.0
+offset_right = 1331.0
+offset_bottom = -86.04
 theme = SubResource("11")
 item_count = 5
 item_0/text = "Save"
@@ -6088,10 +6089,9 @@ item_2/text = "Settings"
 item_3/text = "Main menu"
 item_4/text = "Close game"
 
-[node name="SoundMenu" parent="." instance=ExtResource("4")]
-visible = false
-anchors_preset = 0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+
+[node name="SoundMenu" parent="." instance=ExtResource("4")]
+layout_mode = 1
 
 [connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

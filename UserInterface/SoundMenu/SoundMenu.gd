@@ -32,6 +32,7 @@ func input(_event):
 		if Input.is_action_pressed("ui_cancel"):
 			GameSaver.partial_save(self)
 			hide()
+			get_parent().get_node("TextureRect").show()
 
 func obj_save(save_data):
 	save_data["Master"] = master_volume.value

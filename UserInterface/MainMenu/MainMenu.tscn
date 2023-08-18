@@ -1,13 +1,13 @@
 [gd_scene load_steps=21 format=3 uid="uid://70rfm7bfy2cc"]
 
-[ext_resource type="PackedScene" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
+[ext_resource type="PackedScene" uid="uid://ijyy4vdw7piq" path="res://UserInterface/SoundMenu/SoundMenu.tscn" id="1"]
 [ext_resource type="Script" path="res://UserInterface/MainMenu/MainMenu.gd" id="2"]
 [ext_resource type="Texture2D" uid="uid://dsqguat0tt5og" path="res://Levels/Funicular lift/Funicular Background/Funicular Background.png" id="4"]
 [ext_resource type="Shader" path="res://UserInterface/MainMenu/MainMenu.gdshader" id="4_mh5pn"]
 [ext_resource type="FontFile" uid="uid://c7hmcjmdp0qpl" path="res://UserInterface/Fonts/Maler.ttf" id="5"]
 [ext_resource type="AudioStream" uid="uid://bjwjq0vhtcq21" path="res://Levels/FirstScreen/Dream Culture.mp3" id="6_v1qwx"]
-[ext_resource type="PackedScene" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
-[ext_resource type="Script" path="res://UserInterface/MoreMenu/MoreMenu.gd" id="8"]
+[ext_resource type="PackedScene" uid="uid://cvrjphsx0hjm1" path="res://UserInterface/MoreMenu/MoreMenu.tscn" id="7"]
+[ext_resource type="PackedScene" uid="uid://bd5il2eom8sy" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="8_3j1nx"]
 
 [sub_resource type="FontFile" id="1"]
 fallbacks = Array[Font]([ExtResource("5")])
@@ -19717,10 +19717,6 @@ anchor_bottom = 1.0
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
 
-[node name="SoundMenu" parent="." instance=ExtResource("1")]
-visible = false
-anchors_preset = 0
-
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_v1qwx")
 autoplay = true
@@ -19729,9 +19725,16 @@ bus = &"Music"
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="."]
 bus = &"Sound Effects"
 
+[node name="SoundMenu" parent="." instance=ExtResource("1")]
+visible = false
+layout_mode = 1
+
 [node name="MoreMenu" parent="." instance=ExtResource("7")]
 visible = false
-anchors_preset = 0
-script = ExtResource("8")
+layout_mode = 1
+
+[node name="InputMenu" parent="." instance=ExtResource("8_3j1nx")]
+visible = false
+layout_mode = 1
 
 [connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

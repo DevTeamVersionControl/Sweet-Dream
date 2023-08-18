@@ -25,8 +25,8 @@ extends Control
 
 func _ready():
 	$InputMapper.connect('profile_changed', rebuild)
-	$Column/ProfilesMenu.initialize($InputMapper)
-	$InputMapper.change_profile($Column/ProfilesMenu.selected)
+	$ProfilesMenu.initialize($InputMapper)
+	$InputMapper.change_profile($ProfilesMenu.selected)
 	GameSaver.partial_load($InputMapper)
 
 func input(event):
@@ -35,8 +35,6 @@ func input(event):
 			$KeySelectMenu.input(event)
 		else:
 			if Input.is_action_pressed("ui_cancel"):
-				hide()
-			elif Input.is_action_pressed("ui_back"):
 				hide()
 
 func rebuild(input_profile, is_customizable=false):

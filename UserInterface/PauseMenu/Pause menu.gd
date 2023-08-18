@@ -31,15 +31,18 @@ func _ready():
 	item_list.select(index)
 
 func input():
-	if Input.is_action_pressed("ui_cancel"):
-		if visible:
-			resume()
+	if Input.is_action_pressed("ui_cancel") and not sound_menu.visible:
+		if item_list.get_item_text(item_list.get_selected_items()[0]) == "Save":
+			if visible:
+				resume()
+			else:
+				mouse_filter = Control.MOUSE_FILTER_STOP
+				get_parent().request_pause()
+				visible = true
+				item_list.select(0)
+				index = 0
 		else:
-			mouse_filter = Control.MOUSE_FILTER_STOP
-			get_parent().request_pause()
-			visible = true
-			item_list.select(0)
-			index = 0
+			load_menu()
 	if sound_menu.visible:
 		sound_menu.input(null)
 	else:
@@ -78,6 +81,7 @@ func select_option():
 			resume()
 		"Sound":
 			sound_menu.show()
+			$TextureRect.hide()
 		"Controls":
 			get_parent().input_menu.show()
 		"Back":

@@ -1,0 +1,14 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://c05uismf7suxy"]
+
+[ext_resource type="Texture2D" uid="uid://ct7m5fskbi0o2" path="res://UserInterface/UI Sprint 2/Menu Interactables/Grabber.png" id="1_hnp55"]
+
+[sub_resource type="StyleBoxFlat" id="12"]
+bg_color = Color(0.270588, 0.196078, 0.423529, 1)
+
+[sub_resource type="StyleBoxFlat" id="13"]
+bg_color = Color(0.745098, 0.592157, 0.819608, 1)
+
+[resource]
+HSlider/icons/grabber = ExtResource("1_hnp55")
+HSlider/styles/grabber_area = SubResource("12")
+HSlider/styles/grabber_area_highlight = SubResource("13")
