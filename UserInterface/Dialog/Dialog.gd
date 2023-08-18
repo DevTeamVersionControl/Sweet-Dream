@@ -18,8 +18,7 @@ extends Control
 signal dialog_end
 signal talk
 signal shop
-signal jelly_bean
-signal first_interaction
+signal increment_story_point(story_point:int)
 
 @onready var text = $Text
 @onready var dialog_name = $Name
@@ -59,7 +58,10 @@ func next_phrase() -> void:
 	text.text = dialog[story_point][phrase_num]["Text"]
 	portrait.texture = load(dialog[story_point][phrase_num]["Portrait"])
 	if dialog[story_point][phrase_num].has("Signal"):
-		emit_signal(dialog[story_point][phrase_num]["Signal"])
+		if dialog[story_point][phrase_num]["Signal"] == "increment_story_point":
+			emit_signal(dialog[story_point][phrase_num]["Signal"], story_point)
+		else:
+			emit_signal(dialog[story_point][phrase_num]["Signal"])
 	
 	text.visible_characters = story_point
 	
@@ -77,8 +79,3 @@ func close_dialog()->void:
 		get_parent().request_unpause()
 		set_process_internal(false)
 		emit_signal("dialog_end")
-
-# Used once to equip candy corn ammo to player at the beginning of the game
-func f_equip_candy_corn():
-	GlobalVars.ammo_equipped_array.append(GlobalVars.get_ammo("Candy Corn"))
-	GlobalVars.remove_from_inventory("Candy Corn")

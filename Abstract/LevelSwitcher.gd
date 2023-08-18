@@ -93,6 +93,9 @@ func load_level(level:PackedScene, location:String):
 	emit_signal("level_loaded")
 
 func die():
+	for item in GlobalVars.inventory:
+		if item.has("Fragile"):
+			GlobalVars.remove_from_inventory(item["Name"])
 	next_level = checkpoint.level
 	GlobalVars.health_packs = GlobalVars.max_health_packs
 	GlobalVars.health = GlobalVars.max_health
