@@ -1,15 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://by2gkot5ipch1"]
+[gd_scene load_steps=5 format=3 uid="uid://by2gkot5ipch1"]
 
 [ext_resource type="PackedScene" uid="uid://c2lnmubsduxge" path="res://UserInterface/HUD/HUD.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://dif7qredean4g" path="res://Abstract/Shaker.tscn" id="2"]
-[ext_resource type="PackedScene" uid="uid://c6143whyoo8h6" path="res://Levels/TestLevel.tscn" id="2_fv5xu"]
 [ext_resource type="Script" path="res://Abstract/LevelSwitcher.gd" id="3"]
 [ext_resource type="PackedScene" uid="uid://b8k2o6g87t0d2" path="res://UserInterface/GUI.tscn" id="4"]
 
 [node name="LevelSwitcher" type="Node2D" groups=["save"]]
 process_mode = 1
 script = ExtResource("3")
-first_level = ExtResource("2_fv5xu")
+first_level = "res://Levels/TestLevel.tscn"
 
 [node name="HUD" parent="." instance=ExtResource("1")]
 layer = 100

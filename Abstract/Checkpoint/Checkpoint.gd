@@ -19,6 +19,8 @@ const CHECKPOINT = preload("res://Abstract/Checkpoint/Checkpoint.wav")
 
 @onready var animation_player = $AnimationPlayer
 
+@onready var description := "default description"
+
 var player_is_in_zone := false
 
 func _ready():
@@ -42,7 +44,8 @@ func _input(_event):
 			get_tree().current_scene.start_rest_menu()
 			GlobalVars.play_sound(CHECKPOINT)
 		else:
-			get_tree().current_scene.set_checkpoint(GlobalTypes.Checkpoint.new(name, load(get_tree().current_scene.current_level.scene_file_path)))
+			var checkpoint = {"Name":name, "Level":get_tree().current_scene.current_level.scene_file_path, "Description":description}
+			get_tree().current_scene.set_checkpoint(checkpoint)
 			animation_player.play("Opening")
 			await animation_player.animation_finished
 			get_tree().current_scene.checkpoint_update()

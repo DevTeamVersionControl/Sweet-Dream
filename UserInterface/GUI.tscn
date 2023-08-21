@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b8k2o6g87t0d2"]
+[gd_scene load_steps=14 format=3 uid="uid://b8k2o6g87t0d2"]
 
 [ext_resource type="PackedScene" uid="uid://cfy1dv7vc6nqw" path="res://UserInterface/PauseMenu/PauseMenu.tscn" id="1"]
 [ext_resource type="PackedScene" uid="uid://bd5il2eom8sy" path="res://UserInterface/PauseMenu/input_menu/InputMenu.tscn" id="2"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://coh44oo42d74j" path="res://UserInterface/Shops/Shop.tscn" id="7"]
 [ext_resource type="PackedScene" path="res://UserInterface/Map/Map.tscn" id="9"]
 [ext_resource type="PackedScene" uid="uid://y601wptx5oci" path="res://UserInterface/Inventory/Inventory.tscn" id="11_1tp1s"]
+[ext_resource type="PackedScene" uid="uid://bcb2pabghtso6" path="res://UserInterface/RestMenu/RestMenu.tscn" id="12_r1xvr"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuett"]
 shader = ExtResource("4_ocivv")
@@ -126,4 +127,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Inventory" parent="." instance=ExtResource("11_1tp1s")]
+visible = false
+
+[node name="RestMenu" parent="." instance=ExtResource("12_r1xvr")]
 visible = false

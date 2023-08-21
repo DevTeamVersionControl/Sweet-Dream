@@ -41,6 +41,7 @@ var double_jump_lock := true
 var dash_lock := true
 var map_lock := true
 var inventory := []
+var visited_checkpoints := []
 var artifacts := 0
 var special_attack_sugar := 10
 
@@ -57,6 +58,7 @@ func initialize():
 	dash_lock = true
 	map_lock = true
 	inventory = []
+	visited_checkpoints = []
 	artifacts = 0
 	special_attack_sugar = 10
 	GameSaver.obj_load()
@@ -76,6 +78,7 @@ func obj_save(game_data):
 	game_data["dash_lock"] = dash_lock
 	game_data["map_lock"] = map_lock
 	game_data["inventory"] = inventory
+	game_data["visited_checkpoints"] = visited_checkpoints
 	game_data["artifacts"] = artifacts
 	
 func obj_load(game_data):
@@ -91,6 +94,7 @@ func obj_load(game_data):
 	dash_lock = game_data["dash_lock"]
 	map_lock = game_data["map_lock"]
 	inventory = game_data["inventory"]
+	visited_checkpoints = game_data["visited_checkpoints"] if game_data.has("visited_checkpoints") else []
 	artifacts = game_data["artifacts"]
 
 func get_ammo(ammo_name : String):

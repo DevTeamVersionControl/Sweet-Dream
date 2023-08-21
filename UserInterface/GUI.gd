@@ -20,6 +20,7 @@ extends CanvasLayer
 @onready var shop = $Shop
 @onready var pause_menu = $PauseMenu
 @onready var input_menu := $InputMenu
+@onready var rest_menu := $RestMenu
 @onready var map := $Map
 @onready var inventory := $Inventory
 
@@ -32,6 +33,8 @@ func _unhandled_input(event):
 		dialog.input(event)
 	elif input_menu.visible:
 		input_menu.input(event)
+	elif rest_menu.visible:
+		rest_menu.input(event)
 	else:
 		pause_menu.input()
 

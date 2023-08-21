@@ -1,0 +1,188 @@
+[gd_scene load_steps=16 format=3 uid="uid://bcb2pabghtso6"]
+
+[ext_resource type="Script" path="res://UserInterface/RestMenu/RestMenu.gd" id="1_xlh3n"]
+[ext_resource type="Texture2D" uid="uid://c7b5rjgx7ba5d" path="res://UserInterface/MainMenu/Menu Box4k.png" id="2_0j6s7"]
+[ext_resource type="FontFile" uid="uid://7f0bpaqn1xgt" path="res://UserInterface/Fonts/Ubuntu-M.ttf" id="3_2i8h4"]
+[ext_resource type="Texture2D" uid="uid://dq4kggpkenyu2" path="res://UserInterface/Shops/Icon/Item 1.png" id="4_y3lyj"]
+[ext_resource type="Theme" uid="uid://bwo8ukvcke31h" path="res://UserInterface/theme.tres" id="5_1mvap"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lf3bk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_iornr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ologj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_567ov"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ke3w6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_e4ux4"]
+
+[sub_resource type="FontFile" id="13"]
+fallbacks = Array[Font]([ExtResource("3_2i8h4")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/30/0/ascent = 0.0
+cache/0/30/0/descent = 0.0
+cache/0/30/0/underline_position = 0.0
+cache/0/30/0/underline_thickness = 0.0
+cache/0/30/0/scale = 1.0
+cache/0/30/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/30/0/kerning_overrides/40/0 = Vector2(0, 0)
+cache/0/40/0/ascent = 0.0
+cache/0/40/0/descent = 0.0
+cache/0/40/0/underline_position = 0.0
+cache/0/40/0/underline_thickness = 0.0
+cache/0/40/0/scale = 1.0
+cache/0/40/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/30/0 = Vector2(0, 0)
+cache/0/40/0/kerning_overrides/40/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="2"]
+default_font = SubResource("13")
+ItemList/colors/font_color = Color(0.270588, 0.196078, 0.423529, 1)
+ItemList/colors/guide_color = Color(0.7, 0.7, 0.7, 0.25)
+ItemList/styles/bg = SubResource("StyleBoxEmpty_lf3bk")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_iornr")
+ItemList/styles/hovered = SubResource("StyleBoxEmpty_ologj")
+ItemList/styles/panel = SubResource("StyleBoxEmpty_567ov")
+ItemList/styles/selected = SubResource("StyleBoxEmpty_ke3w6")
+ItemList/styles/selected_focus = SubResource("StyleBoxEmpty_e4ux4")
+
+[sub_resource type="FontFile" id="4"]
+fallbacks = Array[Font]([ExtResource("3_2i8h4")])
+cache/0/16/0/ascent = 0.0
+cache/0/16/0/descent = 0.0
+cache/0/16/0/underline_position = 0.0
+cache/0/16/0/underline_thickness = 0.0
+cache/0/16/0/scale = 1.0
+cache/0/16/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/16/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/64/0/ascent = 0.0
+cache/0/64/0/descent = 0.0
+cache/0/64/0/underline_position = 0.0
+cache/0/64/0/underline_thickness = 0.0
+cache/0/64/0/scale = 1.0
+cache/0/64/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/64/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/10/0/ascent = 0.0
+cache/0/10/0/descent = 0.0
+cache/0/10/0/underline_position = 0.0
+cache/0/10/0/underline_thickness = 0.0
+cache/0/10/0/scale = 1.0
+cache/0/10/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/10/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/100/0/ascent = 0.0
+cache/0/100/0/descent = 0.0
+cache/0/100/0/underline_position = 0.0
+cache/0/100/0/underline_thickness = 0.0
+cache/0/100/0/scale = 1.0
+cache/0/100/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/100/0/kerning_overrides/50/0 = Vector2(0, 0)
+cache/0/50/0/ascent = 0.0
+cache/0/50/0/descent = 0.0
+cache/0/50/0/underline_position = 0.0
+cache/0/50/0/underline_thickness = 0.0
+cache/0/50/0/scale = 1.0
+cache/0/50/0/kerning_overrides/16/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/64/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/10/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/100/0 = Vector2(0, 0)
+cache/0/50/0/kerning_overrides/50/0 = Vector2(0, 0)
+
+[sub_resource type="Theme" id="5"]
+default_font = SubResource("4")
+Label/colors/font_color = Color(0.270588, 0.196078, 0.423529, 1)
+Label/font_sizes/font_size = 64
+RichTextLabel/colors/default_color = Color(0.270588, 0.196078, 0.423529, 1)
+
+[node name="RestMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_xlh3n")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -204.0
+offset_top = -103.0
+offset_right = -204.0
+offset_bottom = -103.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("2_0j6s7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="ItemList" type="ItemList" parent="."]
+layout_mode = 0
+offset_left = 350.0
+offset_top = 361.0
+offset_right = 724.0
+offset_bottom = 866.0
+theme = SubResource("2")
+theme_override_font_sizes/font_size = 40
+auto_height = true
+item_count = 7
+icon_scale = 0.5
+item_0/text = "Item 0"
+item_0/icon = ExtResource("4_y3lyj")
+item_1/text = "Item 1"
+item_2/text = "Item 2"
+item_3/text = "Item 3"
+item_4/text = "Item 4"
+item_5/text = "Item 5"
+item_6/text = "Item 6"
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 319.0
+offset_top = 191.0
+offset_right = 1578.0
+offset_bottom = 321.0
+theme = ExtResource("5_1mvap")
+theme_override_font_sizes/font_size = 80
+text = "Quick travel"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Description" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 736.0
+offset_top = 347.0
+offset_right = 1566.0
+offset_bottom = 729.0
+theme = SubResource("5")
+theme_override_font_sizes/normal_font_size = 50
+text = "Very interesting item description, or maybe it's cryptic for no reason"
+
+[node name="SoundEffect" type="AudioStreamPlayer" parent="."]
+bus = &"Sound Effects"
+
+[connection signal="item_clicked" from="ItemList" to="." method="_on_item_list_item_clicked"]

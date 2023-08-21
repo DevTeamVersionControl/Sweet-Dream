@@ -20,13 +20,13 @@ signal update_checkpoint
 
 const PLAYER = preload("res://Actors/Player/Player.tscn")
 
-@export var first_level : PackedScene 
+@export_file("*.tscn") var first_level : String
 
 @onready var gui = $GUI
 @onready var level_transition = gui.color_rect.get_material()
 @onready var hud = $HUD
 @onready var shaker = $Shaker
-@onready var checkpoint = GlobalTypes.Checkpoint.new("Checkpoint",first_level)
+@onready var checkpoint = {"Name":"Checkpoint", "Level":first_level, "Description":"The first checkpoint"}
 
 var current_level : Node2D
 var next_level : PackedScene
@@ -34,21 +34,21 @@ var door_location : String
 var player : Player
 
 func _ready():
-	checkpoint = GlobalTypes.Checkpoint.new("Checkpoint", first_level)
+	checkpoint = {"Name":"Checkpoint", "Level":first_level, "Description":"The first checkpoint"}
 	GlobalVars.initialize()
 	var save_data = GameSaver.get_save("user://MoreSettings.json")
 	hud.set_physics_process_internal(false)
 	if save_data.has("Timer"):
 		if save_data["Timer"]:
 			hud.activate_timer()
-	load_level(checkpoint.level, checkpoint.name)
+	load_level(load(checkpoint["Level"]), checkpoint["Name"])
+	checkpoint_update()
 
 func obj_save(game_data):
-	game_data["checkpoint_level"] = checkpoint.level.resource_path
-	game_data["checkpoint_name"] = checkpoint.name
+	game_data["current_checkpoint"] = checkpoint
 
 func obj_load(game_data):
-	checkpoint = GlobalTypes.Checkpoint.new(game_data["checkpoint_name"], load(game_data["checkpoint_level"]))
+	checkpoint = game_data["current_checkpoint"]
 
 func change_level(new_level:String, portal_name:String):
 	var tween = get_tree().create_tween()
@@ -96,16 +96,20 @@ func die():
 	for item in GlobalVars.inventory:
 		if item.has("Fragile"):
 			GlobalVars.remove_from_inventory(item["Name"])
-	next_level = checkpoint.level
 	GlobalVars.health_packs = GlobalVars.max_health_packs
 	GlobalVars.health = GlobalVars.max_health
-	call_deferred("load_level", next_level, checkpoint.name)
+	load_with_checkpoint()
+	
+
+func load_with_checkpoint():
+	next_level = load(checkpoint["Level"])
+	call_deferred("load_level", next_level, checkpoint["Name"])
 
 func set_checkpoint(new_checkpoint):
 	checkpoint = new_checkpoint
 
 func checkpoint_on(checkpoint_name) -> bool:
-	return (checkpoint.name == checkpoint_name) && (load(current_level.scene_file_path) == checkpoint.level)
+	return (checkpoint["Name"] == checkpoint_name) && (current_level.scene_file_path == checkpoint["Level"])
 
 func start_dialog(dialog_file:String, story_point:int):
 	gui.dialog.start(dialog_file, story_point)
@@ -116,7 +120,9 @@ func start_shop(shop_file:String, multiplier = 1.0):
 	gui.request_pause()
 
 func start_rest_menu():
-	gui.inventory.start()
+	gui.rest_menu.start()
 
 func checkpoint_update():
 	emit_signal("update_checkpoint")
+	if not GlobalVars.visited_checkpoints.has(checkpoint):
+		GlobalVars.visited_checkpoints.append(checkpoint)

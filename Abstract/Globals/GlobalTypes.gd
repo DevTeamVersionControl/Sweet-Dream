@@ -38,12 +38,14 @@ class Ammo:
 		scene = ammo_scene
 		texture = ammo_texture
 
-class Checkpoint:
-	var name:String
-	var level:PackedScene
-	func _init(init_name, init_level):
-		name = init_name
-		level = init_level
+#class Checkpoint:
+#	var name:String
+#	var level:PackedScene
+#	var description:String
+#	func _init(init_name, init_level, init_description = ""):
+#		name = init_name
+#		level = init_level
+#		description = init_description
 
 class ConstEffect:
 	var type:STATUS
