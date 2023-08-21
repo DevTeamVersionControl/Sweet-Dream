@@ -9,7 +9,7 @@ func _ready():
 	animation_player.play("Idle")
 	get_tree().current_scene.gui.dialog.connect("talk", Callable(self, "on_talk"))
 	get_tree().current_scene.gui.dialog.connect("shop", Callable(self, "on_shop"))
-	get_tree().current_scene.gui.dialog.connect("jelly_bean", Callable(self, "jelly_bean"))
+	get_tree().current_scene.gui.dialog.connect("increment_story_point", increment_story_point)
 
 func _unhandled_input(_event):
 	if player_is_in_zone && Input.is_action_just_pressed("interact") && not get_tree().paused:
@@ -22,10 +22,15 @@ func on_talk():
 	if in_dialog:
 		animation_player.play("Speak")
 
-# Used once to give jelly bean ammo to player
-func jelly_bean():
-	GlobalVars.add_to_inventory({"Name":"Jelly Bean","Ammo":null, "Icon":"res://Pickups/Jelly Bean 720p.png", "Description":"Bouncy and destructive"})
-	GlobalVars.add_to_inventory({"Name":"Talked to dead guy", "StoryPoint":["DeadGuy", 1]})
+func increment_story_point(story_point : int):
+	match story_point:
+		0:
+			GlobalVars.add_to_inventory({"Name":"Jelly Bean","Ammo":null, "Icon":"res://Pickups/Jelly Bean 720p.png", "Description":"Bouncy and destructive"})
+			GlobalVars.add_to_inventory({"Name":"DeadGuy", "StoryPoint":["DeadGuy", 1]})
+		2:
+			GlobalVars.get_from_inventory("DeadGuy")["StoryPoint"][1] = 3
+		4:
+			GlobalVars.get_from_inventory("DeadGuy")["StoryPoint"][1] = 5
 	GameSaver.obj_save()
 
 # Returns the point at the conversation the dialog should be

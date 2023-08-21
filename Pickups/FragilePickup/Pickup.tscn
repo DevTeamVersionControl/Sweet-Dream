@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsh8yoehqy1gv"]
+
+[ext_resource type="Script" path="res://Pickups/FragilePickup/Pickup.gd" id="1_5t83a"]
+
+[sub_resource type="RectangleShape2D" id="1"]
+
+[node name="FragilePickup" type="Area2D"]
+scale = Vector2(0.05, 0.05)
+monitoring = false
+monitorable = false
+script = ExtResource("1_5t83a")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("1")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]

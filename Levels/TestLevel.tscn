@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://c6143whyoo8h6"]
+[gd_scene load_steps=12 format=3 uid="uid://c6143whyoo8h6"]
 
 [ext_resource type="Script" path="res://Levels/Level.gd" id="1_vikpt"]
 [ext_resource type="PackedScene" uid="uid://dmfq3y22e5pol" path="res://Environment/Backgrounds/Forest Backgrounds/Underground Background/Back Textures/UndergroundBackground.tscn" id="2_hw63h"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cdstbfdxoiqna" path="res://Pickups/Pickup.tscn" id="7_qvxvq"]
 [ext_resource type="PackedScene" uid="uid://bs5omw5j100bn" path="res://Actors/Enemies/Jello/Jello.tscn" id="7_u5v3l"]
 [ext_resource type="PackedScene" uid="uid://caqf8hahsxiw6" path="res://Actors/NPC/DeadGuy/DeadGuy.tscn" id="9_m3jgf"]
+[ext_resource type="PackedScene" uid="uid://bsh8yoehqy1gv" path="res://Pickups/FragilePickup/Pickup.tscn" id="10_153e8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nwbr4"]
 size = Vector2(144, 17)
@@ -100,3 +101,13 @@ position = Vector2(24, 174)
 
 [node name="Checkpoint2" parent="." instance=ExtResource("6_5xnei")]
 position = Vector2(1125, -44)
+
+[node name="FragilePickup" parent="." instance=ExtResource("10_153e8")]
+position = Vector2(1231, 359)
+description = {
+"Description": "It's that quest item another npc asked for to progress the main story",
+"Fragile": false,
+"Icon": "res://UserInterface/Map/Candy Icon.png",
+"Name": "Fragile quest Item",
+"StoryPoint": ["DeadGuy", 4]
+}

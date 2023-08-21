@@ -11,7 +11,7 @@
 
 	{"Name":"Dead guy", 
 		"Text":"Just shut the fuck up and take this jelly bean to break through the jello, there's an upgrade that should help you get further", 
-	"Signal":"jelly_bean", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+	"Signal":"increment_story_point", "Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
 
 	{"Name":"Cadus III",
 		"Text":"Alright jesus christ but how do I equip it, I'm way too stupid to figure that shit out",
@@ -33,7 +33,7 @@
 	
 	[{"Name":"Dead guy",
 		"Text":"I don't feel like helping you figure this out so use your brain",
-	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"}
 	
 	],
 	
@@ -49,13 +49,31 @@
 		"Text":"But that's a one way trip, how do I get back?",
 	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
 
-	{"Name":"Dr.Gamal",
-		"Text":"Wow, you really do have braincells! Use another checkpoint to teleport here, don't ask too many questions it makes sense I swear",
+	{"Name":"Dead guy",
+		"Text":"Wow, you do have braincells! Use another checkpoint to teleport here, don't ask too many questions it makes sense I swear",
 	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"},
 
 	{"Name":"Cadus III",
 		"Text":"Alright I guess I'll do that, it's not like I have anything else to do",
-	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"}
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png", "Signal":"increment_story_point"}
 	
-	]
+	],
+	
+	[{"Name":"Dead guy",
+		"Text":"Don't talk to me until you have my super duper special candy. Careful though, it's really fragile so it might break if you take too many hits.",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"}
+	],
+	[{"Name":"Cadus III",
+		"Text":"I found it!",
+	"Portrait":"res://UserInterface/Dialog/Portraits/Player.png"},
+	
+	{"Name":"Dead guy",
+		"Text":"Perfect! With the super duper special candy in my hands, the story can progress further! We didn't think of it yet though, so this is the end of the demo, hope you enjoyed",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png", "Signal":"increment_story_point"}
+	],
+	
+	[{"Name":"Dead guy",
+		"Text":"Try to explore around, maybe you haven't found everything",
+	"Portrait":"res://UserInterface/Dialog/Portraits/MrGerald.png"}
+	],
 ]
