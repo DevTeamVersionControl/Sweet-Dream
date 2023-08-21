@@ -12,7 +12,6 @@ var rads := 0.0
 var should_disappear := false
 
 @onready var sprite := $Sprite2D
-@onready var timer := $Timer
 
 func _ready():
 	sprite.frame = sprite_num
