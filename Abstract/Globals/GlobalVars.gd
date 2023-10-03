@@ -123,6 +123,7 @@ func remove_from_inventory(item_name:String):
 	for i in inventory.size():
 		if inventory[i].get("Name") == item_name:
 			inventory.remove_at(i)
+			return
 
 func add_max_health(num:int)->void:
 	max_health += num

@@ -99,11 +99,17 @@ func die():
 	GlobalVars.health_packs = GlobalVars.max_health_packs
 	GlobalVars.health = GlobalVars.max_health
 	load_with_checkpoint()
-	
 
 func load_with_checkpoint():
+	var tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(level_transition, "shader_parameter/dissolve_state", 2, 1)
 	next_level = load(checkpoint["Level"])
 	call_deferred("load_level", next_level, checkpoint["Name"])
+	await tween.finished
+	tween = get_tree().create_tween()
+	tween.set_pause_mode(Tween.TWEEN_PAUSE_PROCESS)
+	tween.tween_property(level_transition, "shader_parameter/dissolve_state", 0, 1)
 
 func set_checkpoint(new_checkpoint):
 	checkpoint = new_checkpoint
